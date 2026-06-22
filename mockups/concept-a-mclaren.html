@@ -3,42 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Team 839A — Concept A: Performance</title>
+<title>Team 839A — VEX IQ Level Up 2025–26</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#0B0B0B;--surface:#141414;--surface2:#1E1E1E;
-  --orange:#FF8000;--orange-dark:#CC6600;
+  --blue:#E82030;--blue-dark:#C01520;--blue-dim:rgba(232,32,48,0.1);
   --text:#FFFFFF;--muted:rgba(255,255,255,0.45);--border:rgba(255,255,255,0.07);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;overflow-x:hidden}
 a{text-decoration:none;color:inherit}
 
+/* ─── NAV ─── */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;height:56px;padding:0 2.5rem;
   display:flex;align-items:center;justify-content:space-between;
-  background:rgba(11,11,11,0.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);
+  background:rgba(11,11,11,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);
 }
 .logo{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.3rem;letter-spacing:0.05em}
-.logo span{color:var(--orange)}
+.logo span{color:var(--blue)}
 .nav-links{
   display:flex;gap:0;list-style:none;
   position:absolute;left:50%;transform:translateX(-50%);
 }
 .nav-links a{
-  font-family:'Rajdhani',sans-serif;font-weight:600;font-size:0.68rem;letter-spacing:0.18em;
-  text-transform:uppercase;color:var(--muted);padding:0 1.2rem;height:56px;
+  font-family:'Rajdhani',sans-serif;font-weight:600;font-size:0.66rem;letter-spacing:0.16em;
+  text-transform:uppercase;color:var(--muted);padding:0 1rem;height:56px;
   display:flex;align-items:center;border-bottom:2px solid transparent;transition:all 0.2s;
 }
-.nav-links a:hover,.nav-links a.active{color:var(--text);border-bottom-color:var(--orange)}
+.nav-links a:hover,.nav-links a.active{color:var(--text);border-bottom-color:var(--blue)}
 .nav-cta{
-  font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.68rem;letter-spacing:0.18em;
-  text-transform:uppercase;padding:0.5rem 1.4rem;border:1px solid var(--orange);color:var(--orange);transition:all 0.18s;
+  font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.66rem;letter-spacing:0.16em;
+  text-transform:uppercase;padding:0.5rem 1.4rem;border:1px solid var(--blue);color:var(--blue);transition:all 0.18s;
 }
-.nav-cta:hover{background:var(--orange);color:#000}
+.nav-cta:hover{background:var(--blue);color:#fff}
 
 /* ─── HERO ─── */
 .hero{
@@ -47,7 +49,7 @@ nav{
 }
 .hero::after{
   content:'';position:absolute;top:56px;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent,var(--orange) 20%,var(--orange) 80%,transparent);opacity:0.5;
+  background:linear-gradient(90deg,transparent,var(--blue) 20%,var(--blue) 80%,transparent);opacity:0.4;
 }
 .hero-left{
   padding:6rem 4rem;display:flex;flex-direction:column;justify-content:center;
@@ -55,33 +57,33 @@ nav{
 }
 .hero-bg-num{
   position:absolute;font-family:'Rajdhani',sans-serif;font-weight:700;
-  font-size:28vw;color:rgba(255,128,0,0.035);line-height:1;
+  font-size:28vw;color:rgba(232,32,48,0.04);line-height:1;
   bottom:-5%;left:-3%;pointer-events:none;user-select:none;letter-spacing:-0.04em;
 }
 .hero-series{
-  font-family:'Rajdhani',sans-serif;font-weight:600;font-size:0.68rem;
-  letter-spacing:0.28em;text-transform:uppercase;color:var(--orange);
+  font-family:'Rajdhani',sans-serif;font-weight:600;font-size:0.66rem;
+  letter-spacing:0.28em;text-transform:uppercase;color:var(--blue);
   margin-bottom:2.5rem;display:flex;align-items:center;gap:1rem;
 }
-.hero-series::before{content:'';width:28px;height:2px;background:var(--orange);display:inline-block;flex-shrink:0}
+.hero-series::before{content:'';width:28px;height:2px;background:var(--blue);display:inline-block;flex-shrink:0}
 h1.hero-headline{
   font-family:'Rajdhani',sans-serif;font-weight:700;
-  font-size:clamp(4rem,8.5vw,8rem);text-transform:uppercase;
-  line-height:0.88;letter-spacing:-0.01em;margin-bottom:2.5rem;position:relative;z-index:1;
+  font-size:clamp(3.5rem,8vw,7.5rem);text-transform:uppercase;
+  line-height:0.9;letter-spacing:-0.01em;margin-bottom:2.5rem;position:relative;z-index:1;
 }
-h1 .acc{color:var(--orange)}
+h1 .acc{color:var(--blue)}
 .hero-body{
-  font-size:0.95rem;color:var(--muted);line-height:1.75;max-width:440px;
+  font-size:0.95rem;color:var(--muted);line-height:1.78;max-width:440px;
   margin-bottom:3rem;font-weight:300;position:relative;z-index:1;
 }
 .hero-actions{display:flex;position:relative;z-index:1}
 .btn-fill{
-  background:var(--orange);color:#000;padding:1rem 2.5rem;
+  background:var(--blue);color:#fff;padding:1rem 2.5rem;
   font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.78rem;
   letter-spacing:0.18em;text-transform:uppercase;display:inline-block;
-  transition:background 0.18s;border:2px solid var(--orange);
+  transition:background 0.18s;border:2px solid var(--blue);
 }
-.btn-fill:hover{background:var(--orange-dark);border-color:var(--orange-dark)}
+.btn-fill:hover{background:var(--blue-dark);border-color:var(--blue-dark)}
 .btn-ghost{
   background:transparent;color:var(--text);padding:1rem 2.5rem;
   font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.78rem;
@@ -91,8 +93,7 @@ h1 .acc{color:var(--orange)}
 .btn-ghost:hover{border-color:rgba(255,255,255,0.5)}
 .hero-right{
   position:relative;background:var(--surface);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:0;overflow:hidden;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;
 }
 .hero-robot-wrap{
   width:62%;aspect-ratio:3/4;border:1px solid var(--border);
@@ -102,11 +103,11 @@ h1 .acc{color:var(--orange)}
 .hero-robot-wrap svg{opacity:0.14}
 .ph-txt{font-family:'Rajdhani',sans-serif;font-size:0.58rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted)}
 .robot-tag{
-  position:absolute;bottom:0;left:0;right:0;background:var(--orange);
+  position:absolute;bottom:0;left:0;right:0;background:var(--blue);
   padding:0.65rem 1.2rem;display:flex;justify-content:space-between;align-items:center;
 }
-.robot-tag-name{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.85rem;letter-spacing:0.1em;color:#000;text-transform:uppercase}
-.robot-tag-sub{font-family:'Rajdhani',sans-serif;font-weight:600;font-size:0.62rem;letter-spacing:0.1em;color:rgba(0,0,0,0.6);text-transform:uppercase}
+.robot-tag-name{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.85rem;letter-spacing:0.1em;color:#fff;text-transform:uppercase}
+.robot-tag-sub{font-family:'Rajdhani',sans-serif;font-weight:600;font-size:0.62rem;letter-spacing:0.1em;color:rgba(255,255,255,0.65);text-transform:uppercase}
 
 /* ─── STATS ─── */
 .stats-bar{
@@ -118,34 +119,63 @@ h1 .acc{color:var(--orange)}
 }
 .stat-col:last-child{border-right:none}
 .stat-col::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:transparent;transition:background 0.2s}
-.stat-col:hover::before{background:var(--orange)}
+.stat-col:hover::before{background:var(--blue)}
 .stat-n{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:2.8rem;line-height:1;color:var(--text)}
 .stat-l{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-top:0.4rem}
 
-/* ─── ABOUT ─── */
-.about{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border)}
-.about-l{padding:7rem 4rem;border-right:1px solid var(--border)}
+/* ─── SECTION SHARED ─── */
 .section-tag{
   font-family:'Rajdhani',sans-serif;font-weight:600;font-size:0.65rem;
-  letter-spacing:0.28em;text-transform:uppercase;color:var(--orange);margin-bottom:2rem;
+  letter-spacing:0.28em;text-transform:uppercase;color:var(--blue);margin-bottom:2rem;
 }
 .h2{
   font-family:'Rajdhani',sans-serif;font-weight:700;text-transform:uppercase;
   font-size:clamp(2.2rem,4vw,3.5rem);line-height:1;letter-spacing:-0.01em;
 }
-.about-r{padding:7rem 4rem;display:flex;flex-direction:column;justify-content:center}
 .body-p{font-size:0.92rem;color:var(--muted);line-height:1.78;font-weight:300;margin-bottom:1.5rem}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3.5rem}
+.lnk{
+  font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.68rem;
+  letter-spacing:0.15em;text-transform:uppercase;color:var(--blue);
+  display:flex;align-items:center;gap:0.4rem;
+}
+.lnk::after{content:'→'}
+
+/* ─── ABOUT ─── */
+.about{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border)}
+.about-l{padding:7rem 4rem;border-right:1px solid var(--border)}
+.about-r{padding:7rem 4rem;display:flex;flex-direction:column;justify-content:center}
+.about-tag-row{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1.5rem}
+.about-tag{
+  font-family:'Rajdhani',sans-serif;font-weight:600;font-size:0.6rem;letter-spacing:0.14em;
+  text-transform:uppercase;padding:0.3rem 0.8rem;border:1px solid var(--border);color:var(--muted);
+}
+
+/* ─── SEASON GOALS ─── */
+.goals{padding:6rem 4rem;border-bottom:1px solid var(--border);background:var(--surface)}
+.goals-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:3.5rem}
+.goal-card{
+  background:var(--bg);padding:2rem 2rem 2.5rem;
+  border-top:2px solid transparent;transition:border-color 0.2s,background 0.2s;
+}
+.goal-card:hover{border-top-color:var(--blue);background:var(--surface2)}
+.goal-num{
+  font-family:'Rajdhani',sans-serif;font-weight:700;font-size:2rem;
+  color:rgba(232,32,48,0.18);line-height:1;margin-bottom:1rem;
+}
+.goal-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:0.6rem}
+.goal-desc{font-size:0.82rem;color:var(--muted);line-height:1.65;font-weight:300}
 
 /* ─── ROBOT ─── */
 .robot-section{display:grid;grid-template-columns:55fr 45fr;border-bottom:1px solid var(--border)}
 .robot-vis{
-  background:var(--surface);min-height:580px;
+  background:var(--surface);min-height:560px;
   display:flex;align-items:center;justify-content:center;
   border-right:1px solid var(--border);position:relative;overflow:hidden;
 }
 .robot-vis-bg{
   position:absolute;font-family:'Rajdhani',sans-serif;font-weight:700;
-  font-size:34vw;color:rgba(255,128,0,0.035);bottom:-10%;right:-5%;line-height:1;pointer-events:none;
+  font-size:34vw;color:rgba(232,32,48,0.04);bottom:-10%;right:-5%;line-height:1;pointer-events:none;
 }
 .robot-photo-box{
   width:52%;aspect-ratio:3/4;border:1px solid var(--border);background:var(--surface2);
@@ -156,7 +186,7 @@ h1 .acc{color:var(--orange)}
 .robot-info{padding:5rem 4rem;display:flex;flex-direction:column;justify-content:center}
 .robot-stag{
   font-family:'Rajdhani',sans-serif;font-weight:600;font-size:0.65rem;
-  letter-spacing:0.28em;text-transform:uppercase;color:var(--orange);margin-bottom:1.5rem;
+  letter-spacing:0.28em;text-transform:uppercase;color:var(--blue);margin-bottom:1.5rem;
 }
 .robot-name{
   font-family:'Rajdhani',sans-serif;font-weight:700;text-transform:uppercase;
@@ -171,15 +201,59 @@ h1 .acc{color:var(--orange)}
 .spec-k{font-family:'Rajdhani',sans-serif;font-weight:600;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
 .spec-v{font-family:'Rajdhani',sans-serif;font-weight:600;font-size:0.82rem;letter-spacing:0.04em}
 
+/* ─── PROGRESS CARDS ─── */
+.progress-section{padding:6rem 4rem;border-bottom:1px solid var(--border)}
+.progress-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-top:3.5rem}
+.prog-card{
+  background:var(--surface);padding:2rem;
+  transition:background 0.2s;position:relative;overflow:hidden;
+}
+.prog-card:hover{background:var(--surface2)}
+.prog-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:transparent;transition:background 0.2s;
+}
+.prog-card:hover::before{background:var(--blue)}
+.prog-icon{
+  width:36px;height:36px;border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;
+}
+.prog-icon svg{opacity:0.6}
+.prog-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.35rem}
+.prog-status{font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:1.25rem}
+.prog-bar-track{height:3px;background:rgba(255,255,255,0.07);width:100%;margin-bottom:0.6rem}
+.prog-bar-fill{height:3px;background:var(--blue);transition:width 0.4s ease}
+.prog-pct{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.75rem;color:var(--blue)}
+
+/* ─── SCHEDULE ─── */
+.schedule-section{padding:6rem 4rem;border-bottom:1px solid var(--border);background:var(--surface)}
+.schedule-list{display:flex;flex-direction:column;border-top:1px solid var(--border);margin-top:3.5rem}
+.schedule-item{
+  display:grid;grid-template-columns:140px 1fr auto;
+  align-items:center;gap:2rem;padding:1.4rem 0;
+  border-bottom:1px solid var(--border);transition:background 0.15s;position:relative;
+}
+.schedule-item:hover{background:var(--surface2);margin:0 -4rem;padding-left:4rem;padding-right:4rem}
+.sched-date{
+  font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.85rem;
+  letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);
+}
+.sched-event{font-family:'Rajdhani',sans-serif;font-weight:600;font-size:0.95rem;letter-spacing:0.02em}
+.sched-event small{display:block;font-size:0.75rem;color:var(--muted);font-weight:400;margin-top:0.15rem;font-family:'Barlow',sans-serif;letter-spacing:0}
+.sched-badge{
+  font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.6rem;
+  letter-spacing:0.15em;text-transform:uppercase;padding:0.25rem 0.7rem;
+  white-space:nowrap;
+}
+.sched-badge.qualifier{border:1px solid var(--blue);color:var(--blue)}
+.sched-badge.internal{border:1px solid var(--border);color:var(--muted)}
+.sched-badge.media{border:1px solid rgba(255,200,0,0.4);color:rgba(255,200,0,0.8)}
+.sched-badge.deadline{background:var(--blue);color:#fff;border:1px solid var(--blue)}
+.sched-badge.planning{border:1px solid var(--border);color:var(--muted)}
+.schedule-item.upcoming .sched-date{color:var(--blue)}
+
 /* ─── RESULTS ─── */
 .results{padding:6rem 4rem;border-bottom:1px solid var(--border)}
-.sec-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3.5rem}
-.lnk{
-  font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.68rem;
-  letter-spacing:0.15em;text-transform:uppercase;color:var(--orange);
-  display:flex;align-items:center;gap:0.4rem;
-}
-.lnk::after{content:'→'}
 .result-list{display:flex;flex-direction:column;border-top:1px solid var(--border)}
 .result-item{
   display:grid;grid-template-columns:52px 1fr auto 110px;
@@ -187,14 +261,14 @@ h1 .acc{color:var(--orange)}
   border-bottom:1px solid var(--border);transition:background 0.15s;
 }
 .result-item:hover{background:var(--surface);margin:0 -4rem;padding-left:4rem;padding-right:4rem}
-.r-num{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.4rem;color:rgba(255,255,255,0.12);line-height:1}
+.r-num{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.4rem;color:rgba(255,255,255,0.1);line-height:1}
 .r-event{font-family:'Rajdhani',sans-serif;font-weight:600;font-size:0.92rem;letter-spacing:0.02em}
 .r-award{
   font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.62rem;
   letter-spacing:0.15em;text-transform:uppercase;padding:0.28rem 0.75rem;
-  border:1px solid var(--orange);color:var(--orange);white-space:nowrap;
+  border:1px solid var(--blue);color:var(--blue);white-space:nowrap;
 }
-.r-award.champion{background:var(--orange);color:#000}
+.r-award.champion{background:var(--blue);color:#fff}
 .r-date{font-family:'Rajdhani',sans-serif;font-weight:500;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-align:right}
 
 /* ─── MEDIA ─── */
@@ -220,124 +294,405 @@ h1 .acc{color:var(--orange)}
 .post:hover{background:var(--surface2)}
 .post-img{aspect-ratio:16/9;background:var(--surface2);border-bottom:1px solid var(--border)}
 .post-body{padding:1.5rem 1.75rem 2rem}
-.post-cat{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--orange);margin-bottom:0.6rem}
+.post-cat{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--blue);margin-bottom:0.6rem}
 .post-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:0.01em;text-transform:uppercase;line-height:1.2;margin-bottom:0.75rem}
 .post-exc{font-size:0.82rem;color:var(--muted);line-height:1.65;font-weight:300}
 .post-date{font-family:'Rajdhani',sans-serif;font-weight:600;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-top:1.2rem}
 
 /* ─── SPONSOR ─── */
-.sponsor{background:var(--orange);color:#000;padding:7rem 4rem;text-align:center}
-.sponsor-eye{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.68rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(0,0,0,0.45);margin-bottom:1.5rem}
+.sponsor{background:var(--blue);color:#fff;padding:7rem 4rem;text-align:center}
+.sponsor-eye{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.68rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:1.5rem}
 .sponsor-h{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:clamp(3rem,5.5vw,5rem);text-transform:uppercase;letter-spacing:-0.02em;line-height:0.9;margin-bottom:2rem}
-.sponsor-p{font-size:0.95rem;color:rgba(0,0,0,0.58);max-width:460px;margin:0 auto 3rem;line-height:1.72;font-weight:300}
+.sponsor-p{font-size:0.95rem;color:rgba(255,255,255,0.65);max-width:460px;margin:0 auto 3rem;line-height:1.72;font-weight:300}
 .sponsor-btns{display:flex;justify-content:center}
-.btn-dark{background:#000;color:var(--orange);padding:1rem 2.5rem;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;display:inline-block}
+.btn-dark{background:#000;color:var(--blue);padding:1rem 2.5rem;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;display:inline-block;transition:background 0.18s}
 .btn-dark:hover{background:#111}
-.btn-ghost-dark{background:transparent;color:#000;padding:1rem 2.5rem;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;display:inline-block;border:2px solid rgba(0,0,0,0.22);border-left:none;transition:border-color 0.18s}
-.btn-ghost-dark:hover{border-color:rgba(0,0,0,0.6)}
+.btn-ghost-dark{background:transparent;color:#fff;padding:1rem 2.5rem;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;display:inline-block;border:2px solid rgba(255,255,255,0.3);border-left:none;transition:border-color 0.18s}
+.btn-ghost-dark:hover{border-color:rgba(255,255,255,0.7)}
 
 /* ─── FOOTER ─── */
-footer{background:var(--surface);border-top:3px solid var(--orange);padding:2.5rem 4rem;display:flex;align-items:center;justify-content:space-between}
+footer{background:var(--surface);border-top:2px solid var(--blue);padding:2.5rem 4rem;display:flex;align-items:center;justify-content:space-between}
 .f-logo{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.2rem;letter-spacing:0.05em}
-.f-logo span{color:var(--orange)}
+.f-logo span{color:var(--blue)}
 .f-nav{display:flex;gap:0;list-style:none}
 .f-nav a{font-family:'Rajdhani',sans-serif;font-weight:600;font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);padding:0.5rem 1rem;border-left:1px solid var(--border);transition:color 0.18s}
 .f-nav a:hover{color:var(--text)}
 .f-copy{font-family:'Rajdhani',sans-serif;font-size:0.6rem;color:var(--muted);letter-spacing:0.06em}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .about{grid-template-columns:1fr}
+  .about-l{border-right:none;border-bottom:1px solid var(--border)}
+  .robot-section{grid-template-columns:1fr}
+  .robot-vis{display:none}
+  .stats-bar{grid-template-columns:repeat(2,1fr)}
+  .progress-grid{grid-template-columns:repeat(2,1fr)}
+  .goals-grid{grid-template-columns:1fr}
+  .posts{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .result-item{grid-template-columns:40px 1fr;gap:1rem}
+  .r-award,.r-date{display:none}
+  .schedule-item{grid-template-columns:1fr;gap:0.4rem}
+  .sched-date{font-size:0.72rem}
+  .sched-badge{display:none}
+}
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <div class="logo">839<span>A</span></div>
   <ul class="nav-links">
-    <li><a href="#" class="active">Home</a></li>
-    <li><a href="#">About</a></li>
-    <li><a href="#">Robot</a></li>
-    <li><a href="#">Competitions</a></li>
-    <li><a href="#">Media</a></li>
-    <li><a href="#">Updates</a></li>
+    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#robot">Robot</a></li>
+    <li><a href="#notebook">Notebook</a></li>
+    <li><a href="#schedule">Schedule</a></li>
+    <li><a href="#media">Media</a></li>
+    <li><a href="#updates">Updates</a></li>
   </ul>
   <a href="#" class="nav-cta">Contact</a>
 </nav>
 
-<section class="hero">
+<!-- HERO -->
+<section class="hero" id="home">
   <div class="hero-left">
     <div class="hero-bg-num">839</div>
-    <div class="hero-series">VEX IQ Robotics · Season 2025–2026</div>
-    <h1 class="hero-headline">ENGI<br>NEER<br>ED TO<br><span class="acc">WIN.</span></h1>
-    <p class="hero-body">Team 839A competes at the highest level of VEX IQ robotics. From chassis to code, every decision is built around one objective: performance that earns results on the field.</p>
+    <div class="hero-series">VEX IQ Level Up · Team 839A · Season 2025–26</div>
+    <h1 class="hero-headline">
+      BUILD.<br>
+      CODE.<br>
+      <span class="acc">COMPETE.</span>
+    </h1>
+    <p class="hero-body">
+      We're Team 839A, a student-run VEX IQ team competing in the Level Up game. We design the robot, write the code, keep the notebook, and show up ready to win. This site tracks everything we're building this season — follow along.
+    </p>
     <div class="hero-actions">
-      <a href="#" class="btn-fill">View Our Robot</a>
-      <a href="#" class="btn-ghost">See Results</a>
+      <a href="#" class="btn-fill">See Our Robot</a>
+      <a href="#" class="btn-ghost">View Schedule</a>
     </div>
   </div>
   <div class="hero-right">
     <div class="hero-robot-wrap">
       <svg width="72" height="90" viewBox="0 0 72 90" fill="none">
-        <rect x="16" y="12" width="40" height="26" rx="3" stroke="#FF8000" stroke-width="1.5"/>
-        <rect x="21" y="38" width="30" height="26" rx="2" stroke="#FF8000" stroke-width="1.5"/>
-        <circle cx="28" cy="23" r="5" stroke="#FF8000" stroke-width="1.5"/>
-        <circle cx="44" cy="23" r="5" stroke="#FF8000" stroke-width="1.5"/>
-        <line x1="6" y1="45" x2="16" y2="50" stroke="#FF8000" stroke-width="1.5"/>
-        <line x1="66" y1="45" x2="56" y2="50" stroke="#FF8000" stroke-width="1.5"/>
-        <rect x="25" y="64" width="8" height="14" rx="2" stroke="#FF8000" stroke-width="1.5"/>
-        <rect x="39" y="64" width="8" height="14" rx="2" stroke="#FF8000" stroke-width="1.5"/>
+        <rect x="16" y="12" width="40" height="26" rx="3" stroke="#E82030" stroke-width="1.5"/>
+        <rect x="21" y="38" width="30" height="26" rx="2" stroke="#E82030" stroke-width="1.5"/>
+        <circle cx="28" cy="23" r="5" stroke="#E82030" stroke-width="1.5"/>
+        <circle cx="44" cy="23" r="5" stroke="#E82030" stroke-width="1.5"/>
+        <line x1="6" y1="45" x2="16" y2="50" stroke="#E82030" stroke-width="1.5"/>
+        <line x1="66" y1="45" x2="56" y2="50" stroke="#E82030" stroke-width="1.5"/>
+        <rect x="25" y="64" width="8" height="14" rx="2" stroke="#E82030" stroke-width="1.5"/>
+        <rect x="39" y="64" width="8" height="14" rx="2" stroke="#E82030" stroke-width="1.5"/>
       </svg>
-      <span class="ph-txt">Robot Photo</span>
+      <span class="ph-txt">Robot Photo Coming Soon</span>
       <div class="robot-tag">
-        <span class="robot-tag-name">NEXUS v3.2</span>
-        <span class="robot-tag-sub">2025–2026 Season</span>
+        <span class="robot-tag-name">NEXUS — Current Build</span>
+        <span class="robot-tag-sub">Level Up 2025–26</span>
       </div>
     </div>
   </div>
 </section>
 
+<!-- STATS -->
 <div class="stats-bar">
   <div class="stat-col"><span class="stat-n">839A</span><span class="stat-l">Team Number</span></div>
-  <div class="stat-col"><span class="stat-n">12</span><span class="stat-l">Team Members</span></div>
-  <div class="stat-col"><span class="stat-n">14</span><span class="stat-l">Awards Won</span></div>
-  <div class="stat-col"><span class="stat-n">4</span><span class="stat-l">Seasons Competing</span></div>
+  <div class="stat-col"><span class="stat-n">Level Up</span><span class="stat-l">2025–26 Game</span></div>
+  <div class="stat-col"><span class="stat-n">Nov 1</span><span class="stat-l">First Qualifier</span></div>
+  <div class="stat-col"><span class="stat-n">Active</span><span class="stat-l">Season Status</span></div>
 </div>
 
+<!-- ABOUT -->
 <div class="about">
   <div class="about-l">
     <p class="section-tag">Who We Are</p>
-    <h2 class="h2">BUILT BY<br>STUDENTS.<br>DRIVEN BY<br>AMBITION.</h2>
+    <h2 class="h2">STUDENTS.<br>ENGINEERS.<br>TEAM 839A.</h2>
   </div>
   <div class="about-r">
-    <p class="body-p">Team 839A is a student-led VEX IQ competitive robotics team. Every member owns a role — from mechanical design and programming to match strategy and community outreach. We compete at regional, state, and world championship levels.</p>
-    <p class="body-p">We don't just build robots. We build the engineers who build them. Every season, we return with a better team, a better machine, and a sharper edge.</p>
+    <p class="body-p">
+      We're a student-run VEX IQ team that takes full ownership of everything — robot design, programming, the engineering notebook, and our match strategy. No outside builds. No shortcuts. Everything you see came from us.
+    </p>
+    <p class="body-p">
+      This season we're competing in <strong style="color:var(--text);font-weight:500">VEX IQ Level Up</strong>. Our goal is simple: show up to every event with a robot that's better than it was the week before, and a team that knows exactly how to use it.
+    </p>
+    <div class="about-tag-row">
+      <span class="about-tag">VEX IQ</span>
+      <span class="about-tag">Level Up</span>
+      <span class="about-tag">Student-Led</span>
+      <span class="about-tag">Robotics</span>
+      <span class="about-tag">Engineering</span>
+    </div>
   </div>
 </div>
 
-<div class="robot-section">
+<!-- SEASON GOALS -->
+<div class="goals">
+  <div class="sec-head">
+    <div><p class="section-tag">2025–26 Season</p><h2 class="h2" style="font-size:2.5rem">OUR GOALS</h2></div>
+  </div>
+  <div class="goals-grid">
+    <div class="goal-card">
+      <div class="goal-num">01</div>
+      <div class="goal-title">Win the Halloween Qualifier</div>
+      <div class="goal-desc">November 1st is our first real test. We want to go in with a polished robot, a full autonomous routine, and no surprises.</div>
+    </div>
+    <div class="goal-card">
+      <div class="goal-num">02</div>
+      <div class="goal-title">Complete the Engineering Notebook</div>
+      <div class="goal-desc">Our notebook needs to tell the full story — every design decision, every test, and why we made the calls we did. Judges read every page.</div>
+    </div>
+    <div class="goal-card">
+      <div class="goal-num">03</div>
+      <div class="goal-title">Film a Reveal Video</div>
+      <div class="goal-desc">We want to put out a proper reveal video before the qualifier — something that shows the robot in action and makes people take us seriously.</div>
+    </div>
+    <div class="goal-card">
+      <div class="goal-num">04</div>
+      <div class="goal-title">Score Consistently in Autonomous</div>
+      <div class="goal-desc">Autonomous is where matches are decided at high levels. We're building a routine that runs clean every single time, not just in practice.</div>
+    </div>
+    <div class="goal-card">
+      <div class="goal-num">05</div>
+      <div class="goal-title">Launch Team Merch</div>
+      <div class="goal-desc">We're working on team gear — jerseys, hoodies, or hats. Something that looks good at events and helps sponsors see us as a real organization.</div>
+    </div>
+    <div class="goal-card">
+      <div class="goal-num">06</div>
+      <div class="goal-title">Keep This Website Updated</div>
+      <div class="goal-desc">Every build log, every result, every media post goes here. We want judges, parents, and sponsors to find real work — not a blank page.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ROBOT -->
+<div class="robot-section" id="robot">
   <div class="robot-vis">
     <div class="robot-vis-bg">N</div>
     <div class="robot-photo-box">
       <svg width="72" height="90" viewBox="0 0 72 90" fill="none">
-        <rect x="16" y="12" width="40" height="26" rx="3" stroke="#FF8000" stroke-width="1.5"/>
-        <rect x="21" y="38" width="30" height="26" rx="2" stroke="#FF8000" stroke-width="1.5"/>
-        <circle cx="28" cy="23" r="5" stroke="#FF8000" stroke-width="1.5"/>
-        <circle cx="44" cy="23" r="5" stroke="#FF8000" stroke-width="1.5"/>
+        <rect x="16" y="12" width="40" height="26" rx="3" stroke="#E82030" stroke-width="1.5"/>
+        <rect x="21" y="38" width="30" height="26" rx="2" stroke="#E82030" stroke-width="1.5"/>
+        <circle cx="28" cy="23" r="5" stroke="#E82030" stroke-width="1.5"/>
+        <circle cx="44" cy="23" r="5" stroke="#E82030" stroke-width="1.5"/>
       </svg>
       <span class="ph-txt">Robot Photo</span>
     </div>
   </div>
   <div class="robot-info">
-    <p class="robot-stag">Current Season Robot</p>
+    <p class="robot-stag">Current Season Robot · Level Up</p>
     <h2 class="robot-name">NEX<br>US</h2>
-    <p class="robot-desc">Designed for consistency at speed. NEXUS runs a flex-wheel intake system, full-field Bézier path planning, and a chassis tuned to absorb contact without losing scoring position.</p>
+    <p class="robot-desc">
+      NEXUS is our 2025–26 competition robot. We designed it around one priority: being consistent. Fast enough to score under pressure, reliable enough to run the same autonomous every match. Still being improved week by week.
+    </p>
     <div class="spec-table">
-      <div class="spec-row"><span class="spec-k">Drive System</span><span class="spec-v">6-Motor Mecanum</span></div>
-      <div class="spec-row"><span class="spec-k">Intake Type</span><span class="spec-v">Flex Wheel Roller</span></div>
-      <div class="spec-row"><span class="spec-k">Lift System</span><span class="spec-v">4-Bar Linkage</span></div>
-      <div class="spec-row"><span class="spec-k">Autonomous</span><span class="spec-v">Full-Field Bézier Path</span></div>
+      <div class="spec-row"><span class="spec-k">Drive System</span><span class="spec-v">Mecanum — 6 Motors</span></div>
+      <div class="spec-row"><span class="spec-k">Intake</span><span class="spec-v">Flex Wheel Roller</span></div>
+      <div class="spec-row"><span class="spec-k">Lift</span><span class="spec-v">4-Bar Linkage</span></div>
+      <div class="spec-row"><span class="spec-k">Autonomous</span><span class="spec-v">Full-Field Path — In Progress</span></div>
+      <div class="spec-row"><span class="spec-k">Build Status</span><span class="spec-v">Active Development</span></div>
     </div>
     <a href="#" class="btn-fill" style="align-self:flex-start">Full Robot Details</a>
   </div>
 </div>
 
+<!-- TEAM PROGRESS -->
+<div class="progress-section" id="notebook">
+  <div class="sec-head">
+    <div><p class="section-tag">Season Tracker</p><h2 class="h2" style="font-size:2.5rem">TEAM PROGRESS</h2></div>
+    <span style="font-family:'Rajdhani',sans-serif;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted)">Updated Jun 2026</span>
+  </div>
+  <div class="progress-grid">
+
+    <div class="prog-card">
+      <div class="prog-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <rect x="3" y="4" width="10" height="8" rx="1" stroke="#E82030" stroke-width="1.2"/>
+          <circle cx="6" cy="7" r="1.5" stroke="#E82030" stroke-width="1.2"/>
+          <circle cx="10" cy="7" r="1.5" stroke="#E82030" stroke-width="1.2"/>
+          <line x1="5" y1="12" x2="5" y2="14" stroke="#E82030" stroke-width="1.2"/>
+          <line x1="11" y1="12" x2="11" y2="14" stroke="#E82030" stroke-width="1.2"/>
+        </svg>
+      </div>
+      <div class="prog-title">Robot Build</div>
+      <div class="prog-status">In Progress</div>
+      <div class="prog-bar-track"><div class="prog-bar-fill" style="width:65%"></div></div>
+      <div class="prog-pct">65%</div>
+    </div>
+
+    <div class="prog-card">
+      <div class="prog-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <rect x="2" y="3" width="12" height="10" rx="1" stroke="#E82030" stroke-width="1.2"/>
+          <line x1="5" y1="7" x2="11" y2="7" stroke="#E82030" stroke-width="1.2"/>
+          <line x1="5" y1="9.5" x2="9" y2="9.5" stroke="#E82030" stroke-width="1.2"/>
+        </svg>
+      </div>
+      <div class="prog-title">Coding</div>
+      <div class="prog-status">In Progress</div>
+      <div class="prog-bar-track"><div class="prog-bar-fill" style="width:40%"></div></div>
+      <div class="prog-pct">40%</div>
+    </div>
+
+    <div class="prog-card">
+      <div class="prog-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <rect x="3" y="2" width="10" height="12" rx="1" stroke="#E82030" stroke-width="1.2"/>
+          <line x1="5.5" y1="5.5" x2="10.5" y2="5.5" stroke="#E82030" stroke-width="1.2"/>
+          <line x1="5.5" y1="8" x2="10.5" y2="8" stroke="#E82030" stroke-width="1.2"/>
+          <line x1="5.5" y1="10.5" x2="8.5" y2="10.5" stroke="#E82030" stroke-width="1.2"/>
+        </svg>
+      </div>
+      <div class="prog-title">Notebook</div>
+      <div class="prog-status">In Progress</div>
+      <div class="prog-bar-track"><div class="prog-bar-fill" style="width:55%"></div></div>
+      <div class="prog-pct">55%</div>
+    </div>
+
+    <div class="prog-card">
+      <div class="prog-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <circle cx="8" cy="8" r="5" stroke="#E82030" stroke-width="1.2"/>
+          <path d="M6 8l4 0M8 6l0 4" stroke="#E82030" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="prog-title">Driving Practice</div>
+      <div class="prog-status">Early Stage</div>
+      <div class="prog-bar-track"><div class="prog-bar-fill" style="width:30%"></div></div>
+      <div class="prog-pct">30%</div>
+    </div>
+
+    <div class="prog-card">
+      <div class="prog-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <circle cx="8" cy="5" r="2.5" stroke="#E82030" stroke-width="1.2"/>
+          <path d="M3 13c0-2.76 2.24-5 5-5s5 2.24 5 5" stroke="#E82030" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="prog-title">Judging Practice</div>
+      <div class="prog-status">Early Stage</div>
+      <div class="prog-bar-track"><div class="prog-bar-fill" style="width:20%"></div></div>
+      <div class="prog-pct">20%</div>
+    </div>
+
+    <div class="prog-card">
+      <div class="prog-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <rect x="2" y="4" width="12" height="8" rx="1" stroke="#E82030" stroke-width="1.2"/>
+          <line x1="6" y1="4" x2="6" y2="2" stroke="#E82030" stroke-width="1.2"/>
+          <line x1="10" y1="4" x2="10" y2="2" stroke="#E82030" stroke-width="1.2"/>
+          <circle cx="8" cy="8.5" r="1.5" stroke="#E82030" stroke-width="1.2"/>
+        </svg>
+      </div>
+      <div class="prog-title">Website</div>
+      <div class="prog-status">In Progress</div>
+      <div class="prog-bar-track"><div class="prog-bar-fill" style="width:70%"></div></div>
+      <div class="prog-pct">70%</div>
+    </div>
+
+    <div class="prog-card">
+      <div class="prog-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M8 2L9.5 6H14L10.5 8.5L12 13L8 10.5L4 13L5.5 8.5L2 6H6.5L8 2Z" stroke="#E82030" stroke-width="1.2" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="prog-title">Merch</div>
+      <div class="prog-status">Planning</div>
+      <div class="prog-bar-track"><div class="prog-bar-fill" style="width:15%"></div></div>
+      <div class="prog-pct">15%</div>
+    </div>
+
+    <div class="prog-card">
+      <div class="prog-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <circle cx="8" cy="8" r="5" stroke="#E82030" stroke-width="1.2"/>
+          <path d="M6.5 6L10.5 8L6.5 10V6Z" fill="#E82030"/>
+        </svg>
+      </div>
+      <div class="prog-title">Reveal Video</div>
+      <div class="prog-status">Planning</div>
+      <div class="prog-bar-track"><div class="prog-bar-fill" style="width:10%"></div></div>
+      <div class="prog-pct">10%</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SCHEDULE -->
+<div class="schedule-section" id="schedule">
+  <div class="sec-head">
+    <div><p class="section-tag">2025–26 Season Calendar</p><h2 class="h2" style="font-size:2.5rem">SCHEDULE</h2></div>
+    <a href="#" class="lnk">Full Calendar</a>
+  </div>
+  <div class="schedule-list">
+
+    <div class="schedule-item">
+      <span class="sched-date">Jul 25, 2025</span>
+      <div class="sched-event">
+        Internal Scrimmage
+        <small>Practice run — test driving, autonomous, and early build</small>
+      </div>
+      <span class="sched-badge internal">Internal</span>
+    </div>
+
+    <div class="schedule-item">
+      <span class="sched-date">Aug 29, 2025</span>
+      <div class="sched-event">
+        Scrimmage
+        <small>Pre-season test against other teams before qualifiers</small>
+      </div>
+      <span class="sched-badge internal">Scrimmage</span>
+    </div>
+
+    <div class="schedule-item">
+      <span class="sched-date">Sep 12, 2025</span>
+      <div class="sched-event">
+        Reveal Video Planning
+        <small>Script, shot list, and filming plan finalized</small>
+      </div>
+      <span class="sched-badge planning">Planning</span>
+    </div>
+
+    <div class="schedule-item">
+      <span class="sched-date">Oct 3, 2025</span>
+      <div class="sched-event">
+        Media Day
+        <small>Robot photography, team photos, b-roll for reveal</small>
+      </div>
+      <span class="sched-badge media">Media Day</span>
+    </div>
+
+    <div class="schedule-item">
+      <span class="sched-date">Oct 17, 2025</span>
+      <div class="sched-event">
+        Media Day
+        <small>Second media session — final shots and reveal video filming</small>
+      </div>
+      <span class="sched-badge media">Media Day</span>
+    </div>
+
+    <div class="schedule-item upcoming">
+      <span class="sched-date">Oct 24, 2025</span>
+      <div class="sched-event">
+        Ready Deadline
+        <small>Robot, notebook, driving, and website must all be competition-ready</small>
+      </div>
+      <span class="sched-badge deadline">Deadline</span>
+    </div>
+
+    <div class="schedule-item upcoming">
+      <span class="sched-date">Nov 1, 2025</span>
+      <div class="sched-event">
+        Halloween Qualifier
+        <small>First official VEX IQ Level Up competition of the season</small>
+      </div>
+      <span class="sched-badge qualifier">Qualifier</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- RESULTS (placeholder for this season) -->
 <div class="results">
   <div class="sec-head">
     <div><p class="section-tag">Competition History</p><h2 class="h2" style="font-size:2.5rem">RESULTS</h2></div>
@@ -346,27 +701,27 @@ footer{background:var(--surface);border-top:3px solid var(--orange);padding:2.5r
   <div class="result-list">
     <div class="result-item">
       <span class="r-num">01</span>
-      <span class="r-event">Regional Qualifier — East Division 2026</span>
-      <span class="r-award champion">Tournament Champion</span>
-      <span class="r-date">March 2026</span>
+      <span class="r-event">Halloween Qualifier · Level Up</span>
+      <span class="r-award">Upcoming — Nov 1</span>
+      <span class="r-date">Nov 1, 2025</span>
     </div>
     <div class="result-item">
       <span class="r-num">02</span>
-      <span class="r-event">State Championship 2026</span>
-      <span class="r-award">Excellence Award</span>
-      <span class="r-date">Feb 2026</span>
+      <span class="r-event">State Championship 2025</span>
+      <span class="r-award champion">Excellence Award</span>
+      <span class="r-date">Feb 2025</span>
     </div>
     <div class="result-item">
       <span class="r-num">03</span>
-      <span class="r-event">Winter Invitational Open 2026</span>
-      <span class="r-award">Design Award</span>
-      <span class="r-date">Jan 2026</span>
+      <span class="r-event">Regional Qualifier — East Division 2025</span>
+      <span class="r-award champion">Tournament Champion</span>
+      <span class="r-date">Nov 2024</span>
     </div>
     <div class="result-item">
       <span class="r-num">04</span>
-      <span class="r-event">Fall Kickoff Tournament 2025</span>
-      <span class="r-award">Judges Award</span>
-      <span class="r-date">Oct 2025</span>
+      <span class="r-event">Winter Invitational 2025</span>
+      <span class="r-award">Design Award</span>
+      <span class="r-date">Jan 2025</span>
     </div>
     <div class="result-item">
       <span class="r-num">05</span>
@@ -377,23 +732,25 @@ footer{background:var(--surface);border-top:3px solid var(--orange);padding:2.5r
   </div>
 </div>
 
-<div class="media">
+<!-- MEDIA -->
+<div class="media" id="media">
   <div class="media-head">
     <div><p class="section-tag">Gallery</p><h2 class="h2" style="font-size:2.5rem">MEDIA</h2></div>
     <a href="#" class="lnk">All Media</a>
   </div>
   <div class="media-mosaic">
-    <div class="media-cell main"><span class="mc-lbl">Team · Competition</span></div>
-    <div class="media-cell"><span class="mc-lbl">Robot</span></div>
-    <div class="media-cell"><span class="mc-lbl">Build Process</span></div>
-    <div class="media-cell"><span class="mc-lbl">Match Highlights</span></div>
-    <div class="media-cell"><span class="mc-lbl">Awards</span></div>
+    <div class="media-cell main"><span class="mc-lbl">Robot · Build Process</span></div>
+    <div class="media-cell"><span class="mc-lbl">Team</span></div>
+    <div class="media-cell"><span class="mc-lbl">Notebook</span></div>
+    <div class="media-cell"><span class="mc-lbl">Reveal Video</span></div>
+    <div class="media-cell"><span class="mc-lbl">Events</span></div>
   </div>
 </div>
 
-<div class="updates">
+<!-- UPDATES -->
+<div class="updates" id="updates">
   <div class="updates-head">
-    <div><p class="section-tag">From the Team</p><h2 class="h2" style="font-size:2.5rem">UPDATES</h2></div>
+    <div><p class="section-tag">Build Log</p><h2 class="h2" style="font-size:2.5rem">UPDATES</h2></div>
     <a href="#" class="lnk">All Posts</a>
   </div>
   <div class="posts">
@@ -401,52 +758,54 @@ footer{background:var(--surface);border-top:3px solid var(--orange);padding:2.5r
       <div class="post-img"></div>
       <div class="post-body">
         <div class="post-cat">Build Log</div>
-        <div class="post-title">NEXUS v3.2 Intake Redesign Complete</div>
-        <div class="post-exc">Three weeks of iteration. One final design. Consistency improved by 40% across all test scenarios — here's what changed and why it worked.</div>
-        <div class="post-date">Jun 1, 2026</div>
+        <div class="post-title">NEXUS Intake v2 — What Changed</div>
+        <div class="post-exc">We rebuilt the intake this week after the first design kept dropping pieces under pressure. Here's what we changed and why the new version is more reliable.</div>
+        <div class="post-date">Jun 1, 2025</div>
       </div>
     </div>
     <div class="post">
       <div class="post-img"></div>
       <div class="post-body">
-        <div class="post-cat">Competition Recap</div>
-        <div class="post-title">Regional Qualifier East: Undefeated.</div>
-        <div class="post-exc">A clean qualification run and a 3-0 finals series. The full breakdown of strategy, match performance, and what we take into State.</div>
-        <div class="post-date">May 20, 2026</div>
+        <div class="post-cat">Coding</div>
+        <div class="post-title">Autonomous: First Full Routine Done</div>
+        <div class="post-exc">We finally have a complete autonomous routine that runs from start to finish. Still tuning the pathing — but the structure is solid. Video coming soon.</div>
+        <div class="post-date">May 28, 2025</div>
       </div>
     </div>
     <div class="post">
       <div class="post-img"></div>
       <div class="post-body">
-        <div class="post-cat">Programming</div>
-        <div class="post-title">New Autonomous: Bézier Path Planning</div>
-        <div class="post-exc">We replaced point-to-point routing with smooth Bézier curves. Autonomous accuracy and cycle time have both improved significantly.</div>
-        <div class="post-date">May 12, 2026</div>
+        <div class="post-cat">Notebook</div>
+        <div class="post-title">Notebook Check-In: Sections 1–3 Done</div>
+        <div class="post-exc">First three notebook sections are written and laid out — team intro, game analysis, and initial design decisions. Starting robot testing documentation next week.</div>
+        <div class="post-date">May 20, 2025</div>
       </div>
     </div>
   </div>
 </div>
 
+<!-- SPONSOR -->
 <div class="sponsor">
-  <p class="sponsor-eye">Get Involved</p>
+  <p class="sponsor-eye">Support the Team</p>
   <h2 class="sponsor-h">PARTNER WITH<br>TEAM 839A</h2>
-  <p class="sponsor-p">Your sponsorship powers our robot, our season, and STEM education in our community. Let's build something great together.</p>
+  <p class="sponsor-p">We're a student-run team working hard to compete at the highest level of VEX IQ. If you want to support robotics, STEM education, and a team that takes it seriously — reach out.</p>
   <div class="sponsor-btns">
     <a href="#" class="btn-dark">Contact Us</a>
     <a href="#" class="btn-ghost-dark">Sponsorship Info</a>
   </div>
 </div>
 
+<!-- FOOTER -->
 <footer>
   <div class="f-logo">839<span>A</span></div>
   <ul class="f-nav">
-    <li><a href="#">Home</a></li>
-    <li><a href="#">About</a></li>
-    <li><a href="#">Robot</a></li>
-    <li><a href="#">Competitions</a></li>
-    <li><a href="#">Contact</a></li>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#robot">Robot</a></li>
+    <li><a href="#schedule">Schedule</a></li>
+    <li><a href="#notebook">Notebook</a></li>
+    <li><a href="#updates">Updates</a></li>
   </ul>
-  <div class="f-copy">© 2026 Team 839A · VEX IQ Robotics</div>
+  <div class="f-copy">© 2025–26 Team 839A · VEX IQ Level Up</div>
 </footer>
 
 </body>

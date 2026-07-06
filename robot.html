@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Robot — Team 839A VEX IQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">839<span>A</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="robot.html" class="active">Robot</a></li>
+    <li><a href="schedule.html">Schedule</a></li>
+    <li><a href="media.html">Media</a></li>
+    <li><a href="updates.html">Updates</a></li>
+  </ul>
+  <a href="mailto:team839a@example.com" class="nav-cta">Contact</a>
+</nav>
+
+<!-- PAGE BANNER -->
+<section class="page-banner">
+  <div class="banner-watermark">N</div>
+  <p class="banner-tag">Current Season Robot · Level Up</p>
+  <h1 class="banner-title">NEXUS</h1>
+  <p class="banner-sub">VEX IQ · Level Up 2026–27 · Active Development</p>
+</section>
+
+<!-- ROBOT SECTION -->
+<div class="robot-section" id="robot">
+  <div class="robot-vis">
+    <div class="robot-vis-bg">N</div>
+    <div class="robot-photo-box">
+      <img src="images/robot-hero.png" alt="NEXUS Robot" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+    </div>
+  </div>
+  <div class="robot-info">
+    <p class="robot-stag">Team 839A · VEX IQ Level Up</p>
+    <h2 class="robot-name">NEX<br>US</h2>
+    <p class="robot-desc">
+      NEXUS is our 2026–27 competition robot. We designed it around one priority: being consistent. Fast enough to score under pressure, reliable enough to run the same autonomous every match. Still being improved week by week.
+    </p>
+    <div class="spec-table">
+      <div class="spec-row"><span class="spec-k">Drive System</span><span class="spec-v">Mecanum — 6 Motors</span></div>
+      <div class="spec-row"><span class="spec-k">Intake</span><span class="spec-v">Flex Wheel Roller</span></div>
+      <div class="spec-row"><span class="spec-k">Lift</span><span class="spec-v">4-Bar Linkage</span></div>
+      <div class="spec-row"><span class="spec-k">Autonomous</span><span class="spec-v">Full-Field Path — In Progress</span></div>
+      <div class="spec-row"><span class="spec-k">Build Status</span><span class="spec-v">Active Development</span></div>
+      <div class="spec-row"><span class="spec-k">Season</span><span class="spec-v">VEX IQ Level Up 2026–27</span></div>
+    </div>
+    <a href="updates.html" class="btn-fill" style="align-self:flex-start">See Build Log</a>
+  </div>
+</div>
+
+<!-- DESIGN DETAILS -->
+<div style="padding:6rem 4rem;border-bottom:1px solid var(--border)">
+  <div class="sec-head">
+    <div><p class="section-tag">Engineering Decisions</p><h2 class="h2" style="font-size:2.5rem">DESIGN NOTES</h2></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)">
+    <div class="content-card" style="border:none">
+      <div class="goal-num">01</div>
+      <div class="goal-title">Mecanum Drive</div>
+      <div class="goal-desc">We chose mecanum wheels because Level Up requires precise lateral positioning when scoring. Strafing in and out of scoring zones is faster than tank-style pivoting under match pressure.</div>
+    </div>
+    <div class="content-card" style="border:none;border-left:1px solid var(--border)">
+      <div class="goal-num">02</div>
+      <div class="goal-title">Flex Wheel Intake</div>
+      <div class="goal-desc">Flex wheels grip game pieces without crushing them. v1 used hard rollers that dropped pieces on contact. v2 runs cleaner at high speed and handles pieces at any angle of approach.</div>
+    </div>
+    <div class="content-card" style="border:none;border-top:1px solid var(--border)">
+      <div class="goal-num">03</div>
+      <div class="goal-title">4-Bar Lift</div>
+      <div class="goal-desc">A 4-bar keeps the scoring mechanism level throughout the lift range. This lets us score without re-aligning the piece at height, which saves time per cycle and reduces drop rate.</div>
+    </div>
+    <div class="content-card" style="border:none;border-top:1px solid var(--border);border-left:1px solid var(--border)">
+      <div class="goal-num">04</div>
+      <div class="goal-title">Autonomous Path</div>
+      <div class="goal-desc">We're building a full-field autonomous routine using sensor-based correction. Pure driver practice won't be enough at Provincials level — autonomous points matter every match.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA ROW -->
+<div style="padding:4rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:var(--surface)">
+  <div>
+    <p class="section-tag" style="margin-bottom:0.5rem">Want to follow our build?</p>
+    <p style="font-size:0.88rem;color:var(--muted);font-weight:300">Every update, rebuild, and test session gets logged in the build log.</p>
+  </div>
+  <a href="updates.html" class="btn-fill">View Build Log</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">839<span>A</span></div>
+  <ul class="f-nav">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="robot.html">Robot</a></li>
+    <li><a href="schedule.html">Schedule</a></li>
+    <li><a href="media.html">Media</a></li>
+    <li><a href="updates.html">Updates</a></li>
+  </ul>
+  <div class="f-copy">© 2026–27 Team 839A · VEX IQ Level Up</div>
+</footer>
+
+</body>
+</html>

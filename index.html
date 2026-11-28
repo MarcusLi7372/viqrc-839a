@@ -893,7 +893,7 @@ document.getElementById('cp2').onclick=async e=>{try{await navigator.clipboard.w
 {const d=document.getElementById('donateBtn');if(d){if(GOFUNDME_URL){d.href=GOFUNDME_URL}else{d.removeAttribute('target');d.href='#contact';d.dataset.topic='General question';d.title=tr('GoFundMe coming soon')}}}
 // ===== CAD =====
 const CADS=[ // add {name:'CAD of Prototype E',sub:'Full robot',img:'assets/cad/e.webp'}
- {name:'CAD of Prototype A',sub:'Level 4 lift',img:'assets/cad/a.webp'},{name:'CAD of Prototype B',sub:'Outtake',img:'assets/cad/b.webp'},{name:'CAD of Prototype C',sub:'Outtake',img:'assets/cad/c.webp'},{name:'CAD of Prototype D'}]; // older robots only, never the current one
+ {name:'CAD of Prototype A',sub:'Level 4 lift',img:'assets/cad/a.webp'},{name:'CAD of Prototype B',sub:'Outtake',img:'assets/cad/b.webp'},{name:'CAD of Prototype C',sub:'Outtake',img:'assets/cad/c.webp'},{name:'CAD of Prototype D',sub:'Hybrid',img:'assets/cad/d.webp'}]; // older robots only, never the current one
 onLang(()=>{const L=CADS.filter(c=>c.img);document.getElementById('cad').hidden=!L.length})||onLang(()=>document.getElementById('cadGrid')&&(document.getElementById('cadGrid').innerHTML=CADS.filter(c=>c.img).map(c=>`<div class="cad">${c.img?`<img src="${c.img}" alt="${tr(c.name)}" loading="lazy">`:`<div class="ph0">${t('soon')}</div>`}<div class="c"><h3>${tr(c.name)}</h3>${c.sub?`<span>${tr(c.sub)}</span>`:''}</div></div>`).join('')));
 // ===== tabs / views =====
 const VIEWS=['home','team','robots','design','season','media','community','sponsors','donate','timer','shop','contact'];

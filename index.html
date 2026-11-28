@@ -343,6 +343,13 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 .pw-stamp{position:absolute;left:50%;top:56%;transform:translate(-50%,-50%) rotate(-12deg);padding:6px 18px;border:3px solid var(--red);color:var(--red);font:900 22px "Tomorrow",var(--hf);letter-spacing:.18em;background:color-mix(in srgb,var(--card) 80%,transparent);pointer-events:none}
 
 .seqimg{filter:drop-shadow(0 16px 20px rgba(0,0,0,.45))!important;user-select:none;-webkit-user-drag:none}
+.isx{position:relative;overflow:hidden}
+.ctape{position:absolute;inset:0;pointer-events:none;z-index:3}
+.ctape .tp{position:absolute;left:-30%;width:160%;top:50%;padding:5px 0;background:var(--red);color:#fff;font:800 italic 12px/1 "Tomorrow",var(--hf);letter-spacing:.14em;white-space:nowrap;overflow:hidden;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,.45);border-top:2px solid #111;border-bottom:2px solid #111}
+.ctape .t1{transform:translateY(-50%) rotate(-14deg)}.ctape .t2{transform:translateY(-50%) rotate(11deg);top:62%;background:#b80500}
+.bot.isx{overflow:visible}.bot.isx .ctape .tp{font-size:8px;padding:3px 0}
+.pw-x .ctape .tp{font-size:11px}
+.blur-note{display:flex;gap:10px;align-items:flex-start}.blur-note .lk{flex:0 0 18px;width:18px;height:18px;color:var(--red);margin-top:1px}
 /* ===== mobile polish ===== */
 @media(max-width:600px){.team4{grid-template-columns:1fr 1fr!important;gap:10px!important}}
 @media(max-width:600px){
@@ -421,7 +428,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   <div class="sec-h"><div><div class="kicker" data-i="hof_k">Every robot we built</div><h2 data-i="hof_h">Robot Hall of Fame</h2></div>
    <div class="hof-ctl"><button class="arrow" id="hp" aria-label="Previous">‹</button><button class="arrow" id="hn" aria-label="Next">›</button></div></div>
   <div class="hof" id="hof"></div>
-  <p class="blur-note">🔒 Robot photos and CADs are blurred on purpose. We keep the details of our designs private during the competition season.</p>
+  <p class="blur-note"><svg class="lk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10.5" width="16" height="10.5" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/><circle cx="12" cy="15.5" r="1.4" fill="currentColor"/></svg>Robot photos and CADs are blurred on purpose. We keep the details of our designs private during the competition season.</p>
  </div>
 </section>
 
@@ -440,7 +447,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   <div id="cad" style="margin-top:48px" hidden>
   <div class="sec-h"><div><div class="kicker" data-i="cad_k">Computer-Aided Design</div><h2>CAD of Our Earlier Robots</h2></div></div>
   <p class="lead">Before we build, we model it. Here are the CADs of our older prototypes. Our current robot stays under wraps until the reveal.</p>
-  <p class="blur-note">🔒 Robot photos and CADs are blurred on purpose. We keep the details of our designs private during the competition season.</p>
+  <p class="blur-note"><svg class="lk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10.5" width="16" height="10.5" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/><circle cx="12" cy="15.5" r="1.4" fill="currentColor"/></svg>Robot photos and CADs are blurred on purpose. We keep the details of our designs private during the competition season.</p>
   <div class="grid" id="cadGrid"></div>
   </div>
  </div>
@@ -644,7 +651,7 @@ function roleHTML(n){const r=(TWD.roles||{})[n];if(!r||(!r.owns.length&&!tw(r.de
  return `<div class="pt"><h4>Role card</h4>${r.owns.length?`<div class="owns">${r.owns.map(o=>`<span>${o}</span>`).join('')}</div>`:''}${tw(r.decision)?`<p style="margin:10px 0 0"><b>A decision I'm proud of:</b> ${r.decision}</p>`:''}</div>`}
 const learnedOn=(n,t)=>tw(((TWD.journey||{})[n]||{})[t]);
 const ROBOTS=[
- {k:'A',name:'Prototype A',img:'assets/robots/a.webp',built:'June 2026',focus:'Lift · Intake',pw:[3,2,5,5,1,5],about:'Our first robot of the season, built to score on the highest goal.'},
+ {k:'A',name:'Prototype A',img:'assets/robots/a.webp',seq:'a',built:'June 2026',focus:'Lift · Intake',pw:[3,2,5,5,1,5],about:'Our first robot of the season, built to score on the highest goal.'},
  {k:'B',name:'Prototype B',img:'assets/robots/b.webp',seq:'b',built:'Summer 2026',focus:'Outtake · Intake',pw:[3,3,3.5,3.5,3,4],about:'A lower, faster design aimed at the L3 goal.'},
  {k:'C',name:'Prototype C',img:'assets/robots/c.webp',seq:'c',built:'Summer 2026',focus:'Outtake',pw:[3,3,1.5,1.5,5,3],about:'Version 2 of Prototype B, with a tensioner added.'},
  {k:'D',name:'Prototype D',img:'assets/robots/d.webp',built:'August 2026',focus:'Outtake · Intake',pw:[2.5,2.5,4,1.5,3,2],about:'Our first hybrid that can score on both L3 and L4, using a conveyor.'},
@@ -683,8 +690,9 @@ const hdr=document.getElementById('hdr');
 if(REVEAL_YOUTUBE_ID){document.getElementById('revealBox').innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+REVEAL_YOUTUBE_ID+'" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen title="'+tr('Robot reveal')+'"></iframe>'}
 // ===== hall of fame =====
 const hof=document.getElementById('hof'),rn=r=>tr('Prototype')+' '+r.k;
-const pwHTML=r=>r.secret?`<div class="pw pw-x"><div class="pw-h">${tr('Power stats')}<small>${tr('Classified')}</small></div>${PW.map(l=>`<div class="pw-r"><span>${tr(l)}</span><div class="pw-red"></div><em>?</em></div>`).join('')}<div class="pw-stamp">CLASSIFIED</div></div>`:`<div class="pw"><div class="pw-h">${tr('Power stats')}<small>${tr('out of 5')}</small></div>${PW.map((l,i)=>{const v=r.pw[i];return `<div class="pw-r"><span>${tr(l)}</span><div class="pw-b" aria-hidden="true">${[0,1,2,3,4].map(n=>`<i><b style="width:${Math.max(0,Math.min(1,v-n))*100}%;animation-delay:${(.15+i*.07+n*.07).toFixed(2)}s"></b></i>`).join('')}</div><em>${v.toLocaleString(loc())}</em></div>`}).join('')}</div>`;
-onLang(()=>hof.innerHTML=ROBOTS.map((r,i)=>`<div class="pod" tabindex="0" role="button" data-r="${i}" aria-label="${rn(r)}, ${tr('details')}"><div class="rb"><img src="${r.img}" alt="${rn(r)}" class="${r.sil?'sil':''}" loading="lazy"></div><div class="plinth"><div class="nm">${tr('Prototype')}</div><div class="letter">${r.k}</div></div>${pwHTML(r)}</div>`).join(''));
+const TAPE=`<div class="ctape" aria-label="Classified"><div class="tp t1">${'CLASSIFIED · DO NOT CROSS · '.repeat(6)}</div><div class="tp t2">${'CLASSIFIED · DO NOT CROSS · '.repeat(6)}</div></div>`;
+const pwHTML=r=>r.secret?`<div class="pw pw-x"><div class="pw-h">${tr('Power stats')}<small>${tr('Classified')}</small></div>${PW.map(l=>`<div class="pw-r"><span>${tr(l)}</span><div class="pw-red"></div><em>?</em></div>`).join('')}${TAPE}</div>`:`<div class="pw"><div class="pw-h">${tr('Power stats')}<small>${tr('out of 5')}</small></div>${PW.map((l,i)=>{const v=r.pw[i];return `<div class="pw-r"><span>${tr(l)}</span><div class="pw-b" aria-hidden="true">${[0,1,2,3,4].map(n=>`<i><b style="width:${Math.max(0,Math.min(1,v-n))*100}%;animation-delay:${(.15+i*.07+n*.07).toFixed(2)}s"></b></i>`).join('')}</div><em>${v.toLocaleString(loc())}</em></div>`}).join('')}</div>`;
+onLang(()=>hof.innerHTML=ROBOTS.map((r,i)=>`<div class="pod" tabindex="0" role="button" data-r="${i}" aria-label="${rn(r)}, ${tr('details')}"><div class="rb${r.secret?' isx':''}"><img src="${r.img}" alt="${rn(r)}" class="${r.sil?'sil':''}" loading="lazy">${r.secret?TAPE:''}</div><div class="plinth"><div class="nm">${tr('Prototype')}</div><div class="letter">${r.k}</div></div>${pwHTML(r)}</div>`).join(''));
 
 // robot detail
 function podHTML(r){return `<div class="pod"><div class="rb spin">${r.model?`<model-viewer src="${r.model}" alt="${tr('3D model of')} ${rn(r)}" camera-controls auto-rotate shadow-intensity="1" style="width:100%;height:250px;background:transparent"></model-viewer>`:`<img src="${r.img}" alt="${rn(r)}" class="${r.sil?'sil':''}" draggable="false">`}</div><div class="plinth"><div class="nm">${tr('Prototype')}</div><div class="letter">${r.k}</div></div></div>`}
@@ -692,7 +700,7 @@ function openRobot(i){i=(i+ROBOTS.length)%ROBOTS.length;const r=ROBOTS[i];let d=
  d.innerHTML=`<div class="rd-box"><button class="rd-x" aria-label="${tr('Close')}">✕</button>${podHTML(r)}<div class="rd-info"><h3>${tr('Prototype')} <b>${r.k}</b></h3><dl><dt>${tr('Version')}</dt><dd>${r.k} · ${i+1} ${tr('of')} ${ROBOTS.length}</dd><dt>${tr('Built')}</dt><dd>${tr(r.built)}</dd><dt>${tr('Focus')}</dt><dd>${tr(r.focus)}</dd></dl><p>${tr(r.about)}${r.sil?' '+tr('Photo coming soon.'):''}</p>${pwHTML(r)}<div class="rd-nav"><button class="arrow" data-m="-1" aria-label="${tr('Previous robot')}">‹</button><button class="arrow" data-m="1" aria-label="${tr('Next robot')}">›</button></div></div></div>`;
  d.querySelector('.rd-x').onclick=closeRobot;spin3d(d,r);d.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>openRobot(i+ +b.dataset.m));d.dataset.i=i;d.querySelector('.rd-x').focus()}
 
-function spin3d(d,r){const box=d.querySelector('.rd-box .spin');if(!box)return;box.insertAdjacentHTML('afterend','<div class="hint3d">'+tr('Drag to spin')+'</div>');
+function spin3d(d,r){const box=d.querySelector('.rd-box .spin');if(!box)return;if(r.secret){box.classList.add('isx');box.insertAdjacentHTML('beforeend',TAPE);return}box.insertAdjacentHTML('afterend','<div class="hint3d">'+tr('Drag to spin')+'</div>');
  if(r.model){if(!window._mv){window._mv=1;const sc=document.createElement('script');sc.type='module';sc.src='https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js';document.head.appendChild(sc)}return}
  if(r.seq){const im=box.querySelector('img');const N=48,src=n=>`assets/robots/spin/${r.seq}${String(n).padStart(2,'0')}.webp`;
   const pre=[...Array(N)].map((_,n)=>{const x=new Image();x.src=src(n);return x});im.src=src(0);im.classList.add('seqimg');im.style.transform='none';
@@ -716,7 +724,7 @@ document.getElementById('hp').onclick=()=>hof.scrollBy({left:-step(),behavior:'s
 document.getElementById('hn').onclick=()=>hof.scrollBy({left:step(),behavior:'smooth'});
 // ===== hero intro =====
 const hero=document.querySelector('.hero'),hv=document.getElementById('hv'),lineup=document.getElementById('lineup');
-lineup.innerHTML=ROBOTS.map(r=>`<div class="bot"><img src="${r.img}" class="${r.sil?'sil':''}" alt=""><small></small></div>`).join('');
+lineup.innerHTML=ROBOTS.map(r=>`<div class="bot${r.secret?' isx':''}"><img src="${r.img}" class="${r.sil?'sil':''}" alt="">${r.secret?TAPE:''}<small></small></div>`).join('');
 onLang(()=>[...lineup.children].forEach((b,i)=>{const n=rn(ROBOTS[i]);b.querySelector('img').alt=n;b.querySelector('small').textContent=n}));
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 function intro(){hero.classList.add('intro');const sp=[...document.querySelectorAll('#big span')];sp.forEach((s,i)=>s.style.animationDelay=(1.3+i*.3+(i===3?.12:0))+'s');

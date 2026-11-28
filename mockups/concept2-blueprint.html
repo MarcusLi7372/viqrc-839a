@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 2 — Blueprint</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0D1B2A;
+    --surface: #1A2E45;
+    --surface2: #213553;
+    --blue: #3B82F6;
+    --blue-light: #60A5FA;
+    --grid: rgba(59,130,246,0.12);
+    --text: #E2E8F0;
+    --muted: #94A3B8;
+    --border: rgba(59,130,246,0.2);
+    --dashed: rgba(59,130,246,0.3);
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Courier New', 'IBM Plex Mono', monospace;
+    line-height: 1.6;
+    position: relative;
+  }
+
+  /* Grid background */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+  }
+
+  * { position: relative; z-index: 1; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 60px;
+    background: rgba(13,27,42,0.9);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px dashed var(--dashed);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 1rem; font-weight: 700; letter-spacing: 0.15em;
+    color: var(--blue-light); text-transform: uppercase;
+  }
+  .nav-logo-box {
+    width: 32px; height: 32px;
+    border: 2px solid var(--blue);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; font-weight: 900; color: var(--blue);
+  }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--blue-light); }
+  .nav-ref {
+    font-size: 0.65rem; color: var(--muted); letter-spacing: 0.05em;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh; padding: 80px 48px 64px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+  }
+  .hero-left {}
+  .doc-number {
+    font-size: 0.65rem; letter-spacing: 0.2em; color: var(--blue);
+    text-transform: uppercase; margin-bottom: 8px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .doc-number::before {
+    content: 'DOC:'; color: var(--muted);
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700; line-height: 1.1;
+    margin-bottom: 8px; letter-spacing: -0.01em;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+  .hero-subtitle {
+    font-size: 0.8rem; color: var(--blue-light); letter-spacing: 0.12em;
+    text-transform: uppercase; margin-bottom: 24px;
+  }
+  .hero-desc {
+    font-size: 0.9rem; color: var(--muted); line-height: 1.8;
+    border-left: 2px solid var(--blue); padding-left: 20px;
+    margin-bottom: 40px; font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+  .hero-meta {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: var(--border); border: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+  .meta-item {
+    background: var(--bg); padding: 12px 16px;
+  }
+  .meta-key { font-size: 0.6rem; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; }
+  .meta-val { font-size: 0.85rem; color: var(--blue-light); margin-top: 2px; }
+  .hero-buttons { display: flex; gap: 12px; }
+  .btn-primary {
+    padding: 12px 28px;
+    background: var(--blue); color: #fff;
+    font-family: inherit; font-size: 0.75rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    border: none; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--blue-light); color: var(--bg); }
+  .btn-ghost {
+    padding: 12px 28px;
+    background: transparent; color: var(--blue-light);
+    font-family: inherit; font-size: 0.75rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    border: 1px dashed var(--dashed); cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--blue-light); }
+
+  /* Blueprint drawing panel */
+  .blueprint-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    position: relative; overflow: hidden;
+    min-height: 500px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .blueprint-panel::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(59,130,246,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .bp-label {
+    position: absolute; top: 16px; left: 16px;
+    font-size: 0.6rem; letter-spacing: 0.2em; color: var(--blue); text-transform: uppercase;
+  }
+  .bp-ref {
+    position: absolute; bottom: 16px; right: 16px;
+    font-size: 0.6rem; color: var(--muted);
+  }
+  .robot-drawing {
+    width: 260px; height: 280px; position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .robot-outline {
+    width: 100%; height: 100%;
+    border: 2px solid var(--blue); opacity: 0.7;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 8px;
+  }
+  .robot-outline::before, .robot-outline::after {
+    content: '';
+    position: absolute;
+  }
+  /* callout lines */
+  .callout {
+    position: absolute;
+    font-size: 0.55rem; letter-spacing: 0.1em; color: var(--blue-light);
+    text-transform: uppercase; white-space: nowrap;
+  }
+  .callout-line {
+    position: absolute; background: var(--blue); opacity: 0.5;
+  }
+  .robot-icon-draw { font-size: 4rem; opacity: 0.3; }
+  .dimension-line {
+    position: absolute; display: flex; align-items: center;
+    font-size: 0.55rem; color: var(--blue); letter-spacing: 0.1em;
+  }
+  .dim-h {
+    left: -60px; top: 50%; transform: translateY(-50%);
+    flex-direction: column; gap: 4px;
+  }
+  .dim-h::before, .dim-h::after {
+    content: '';
+    width: 1px; height: 40px; background: var(--blue); opacity: 0.4;
+  }
+  .dim-w {
+    bottom: -36px; left: 50%; transform: translateX(-50%);
+    gap: 4px;
+  }
+  .dim-w::before, .dim-w::after {
+    content: '';
+    height: 1px; width: 40px; background: var(--blue); opacity: 0.4;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 80px 48px; }
+  .section-header { margin-bottom: 48px; display: flex; align-items: flex-start; gap: 24px; }
+  .section-num {
+    font-size: 3rem; font-weight: 700; color: var(--border);
+    line-height: 1; letter-spacing: -0.02em;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+  .section-head-text {}
+  .section-tag {
+    font-size: 0.6rem; letter-spacing: 0.2em; color: var(--blue); text-transform: uppercase;
+  }
+  .section-title {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 700; line-height: 1.15;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    margin-top: 4px;
+  }
+  hr.dashed {
+    border: none; border-top: 1px dashed var(--dashed);
+    margin: 0 0 48px;
+  }
+
+  /* Robot specs */
+  .specs-table {
+    border: 1px solid var(--border);
+    width: 100%; border-collapse: collapse;
+  }
+  .specs-table th {
+    background: var(--surface); padding: 10px 16px;
+    font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--blue-light); text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-family: inherit;
+  }
+  .specs-table td {
+    padding: 10px 16px;
+    font-size: 0.85rem; color: var(--text);
+    border-bottom: 1px solid var(--border);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+  .specs-table tr:last-child td { border-bottom: none; }
+  .specs-table tr:hover td { background: var(--surface); }
+  .tag-pass {
+    display: inline-block; padding: 2px 8px;
+    background: rgba(59,130,246,0.15); color: var(--blue-light);
+    font-size: 0.65rem; letter-spacing: 0.1em;
+  }
+
+  /* Awards */
+  .awards-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); }
+  .award-row {
+    background: var(--bg);
+    display: grid; grid-template-columns: 60px 1fr 200px 120px;
+    align-items: center; padding: 16px 20px; gap: 16px;
+  }
+  .award-row:hover { background: var(--surface); }
+  .award-rank {
+    font-size: 0.65rem; letter-spacing: 0.1em; color: var(--blue); text-align: center;
+  }
+  .award-name { font-size: 0.9rem; font-weight: 600; font-family: 'Segoe UI', system-ui, sans-serif; }
+  .award-event { font-size: 0.75rem; color: var(--muted); }
+  .award-date { font-size: 0.7rem; color: var(--muted); text-align: right; }
+
+  /* Team roster */
+  .roster-table { width: 100%; border-collapse: collapse; border: 1px solid var(--border); }
+  .roster-table th {
+    background: var(--surface); padding: 10px 20px;
+    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--blue); text-align: left; border-bottom: 1px solid var(--border);
+    font-family: inherit;
+  }
+  .roster-table td {
+    padding: 12px 20px;
+    font-size: 0.85rem; border-bottom: 1px solid var(--border);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+  .roster-table tr:last-child td { border-bottom: none; }
+  .roster-table tr:hover td { background: var(--surface); }
+  .role-badge {
+    display: inline-block; padding: 2px 10px;
+    border: 1px dashed var(--dashed);
+    font-size: 0.65rem; letter-spacing: 0.1em; color: var(--blue-light);
+  }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .contact-field {
+    margin-bottom: 16px;
+  }
+  .contact-label {
+    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 4px;
+  }
+  .contact-input {
+    width: 100%; padding: 10px 14px;
+    background: var(--bg); border: 1px solid var(--border);
+    color: var(--text); font-family: inherit; font-size: 0.85rem;
+    outline: none; transition: border-color 0.2s;
+  }
+  .contact-input:focus { border-color: var(--blue); }
+  .contact-textarea { min-height: 100px; resize: vertical; }
+  .contact-info-label {
+    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 8px;
+  }
+  .contact-info-val {
+    font-size: 0.9rem; color: var(--blue-light); margin-bottom: 24px;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 20px 48px;
+    border-top: 1px dashed var(--dashed);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em;
+  }
+  .footer-ref { color: var(--blue); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-box">A</div>
+    TEAM 839A
+  </div>
+  <div class="nav-links">
+    <a href="#" class="active">Home</a>
+    <a href="#">About</a>
+    <a href="#">Robot</a>
+    <a href="#">Competitions</a>
+    <a href="#">Media</a>
+    <a href="#">Updates</a>
+    <a href="#">Contact</a>
+  </div>
+  <div class="nav-ref">REV 3.1 · 2025–26</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="doc-number">839A-2025-HERO</div>
+    <h1>Engineering.<br>Competing.<br>Winning.</h1>
+    <div class="hero-subtitle">VEX IQ Robotics · Rapid Relay Season</div>
+    <p class="hero-desc">Team 839A is a competitive robotics team dedicated to designing, building, and programming robots that compete at the highest level of VEX IQ competition.</p>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <div class="meta-key">Program</div>
+        <div class="meta-val">VEX IQ Robotics</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-key">Season</div>
+        <div class="meta-val">Rapid Relay 2025–26</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-key">Active Since</div>
+        <div class="meta-val">2023</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-key">Awards Total</div>
+        <div class="meta-val">14 Recorded</div>
+      </div>
+    </div>
+    <div class="hero-buttons">
+      <button class="btn-primary">Robot Specs →</button>
+      <button class="btn-ghost">Full Record</button>
+    </div>
+  </div>
+
+  <div class="blueprint-panel">
+    <div class="bp-label">ROBOT ASSEMBLY — APEX v3.2</div>
+    <div class="bp-ref">DWG NO: 839A-2025-R01 · SCALE 1:4</div>
+    <div class="robot-drawing">
+      <div class="robot-outline">
+        <div class="robot-icon-draw">🤖</div>
+        <div style="font-size:0.55rem;letter-spacing:0.15em;color:var(--blue-light);opacity:0.7;">APEX v3.2</div>
+        <!-- dimension lines -->
+        <div class="dimension-line dim-h">13.2"</div>
+        <div class="dimension-line dim-w">15.0"</div>
+        <!-- callouts -->
+        <div class="callout" style="top:-20px;left:20px;">CATAPULT MECH</div>
+        <div class="callout" style="bottom:-20px;right:20px;">INTAKE SYSTEM</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ROBOT SPECS -->
+<section>
+  <hr class="dashed">
+  <div class="section-header">
+    <div class="section-num">01</div>
+    <div class="section-head-text">
+      <div class="section-tag">Component Overview</div>
+      <div class="section-title">Robot Technical Specifications</div>
+    </div>
+  </div>
+  <table class="specs-table">
+    <thead>
+      <tr>
+        <th>Component</th>
+        <th>Specification</th>
+        <th>Version</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Drive Train</td>
+        <td>6-Wheel Omni-Directional</td>
+        <td>v2.1</td>
+        <td><span class="tag-pass">FINAL</span></td>
+      </tr>
+      <tr>
+        <td>Intake Mechanism</td>
+        <td>Dual-Roller Compression System</td>
+        <td>v3.0</td>
+        <td><span class="tag-pass">FINAL</span></td>
+      </tr>
+      <tr>
+        <td>Launch System</td>
+        <td>Slip-Gear Catapult · 8ft Range</td>
+        <td>v2.2</td>
+        <td><span class="tag-pass">FINAL</span></td>
+      </tr>
+      <tr>
+        <td>Autonomous</td>
+        <td>Odometry · Full-Field Routine</td>
+        <td>v4.1</td>
+        <td><span class="tag-pass">ACTIVE</span></td>
+      </tr>
+      <tr>
+        <td>Controller Config</td>
+        <td>Split Control · Macro System</td>
+        <td>v2.0</td>
+        <td><span class="tag-pass">FINAL</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section style="padding-top:0;">
+  <hr class="dashed">
+  <div class="section-header">
+    <div class="section-num">02</div>
+    <div class="section-head-text">
+      <div class="section-tag">Competition Record</div>
+      <div class="section-title">Awards & Achievements Log</div>
+    </div>
+  </div>
+  <div class="awards-list">
+    <div class="award-row" style="background:var(--surface); font-size:0.6rem; letter-spacing:0.1em; color:var(--muted); text-transform:uppercase;">
+      <div>Rank</div><div>Award</div><div>Event</div><div>Date</div>
+    </div>
+    <div class="award-row">
+      <div class="award-rank">01</div>
+      <div><div class="award-name">Tournament Champions</div><div class="award-event">1st Place Elimination</div></div>
+      <div class="award-event">Regional Qualifier — Spring Invitational</div>
+      <div class="award-date">Nov 18, 2025</div>
+    </div>
+    <div class="award-row">
+      <div class="award-rank">02</div>
+      <div><div class="award-name">Excellence Award</div><div class="award-event">Top Overall Award</div></div>
+      <div class="award-event">State Championship</div>
+      <div class="award-date">Mar 4, 2025</div>
+    </div>
+    <div class="award-row">
+      <div class="award-rank">03</div>
+      <div><div class="award-name">Design Award</div><div class="award-event">Engineering Process</div></div>
+      <div class="award-event">Fall Qualifier</div>
+      <div class="award-date">Oct 12, 2024</div>
+    </div>
+    <div class="award-row">
+      <div class="award-rank">04</div>
+      <div><div class="award-name">Skills Champion</div><div class="award-event">Highest Skills Score</div></div>
+      <div class="award-event">Regional Skills Challenge</div>
+      <div class="award-date">Sep 20, 2024</div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM ROSTER -->
+<section style="padding-top:0; background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div style="padding-bottom:0;">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <div class="section-head-text">
+        <div class="section-tag">Personnel</div>
+        <div class="section-title">Team Roster — 2025–26</div>
+      </div>
+    </div>
+    <table class="roster-table">
+      <thead>
+        <tr>
+          <th>ID</th><th>Name</th><th>Role</th><th>Specialization</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="color:var(--blue);font-family:inherit;">839A-01</td>
+          <td>Alex Chen</td>
+          <td><span class="role-badge">TEAM CAPTAIN</span></td>
+          <td>Strategy, Drive Team</td>
+        </tr>
+        <tr>
+          <td style="color:var(--blue);font-family:inherit;">839A-02</td>
+          <td>Sam Rivera</td>
+          <td><span class="role-badge">BUILD LEAD</span></td>
+          <td>Mechanisms, Assembly</td>
+        </tr>
+        <tr>
+          <td style="color:var(--blue);font-family:inherit;">839A-03</td>
+          <td>Jordan Park</td>
+          <td><span class="role-badge">PROGRAMMING LEAD</span></td>
+          <td>Autonomous, Control Systems</td>
+        </tr>
+        <tr>
+          <td style="color:var(--blue);font-family:inherit;">839A-04</td>
+          <td>Taylor Kim</td>
+          <td><span class="role-badge">NOTEBOOK LEAD</span></td>
+          <td>Documentation, Design Process</td>
+        </tr>
+        <tr>
+          <td style="color:var(--blue);font-family:inherit;">839A-C1</td>
+          <td>Coach Williams</td>
+          <td><span class="role-badge">MENTOR / COACH</span></td>
+          <td>Oversight, Competition Strategy</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section">
+  <div class="section-header">
+    <div class="section-num">04</div>
+    <div class="section-head-text">
+      <div class="section-tag">Inquiries</div>
+      <div class="section-title">Contact & Sponsorship</div>
+    </div>
+  </div>
+  <div class="contact-grid">
+    <div>
+      <div class="contact-info-label">Primary Contact</div>
+      <div class="contact-info-val">team839a@robotics.org</div>
+      <div class="contact-info-label">Social</div>
+      <div class="contact-info-val">@Team839A</div>
+      <div class="contact-info-label">Location</div>
+      <div class="contact-info-val">City, Province, Canada</div>
+      <div class="contact-info-label" style="margin-top:24px;">Sponsor Message</div>
+      <p style="font-size:0.85rem; color:var(--muted); font-family:'Segoe UI',system-ui,sans-serif; line-height:1.8; border-left:2px solid var(--border); padding-left:16px; margin-top:8px;">
+        Interested in supporting a competitive youth robotics team? Contact us to learn more about sponsorship packages and community partnership opportunities.
+      </p>
+      <button class="btn-primary" style="margin-top:20px;">Download Sponsor Package</button>
+    </div>
+    <div>
+      <div class="contact-field">
+        <div class="contact-label">Name</div>
+        <input class="contact-input" type="text" placeholder="Your name" readonly>
+      </div>
+      <div class="contact-field">
+        <div class="contact-label">Email</div>
+        <input class="contact-input" type="text" placeholder="your@email.com" readonly>
+      </div>
+      <div class="contact-field">
+        <div class="contact-label">Subject</div>
+        <input class="contact-input" type="text" placeholder="Sponsorship / Inquiry" readonly>
+      </div>
+      <div class="contact-field">
+        <div class="contact-label">Message</div>
+        <textarea class="contact-input contact-textarea" placeholder="Your message..." readonly></textarea>
+      </div>
+      <button class="btn-primary" style="width:100%;">Transmit Message →</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 TEAM 839A · VIQRC</div>
+  <div class="footer-ref">DOC: 839A-SITE-2026 · REV 3.1</div>
+  <div>Rapid Relay Season</div>
+</footer>
+
+</body>
+</html>

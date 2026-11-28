@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team 839A — Concept C: Formula E</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Barlow:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060D0B;--surface:#0D1A16;--surface2:#162219;
+  --green:#00DC6B;--green-dim:rgba(0,220,107,0.08);
+  --text:#F0F5F2;--muted:rgba(240,245,242,0.45);--border:rgba(240,245,242,0.07);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;height:56px;padding:0 2.5rem;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(6,13,11,0.88);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:0.04em}
+.logo em{color:var(--green);font-style:normal}
+.nav-links{display:flex;gap:0;list-style:none;position:absolute;left:50%;transform:translateX(-50%)}
+.nav-links a{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:0.68rem;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--muted);padding:0 1.2rem;height:56px;
+  display:flex;align-items:center;border-bottom:2px solid transparent;transition:all 0.2s;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--text);border-bottom-color:var(--green)}
+.nav-cta{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:0.68rem;letter-spacing:0.12em;
+  text-transform:uppercase;padding:0.5rem 1.4rem;border:1px solid var(--green);color:var(--green);transition:all 0.18s;
+}
+.nav-cta:hover{background:var(--green);color:#000}
+
+/* ─── HERO ─── */
+.hero{
+  position:relative;min-height:100vh;padding-top:56px;
+  display:grid;grid-template-columns:1fr 1fr;overflow:hidden;
+}
+
+/* Vertical green line accent */
+.hero::before{
+  content:'';position:absolute;left:50%;top:56px;bottom:0;width:1px;
+  background:linear-gradient(180deg,var(--green) 0%,transparent 100%);opacity:0.15;
+  pointer-events:none;
+}
+
+.hero-left{
+  padding:6rem 4rem;display:flex;flex-direction:column;justify-content:center;
+  border-right:1px solid var(--border);position:relative;overflow:hidden;
+}
+.hero-bg-char{
+  position:absolute;font-family:'Syne',sans-serif;font-weight:800;
+  font-size:40vw;color:rgba(0,220,107,0.025);line-height:0.8;
+  bottom:-15%;left:-8%;pointer-events:none;user-select:none;letter-spacing:-0.06em;
+}
+.hero-season{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:0.65rem;
+  letter-spacing:0.25em;text-transform:uppercase;color:var(--green);
+  margin-bottom:2.5rem;display:flex;align-items:center;gap:1rem;position:relative;z-index:1;
+}
+.hero-season::before{content:'';width:28px;height:2px;background:var(--green);display:inline-block;flex-shrink:0}
+h1{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:clamp(4rem,8vw,7.5rem);line-height:0.88;letter-spacing:-0.03em;
+  margin-bottom:2.5rem;position:relative;z-index:1;
+}
+h1 .green{color:var(--green)}
+.hero-body{
+  font-size:0.95rem;color:var(--muted);line-height:1.75;max-width:440px;
+  margin-bottom:3rem;font-weight:300;position:relative;z-index:1;
+}
+.hero-actions{display:flex;position:relative;z-index:1}
+.btn-green{
+  background:var(--green);color:#000;padding:1rem 2.5rem;
+  font-family:'Syne',sans-serif;font-weight:700;font-size:0.78rem;
+  letter-spacing:0.12em;text-transform:uppercase;display:inline-block;transition:background 0.18s;
+  border:2px solid var(--green);
+}
+.btn-green:hover{background:#00b358;border-color:#00b358}
+.btn-ghost{
+  background:transparent;color:var(--text);padding:1rem 2.5rem;
+  font-family:'Syne',sans-serif;font-weight:700;font-size:0.78rem;
+  letter-spacing:0.12em;text-transform:uppercase;display:inline-block;
+  border:2px solid var(--border);border-left:none;transition:border-color 0.18s;
+}
+.btn-ghost:hover{border-color:rgba(240,245,242,0.4)}
+.hero-right{
+  position:relative;background:var(--surface);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+}
+.hero-right::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 70% 50%,rgba(0,220,107,0.06) 0%,transparent 70%);
+}
+.hero-robot-wrap{
+  width:62%;aspect-ratio:3/4;border:1px solid var(--border);background:var(--surface2);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;
+  position:relative;z-index:1;overflow:hidden;
+}
+.hero-robot-wrap svg{opacity:0.15}
+.ph-txt{font-family:'Syne',sans-serif;font-size:0.56rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted)}
+.robot-info-bar{
+  position:absolute;bottom:0;left:0;right:0;background:var(--green);
+  padding:0.7rem 1.2rem;display:flex;justify-content:space-between;align-items:center;
+}
+.rib-name{font-family:'Syne',sans-serif;font-weight:800;font-size:0.82rem;letter-spacing:0.06em;color:#000;text-transform:uppercase}
+.rib-season{font-family:'Syne',sans-serif;font-weight:700;font-size:0.6rem;letter-spacing:0.1em;color:rgba(0,0,0,0.55);text-transform:uppercase}
+
+/* ─── LIVE TICKER ─── */
+.ticker{
+  background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  height:40px;overflow:hidden;display:flex;align-items:center;
+}
+.ticker-track{
+  display:flex;gap:0;white-space:nowrap;
+  animation:tick 22s linear infinite;
+}
+.ticker-item{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--muted);padding:0 2.5rem;display:flex;align-items:center;gap:1.5rem;
+}
+.ticker-item::after{content:'·';color:var(--green)}
+@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ─── STATS ─── */
+.stats-bar{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-bottom:1px solid var(--border);
+}
+.stat-col{
+  padding:2.5rem 3rem;border-right:1px solid var(--border);position:relative;
+}
+.stat-col:last-child{border-right:none}
+.stat-col::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:transparent;transition:background 0.2s}
+.stat-col:hover::before{background:var(--green)}
+.sn{font-family:'Syne',sans-serif;font-weight:800;font-size:2.8rem;line-height:1;color:var(--text)}
+.sl{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-top:0.4rem}
+
+/* ─── ABOUT ─── */
+.about{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border)}
+.about-l{padding:7rem 4rem;border-right:1px solid var(--border);background:var(--surface)}
+.section-tag{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:0.62rem;
+  letter-spacing:0.28em;text-transform:uppercase;color:var(--green);margin-bottom:2rem;
+}
+.h2{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:clamp(2rem,4vw,3.2rem);line-height:1.05;letter-spacing:-0.02em;
+}
+.h2 .green{color:var(--green)}
+.about-r{padding:7rem 4rem;display:flex;flex-direction:column;justify-content:center}
+.body-p{font-size:0.92rem;color:var(--muted);line-height:1.78;font-weight:300;margin-bottom:1.5rem}
+
+/* ─── ROBOT ─── */
+.robot-section{
+  display:grid;grid-template-columns:55fr 45fr;
+  border-bottom:1px solid var(--border);
+}
+.robot-vis{
+  background:var(--surface);min-height:580px;border-right:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;
+}
+.robot-vis::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 40% 60%,rgba(0,220,107,0.05) 0%,transparent 65%);
+}
+.robot-vis-bg{
+  position:absolute;font-family:'Syne',sans-serif;font-weight:800;
+  font-size:35vw;color:rgba(0,220,107,0.03);bottom:-10%;right:-5%;line-height:1;pointer-events:none;
+}
+.robot-photo-box{
+  width:52%;aspect-ratio:3/4;border:1px solid var(--border);background:var(--surface2);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;
+  position:relative;z-index:1;
+}
+.robot-photo-box svg{opacity:0.15}
+.robot-info{padding:5rem 4rem;display:flex;flex-direction:column;justify-content:center}
+.robot-stag{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:0.62rem;
+  letter-spacing:0.28em;text-transform:uppercase;color:var(--green);margin-bottom:1.5rem;
+}
+.robot-name{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:5rem;line-height:0.88;letter-spacing:-0.03em;margin-bottom:2rem;
+}
+.robot-desc{font-size:0.88rem;color:var(--muted);line-height:1.78;font-weight:300;margin-bottom:2.5rem}
+.spec-table{border-top:1px solid var(--border);margin-bottom:2.5rem}
+.spec-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0.85rem 0;border-bottom:1px solid var(--border);
+}
+.spec-k{font-family:'Syne',sans-serif;font-weight:700;font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted)}
+.spec-v{font-family:'Syne',sans-serif;font-weight:700;font-size:0.82rem;color:var(--text)}
+
+/* ─── RESULTS ─── */
+.results{padding:6rem 4rem;border-bottom:1px solid var(--border)}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3.5rem}
+.h2-sm{font-family:'Syne',sans-serif;font-weight:800;font-size:2rem;letter-spacing:-0.02em}
+.lnk{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--green);display:flex;align-items:center;gap:0.4rem;
+}
+.lnk::after{content:'→'}
+.result-list{display:flex;flex-direction:column;border-top:1px solid var(--border)}
+.result-row{
+  display:grid;grid-template-columns:52px 1fr auto 110px;
+  align-items:center;gap:2rem;padding:1.4rem 0;
+  border-bottom:1px solid var(--border);transition:background 0.15s;
+}
+.result-row:hover{background:var(--surface);margin:0 -4rem;padding-left:4rem;padding-right:4rem}
+.r-num{font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;color:rgba(240,245,242,0.1);line-height:1}
+.r-event{font-family:'Syne',sans-serif;font-weight:700;font-size:0.88rem;letter-spacing:0.01em}
+.r-award{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:0.6rem;
+  letter-spacing:0.15em;text-transform:uppercase;padding:0.28rem 0.75rem;
+  border:1px solid var(--green);color:var(--green);white-space:nowrap;
+}
+.r-award.win{background:var(--green);color:#000;border-color:var(--green)}
+.r-date{font-family:'Syne',sans-serif;font-weight:700;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-align:right}
+
+/* ─── MEDIA ─── */
+.media{border-bottom:1px solid var(--border);background:var(--surface)}
+.media-head{padding:4rem 4rem 2.5rem;display:flex;align-items:flex-end;justify-content:space-between}
+.media-mosaic{
+  display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:260px 190px;
+  gap:1px;background:var(--border);
+}
+.media-cell{
+  background:var(--bg);display:flex;align-items:flex-end;padding:1.2rem 1.5rem;
+  position:relative;overflow:hidden;transition:filter 0.25s;
+}
+.media-cell:hover{filter:brightness(1.4)}
+.media-cell.main{grid-row:span 2}
+.mc-lbl{font-family:'Syne',sans-serif;font-weight:700;font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(240,245,242,0.25)}
+
+/* ─── UPDATES ─── */
+.updates{padding:6rem 4rem;border-bottom:1px solid var(--border);background:var(--surface)}
+.updates-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3.5rem}
+.posts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.post{background:var(--bg);transition:background 0.18s}
+.post:hover{background:var(--surface2)}
+.post-img{aspect-ratio:16/9;background:var(--surface2);border-bottom:1px solid var(--border)}
+.post-body{padding:1.5rem 1.75rem 2rem}
+.post-cat{font-family:'Syne',sans-serif;font-weight:700;font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--green);margin-bottom:0.6rem}
+.post-title{font-family:'Syne',sans-serif;font-weight:800;font-size:0.95rem;letter-spacing:-0.01em;line-height:1.25;margin-bottom:0.75rem}
+.post-exc{font-size:0.82rem;color:var(--muted);line-height:1.65;font-weight:300}
+.post-date{font-family:'Syne',sans-serif;font-weight:700;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-top:1.2rem}
+
+/* ─── SPONSOR ─── */
+.sponsor{
+  position:relative;background:var(--green);color:#000;
+  padding:7rem 4rem;text-align:center;overflow:hidden;
+}
+.sponsor-bg{
+  position:absolute;font-family:'Syne',sans-serif;font-weight:800;
+  font-size:25vw;color:rgba(0,0,0,0.06);top:50%;left:50%;
+  transform:translate(-50%,-50%);white-space:nowrap;line-height:1;pointer-events:none;
+}
+.sponsor-inner{position:relative;z-index:1}
+.sponsor-eye{font-family:'Syne',sans-serif;font-weight:700;font-size:0.65rem;letter-spacing:0.28em;text-transform:uppercase;color:rgba(0,0,0,0.4);margin-bottom:1.5rem}
+.sponsor-h{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(3rem,5.5vw,5rem);letter-spacing:-0.03em;line-height:0.92;margin-bottom:1.75rem}
+.sponsor-p{font-size:0.95rem;color:rgba(0,0,0,0.55);max-width:440px;margin:0 auto 3rem;line-height:1.75;font-weight:400}
+.sponsor-btns{display:flex;gap:0;justify-content:center}
+.btn-dark{background:#000;color:var(--green);padding:1rem 2.5rem;font-family:'Syne',sans-serif;font-weight:700;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;display:inline-block;transition:background 0.18s}
+.btn-dark:hover{background:#111}
+.btn-ghost-d{background:transparent;color:#000;padding:1rem 2.5rem;font-family:'Syne',sans-serif;font-weight:700;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;display:inline-block;border:2px solid rgba(0,0,0,0.2);border-left:none;transition:border-color 0.18s}
+.btn-ghost-d:hover{border-color:rgba(0,0,0,0.5)}
+
+/* ─── FOOTER ─── */
+footer{background:var(--surface);border-top:2px solid var(--green);padding:2.5rem 4rem;display:flex;align-items:center;justify-content:space-between}
+.f-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.15rem}
+.f-logo em{color:var(--green);font-style:normal}
+.f-nav{display:flex;gap:0;list-style:none}
+.f-nav a{font-family:'Syne',sans-serif;font-weight:700;font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);padding:0.5rem 1rem;border-left:1px solid var(--border);transition:color 0.18s}
+.f-nav a:hover{color:var(--text)}
+.f-copy{font-family:'Syne',sans-serif;font-size:0.6rem;color:var(--muted);letter-spacing:0.05em}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">839<em>A</em></div>
+  <ul class="nav-links">
+    <li><a href="#" class="active">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Robot</a></li>
+    <li><a href="#">Competitions</a></li>
+    <li><a href="#">Media</a></li>
+    <li><a href="#">Updates</a></li>
+  </ul>
+  <a href="#" class="nav-cta">Contact</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-bg-char">8</div>
+    <div class="hero-season">VEX IQ Robotics · Season 2025–2026</div>
+    <h1>WHERE<br>CODE<br>MEETS<br><span class="green">SPEED.</span></h1>
+    <p class="hero-body">Team 839A builds robots that perform when it matters — combining precision engineering, autonomous-first programming, and the relentless drive to compete at the world stage.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn-green">View Our Robot</a>
+      <a href="#" class="btn-ghost">See Results</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-robot-wrap">
+      <svg width="72" height="90" viewBox="0 0 72 90" fill="none">
+        <rect x="16" y="12" width="40" height="26" rx="3" stroke="#00DC6B" stroke-width="1.5"/>
+        <rect x="21" y="38" width="30" height="26" rx="2" stroke="#00DC6B" stroke-width="1.5"/>
+        <circle cx="28" cy="23" r="5" stroke="#00DC6B" stroke-width="1.5"/>
+        <circle cx="44" cy="23" r="5" stroke="#00DC6B" stroke-width="1.5"/>
+        <line x1="6" y1="45" x2="16" y2="50" stroke="#00DC6B" stroke-width="1.5"/>
+        <line x1="66" y1="45" x2="56" y2="50" stroke="#00DC6B" stroke-width="1.5"/>
+        <rect x="25" y="64" width="8" height="14" rx="2" stroke="#00DC6B" stroke-width="1.5"/>
+        <rect x="39" y="64" width="8" height="14" rx="2" stroke="#00DC6B" stroke-width="1.5"/>
+      </svg>
+      <span class="ph-txt">Robot Photo</span>
+      <div class="robot-info-bar">
+        <span class="rib-name">NEXUS v3.2</span>
+        <span class="rib-season">2025–2026 Season</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item">Tournament Champions · Regional East 2026</span>
+    <span class="ticker-item">Excellence Award · State Championship 2026</span>
+    <span class="ticker-item">Design Award · Winter Invitational 2026</span>
+    <span class="ticker-item">Amaze Award · VEX Worlds 2025</span>
+    <span class="ticker-item">12 Members · 4 Seasons · 14 Awards</span>
+    <span class="ticker-item">Tournament Champions · Regional East 2026</span>
+    <span class="ticker-item">Excellence Award · State Championship 2026</span>
+    <span class="ticker-item">Design Award · Winter Invitational 2026</span>
+    <span class="ticker-item">Amaze Award · VEX Worlds 2025</span>
+    <span class="ticker-item">12 Members · 4 Seasons · 14 Awards</span>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-col"><span class="sn">839A</span><span class="sl">Team Number</span></div>
+  <div class="stat-col"><span class="sn">12</span><span class="sl">Team Members</span></div>
+  <div class="stat-col"><span class="sn">14</span><span class="sl">Awards Won</span></div>
+  <div class="stat-col"><span class="sn">4</span><span class="sl">Seasons</span></div>
+</div>
+
+<div class="about">
+  <div class="about-l">
+    <p class="section-tag">Who We Are</p>
+    <h2 class="h2">Students<br>who <span class="green">engineer</span><br>the future.</h2>
+  </div>
+  <div class="about-r">
+    <p class="section-tag">About the Team</p>
+    <p class="body-p">Team 839A is a student-led VEX IQ competitive robotics team. Every member owns a clear role — from mechanical design and programming to match strategy and community outreach. We compete at regional, state, and world championship levels.</p>
+    <p class="body-p">Each season, we carry the lessons of every robot we've built before. Every iteration makes us faster, more precise, and more competitive.</p>
+  </div>
+</div>
+
+<div class="robot-section">
+  <div class="robot-vis">
+    <div class="robot-vis-bg">N</div>
+    <div class="robot-photo-box">
+      <svg width="72" height="90" viewBox="0 0 72 90" fill="none">
+        <rect x="16" y="12" width="40" height="26" rx="3" stroke="#00DC6B" stroke-width="1.5"/>
+        <rect x="21" y="38" width="30" height="26" rx="2" stroke="#00DC6B" stroke-width="1.5"/>
+        <circle cx="28" cy="23" r="5" stroke="#00DC6B" stroke-width="1.5"/>
+        <circle cx="44" cy="23" r="5" stroke="#00DC6B" stroke-width="1.5"/>
+      </svg>
+      <span class="ph-txt">Robot Photo</span>
+    </div>
+  </div>
+  <div class="robot-info">
+    <p class="robot-stag">Current Season Robot</p>
+    <h2 class="robot-name">NEX<br>US</h2>
+    <p class="robot-desc">Designed for consistency at speed. NEXUS runs a flex-wheel intake, full-field Bézier path planning, and a chassis engineered to absorb contact without losing field position.</p>
+    <div class="spec-table">
+      <div class="spec-row"><span class="spec-k">Drive System</span><span class="spec-v">6-Motor Mecanum</span></div>
+      <div class="spec-row"><span class="spec-k">Intake Type</span><span class="spec-v">Flex Wheel Roller</span></div>
+      <div class="spec-row"><span class="spec-k">Lift System</span><span class="spec-v">4-Bar Linkage</span></div>
+      <div class="spec-row"><span class="spec-k">Autonomous</span><span class="spec-v">Full-Field Bézier Path</span></div>
+    </div>
+    <a href="#" class="btn-green" style="align-self:flex-start">Full Robot Details</a>
+  </div>
+</div>
+
+<div class="results">
+  <div class="sec-head">
+    <div><p class="section-tag">Competition History</p><h2 class="h2-sm">Results</h2></div>
+    <a href="#" class="lnk">All Results</a>
+  </div>
+  <div class="result-list">
+    <div class="result-row">
+      <span class="r-num">01</span>
+      <span class="r-event">Regional Qualifier — East Division 2026</span>
+      <span class="r-award win">Tournament Champion</span>
+      <span class="r-date">March 2026</span>
+    </div>
+    <div class="result-row">
+      <span class="r-num">02</span>
+      <span class="r-event">State Championship 2026</span>
+      <span class="r-award">Excellence Award</span>
+      <span class="r-date">Feb 2026</span>
+    </div>
+    <div class="result-row">
+      <span class="r-num">03</span>
+      <span class="r-event">Winter Invitational Open 2026</span>
+      <span class="r-award">Design Award</span>
+      <span class="r-date">Jan 2026</span>
+    </div>
+    <div class="result-row">
+      <span class="r-num">04</span>
+      <span class="r-event">Fall Kickoff Tournament 2025</span>
+      <span class="r-award">Judges Award</span>
+      <span class="r-date">Oct 2025</span>
+    </div>
+    <div class="result-row">
+      <span class="r-num">05</span>
+      <span class="r-event">VEX IQ World Championship — Dallas</span>
+      <span class="r-award">Amaze Award</span>
+      <span class="r-date">Apr 2025</span>
+    </div>
+  </div>
+</div>
+
+<div class="media">
+  <div class="media-head">
+    <div><p class="section-tag">Gallery</p><h2 class="h2-sm">Media</h2></div>
+    <a href="#" class="lnk">All Media</a>
+  </div>
+  <div class="media-mosaic">
+    <div class="media-cell main"><span class="mc-lbl">Competition · Team</span></div>
+    <div class="media-cell"><span class="mc-lbl">Robot</span></div>
+    <div class="media-cell"><span class="mc-lbl">Build Process</span></div>
+    <div class="media-cell"><span class="mc-lbl">Match Highlights</span></div>
+    <div class="media-cell"><span class="mc-lbl">Awards</span></div>
+  </div>
+</div>
+
+<div class="updates">
+  <div class="updates-head">
+    <div><p class="section-tag">From the Team</p><h2 class="h2-sm">Updates</h2></div>
+    <a href="#" class="lnk">All Posts</a>
+  </div>
+  <div class="posts">
+    <div class="post">
+      <div class="post-img"></div>
+      <div class="post-body">
+        <div class="post-cat">Build Log</div>
+        <div class="post-title">NEXUS v3.2 Intake Redesign Complete</div>
+        <div class="post-exc">Three weeks of iteration. One final design. Consistency improved by 40% across all testing scenarios — here's what changed and why it worked.</div>
+        <div class="post-date">Jun 1, 2026</div>
+      </div>
+    </div>
+    <div class="post">
+      <div class="post-img"></div>
+      <div class="post-body">
+        <div class="post-cat">Competition Recap</div>
+        <div class="post-title">Regional Qualifier East: Undefeated.</div>
+        <div class="post-exc">A clean qualification run and a 3-0 finals series. Full breakdown of strategy, match performance, and what we carry into State.</div>
+        <div class="post-date">May 20, 2026</div>
+      </div>
+    </div>
+    <div class="post">
+      <div class="post-img"></div>
+      <div class="post-body">
+        <div class="post-cat">Programming</div>
+        <div class="post-title">New Autonomous: Bézier Path Planning</div>
+        <div class="post-exc">We replaced point-to-point routing with smooth Bézier curves. Autonomous accuracy and cycle time both improved significantly across test runs.</div>
+        <div class="post-date">May 12, 2026</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sponsor">
+  <div class="sponsor-bg">839A</div>
+  <div class="sponsor-inner">
+    <p class="sponsor-eye">Get Involved</p>
+    <h2 class="sponsor-h">Partner With<br>Team 839A</h2>
+    <p class="sponsor-p">Your sponsorship powers our robot, our season, and STEM education in our community. Let's build something exceptional together.</p>
+    <div class="sponsor-btns">
+      <a href="#" class="btn-dark">Contact Us</a>
+      <a href="#" class="btn-ghost-d">Sponsorship Info</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="f-logo">839<em>A</em></div>
+  <ul class="f-nav">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Robot</a></li>
+    <li><a href="#">Competitions</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <div class="f-copy">© 2026 Team 839A · VEX IQ Robotics</div>
+</footer>
+
+</body>
+</html>

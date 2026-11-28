@@ -1,0 +1,875 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>839A Caution Tape Alpha</title>
+<meta name="description" content="839A Caution Tape Alpha, a VEX IQ robotics team from Markham, Ontario.">
+<link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" type="image/png" href="assets/favicon-32.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/exo-2-latin-800-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/tomorrow-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Tomorrow";font-weight:900;font-style:normal;font-display:swap;src:url(assets/fonts/tomorrow-latin-900-normal.woff2) format("woff2")}
+#donate{scroll-margin-top:72px}
+.dn-note{margin:0 0 16px;padding:14px 16px;border:1px dashed var(--line);border-radius:14px;font-size:15px}.dn-note a{color:var(--red);font-weight:700}.sp-hero.dn{background:var(--card);color:var(--fg);border:1px solid var(--line)}.sp-hero.dn #donateBtn{background:var(--red)!important;color:#fff!important}
+@font-face{font-family:"Exo 2";font-style:italic;font-weight:800;font-display:swap;src:url(assets/fonts/exo-2-latin-800-italic.woff2) format("woff2")}
+@font-face{font-family:"Exo 2";font-style:italic;font-weight:700;font-display:swap;src:url(assets/fonts/exo-2-latin-700-italic.woff2) format("woff2")}
+@font-face{font-family:Inter;font-weight:400;font-display:swap;src:url(assets/fonts/inter-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:Inter;font-weight:600;font-display:swap;src:url(assets/fonts/inter-latin-600-normal.woff2) format("woff2")}
+:root{--red:#E10600;--red2:#ff2a1f;--bg:#0b0b0d;--bg2:#141417;--card:#1b1b1f;--fg:#f4f4f5;--muted:#9a9aa3;--line:#2a2a30;color-scheme:dark;
+--hf:"Exo 2","Arial Narrow",system-ui,sans-serif;--bf:Inter,system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+:lang(zh-Hant){--bf:Inter,system-ui,-apple-system,"PingFang TC","PingFang HK","Microsoft JhengHei",sans-serif}
+[data-theme=light]{--bg:#f6f6f7;--bg2:#ffffff;--card:#ffffff;--fg:#111114;--muted:#5d5d66;--line:#e2e2e6;--red:#d10500;color-scheme:light}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 var(--bf);overflow-x:hidden}
+[hidden]{display:none!important}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--hf);font-style:italic;font-weight:800;line-height:1;margin:0;text-transform:uppercase;letter-spacing:.01em}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left));padding-right:max(20px,env(safe-area-inset-right))}
+.kicker{font:700 italic 13px var(--hf);letter-spacing:.2em;text-transform:uppercase;color:var(--red)}
+section{padding-block:72px}
+[data-view]{animation:vin .35s ease}@keyframes vin{from{opacity:0;transform:translateY(8px)}}
+body{padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+.tabs{position:fixed;z-index:60;left:50%;transform:translateX(-50%);bottom:calc(12px + env(safe-area-inset-bottom));display:flex;gap:2px;padding:5px;border-radius:999px;background:color-mix(in srgb,var(--card) 88%,transparent);backdrop-filter:blur(14px);border:1px solid var(--line);box-shadow:0 14px 34px -12px rgba(0,0,0,.6);width:max-content;max-width:calc(100vw - 20px)}
+.tabs a{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:58px;padding:8px 10px;border-radius:999px;text-decoration:none;color:var(--muted);font:700 italic 12px var(--hf);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.tabs a svg{width:20px;height:20px}
+.tabs a.on{background:var(--red);color:#fff}
+.tabs{overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;scroll-behavior:smooth}.tabs::-webkit-scrollbar{display:none}.tabs a,.tabs .tnav{flex:none}
+.tabs .tnav{position:sticky;z-index:2;background:color-mix(in srgb,var(--card) 95%,transparent)}#tprev{left:0}#tnext{right:0}
+.tabs .tnav{display:grid;place-items:center;width:40px;flex:none;border:0;padding:0;border-radius:999px;background:none;color:var(--muted);cursor:pointer}
+.tabs .tnav svg{width:22px;height:22px}
+.tabs .tnav:hover:not(:disabled){color:var(--red)}
+.tabs .tnav:disabled{opacity:.25;cursor:default}
+@media(max-width:480px){.tabs a{padding:8px 5px;font-size:9px}.tabs .tnav{width:24px}.tabs .tnav svg{width:18px;height:18px}}
+@media(max-width:480px){.tabs a svg{width:18px;height:18px}}
+@media(max-width:380px){.tabs a{padding:7px 3px;font-size:8.5px}.tabs .tnav{width:18px}}
+.sec-h{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:36px;flex-wrap:wrap}
+.sec-h h2{font-size:clamp(36px,6vw,64px)}
+/* header */
+header{position:fixed;inset:0 0 auto;z-index:50;padding-top:env(safe-area-inset-top);transition:background .3s,backdrop-filter .3s}
+header.solid{background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:22px;height:64px}
+.logo{font:800 italic 26px var(--hf);text-decoration:none;color:#fff;letter-spacing:.02em}
+header.solid .logo{color:var(--fg)}
+.logo b{color:var(--red)}
+.logo{display:flex;align-items:center;gap:10px}.logo img{height:40px;width:auto;filter:drop-shadow(0 2px 6px rgba(0,0,0,.35))}
+.links{display:flex;gap:20px;margin-left:auto}
+.links a{font:700 italic 14px var(--hf);text-transform:uppercase;letter-spacing:.08em;text-decoration:none;color:#fff;opacity:.85}
+header.solid .links a{color:var(--fg)}
+.links a:hover{opacity:1;color:var(--red)}
+.tools{display:flex;gap:8px;margin-left:auto}
+.tbtn{height:36px;min-width:36px;padding:0 10px;border-radius:8px;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.25);color:#fff;font:600 13px var(--bf);cursor:pointer}
+header.solid .tbtn{border-color:var(--line);background:var(--card);color:var(--fg)}
+select.tbtn{appearance:none;padding-right:10px}
+.burger{display:none}
+@media(max-width:860px){.links{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 20px}
+.links.open{display:flex}.links a{color:var(--fg);padding:12px 0;border-bottom:1px solid var(--line)}.burger{display:inline-block}.tools{margin-left:auto}}
+/* hero */
+.hero{position:relative;height:100svh;min-height:560px;overflow:hidden;background:#000;color:#fff;padding:0}
+.hero video,.hero .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.05) 35%,rgba(0,0,0,.75))}
+.hero-copy{position:absolute;z-index:2;left:0;right:0;bottom:12vh}
+.hero-copy h1{font-size:clamp(54px,11vw,150px);text-shadow:0 4px 30px rgba(0,0,0,.4)}
+.hero-copy h1 b{color:var(--red)}
+.hero-copy p{font:700 italic clamp(16px,2vw,22px) var(--hf);letter-spacing:.12em;text-transform:uppercase;margin:12px 0 0;opacity:.9}
+.hero-copy,.hero:after{transition:opacity .6s}
+.hero.intro .hero-copy{opacity:0}
+/* intro overlay */
+.swallow{position:absolute;inset:0;z-index:3;pointer-events:none;--r:150%;background:radial-gradient(circle at 50% 50%,transparent calc(var(--r) - 25%),#000 var(--r));opacity:0}
+@property --r{syntax:"<percentage>";inherits:false;initial-value:150%}
+.hero.intro .swallow{opacity:1;animation:swal 1.3s cubic-bezier(.6,0,.4,1) forwards}
+@keyframes swal{from{--r:150%}to{--r:-30%}}
+.stage{position:absolute;inset:0;z-index:4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4vh;pointer-events:none;opacity:0}
+.hero.intro .stage{opacity:1}
+.big{font:900 clamp(84px,19vw,250px)/.95 "Tomorrow",var(--hf);letter-spacing:.02em;display:flex}
+.big{position:relative;padding:.06em .14em}
+.big span{display:inline-block;position:relative;opacity:0;color:#fff}
+.big .a{--ink:var(--red)}
+.big span::before{content:attr(data-c);position:absolute;inset:0;color:transparent;-webkit-text-stroke:2px var(--ink,#fff);opacity:0;pointer-events:none}
+.big span::after{content:attr(data-c);position:absolute;inset:0;color:#28e0ff;mix-blend-mode:screen;opacity:0;pointer-events:none}
+.big::before,.big::after{content:"";position:absolute;width:.32em;height:.32em;border:3px solid var(--red);opacity:0}
+.big::before{left:0;top:0;border-right:0;border-bottom:0}.big::after{right:0;bottom:0;border-left:0;border-top:0}
+.scan{position:absolute;top:-4%;bottom:-4%;left:0;width:3px;background:var(--red);box-shadow:0 0 18px 4px rgba(225,6,0,.7);opacity:0;pointer-events:none}
+.big .a{color:var(--red);text-shadow:0 0 40px rgba(225,6,0,.6)}
+.hero.intro .big span{animation:mech .62s linear forwards}
+.hero.intro .big span::before{animation:wire .62s linear forwards;animation-delay:inherit}
+.hero.intro .big span::after{animation:glitch .62s steps(1,end) forwards;animation-delay:inherit}
+.hero.intro .big::before,.hero.intro .big::after{animation:brk .5s steps(4,end) 1.05s forwards}
+.hero.intro .scan{animation:sweep 1.5s steps(14,end) 1.2s forwards}
+.hero.intro .big{animation:lock .22s steps(2,end) 2.55s 2}
+@keyframes mech{
+ 0%{opacity:1;color:transparent;clip-path:inset(0 0 100% 0);transform:translateY(-.18em)}
+ 10%{transform:translateY(-.18em)}
+ 50%{color:transparent;clip-path:inset(0 0 0 0);transform:translateY(-.18em);animation-timing-function:steps(1,end)}
+ 58%{color:var(--ink,#fff);transform:translateY(.05em)}
+ 66%{transform:translateY(-.02em)}
+ 74%,100%{opacity:1;color:var(--ink,#fff);clip-path:inset(0 0 0 0);transform:none}}
+@keyframes wire{0%{opacity:1;clip-path:inset(0 0 100% 0)}50%{opacity:1;clip-path:inset(0 0 0 0);animation-timing-function:steps(3,end)}65%{opacity:.9}100%{opacity:0;clip-path:inset(0 0 0 0)}}
+@keyframes glitch{0%,52%{opacity:0}55%{opacity:.55;transform:translateX(.06em);clip-path:inset(30% 0 58% 0)}60%{transform:translateX(-.05em);clip-path:inset(62% 0 12% 0)}66%{opacity:.7;transform:translateX(.03em);clip-path:inset(40% 0 40% 0)}72%,100%{opacity:0}}
+@keyframes brk{0%{opacity:0}25%{opacity:1}50%{opacity:0}100%{opacity:1}}
+@keyframes sweep{0%{opacity:1;left:0}95%{opacity:1;left:100%}100%{opacity:0;left:100%}}
+@keyframes lock{50%{transform:translateX(3px)}}
+.lineup{display:flex;align-items:flex-end;gap:3vw;height:30vh;padding:0 4vw}
+.bot{display:flex;flex-direction:column;align-items:center;gap:8px;transform:translate(var(--fx),var(--fy));opacity:0}
+.bot img{height:24vh;width:auto;max-width:21vw;object-fit:contain;filter:drop-shadow(0 10px 18px rgba(225,6,0,.35))}
+.bot small{font:700 italic clamp(10px,1.1vw,14px) var(--hf);letter-spacing:.1em;text-transform:uppercase;color:#bbb;white-space:nowrap}
+.bot img.sil{filter:brightness(0) drop-shadow(0 0 2px rgba(255,255,255,.75))}
+.hero.intro .bot{animation:drive 1s cubic-bezier(.15,.85,.3,1.08) forwards}
+.hero.intro .bot img{animation:rumble .12s linear 8}
+@keyframes drive{0%{transform:translate(var(--fx),var(--fy)) rotate(var(--fr));opacity:1}100%{transform:none;opacity:1}}
+@keyframes rumble{50%{transform:translateY(-2px)}}
+.replay{position:absolute;right:max(20px,env(safe-area-inset-right));bottom:24px;z-index:5;background:rgba(0,0,0,.4);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:8px 14px;font:600 13px var(--bf);cursor:pointer}
+/* reveal */
+.reveal-box{position:relative;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:repeating-linear-gradient(-45deg,#111 0 22px,#161616 22px 44px);border:1px solid var(--line);display:grid;place-items:center;color:#fff}
+.reveal-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.reveal-box .soon{text-align:center}
+.reveal-box .soon h3{font-size:clamp(28px,5vw,56px)}
+.tape{position:absolute;left:-5%;right:-5%;height:34px;background:repeating-linear-gradient(-45deg,var(--red) 0 24px,#111 24px 48px);transform:rotate(-4deg);top:14%;opacity:.85}
+.tape.b{top:auto;bottom:14%;transform:rotate(3deg)}
+/* hall of fame */
+.hof{display:flex;gap:28px;overflow-x:auto;scroll-snap-type:x mandatory;padding:20px 4px 30px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.hof::-webkit-scrollbar{display:none}
+.pod{flex:0 0 min(78vw,330px);scroll-snap-align:center;display:flex;flex-direction:column;align-items:center}
+.pod .rb{height:260px;display:flex;align-items:flex-end;justify-content:center;position:relative;z-index:1;margin-bottom:-26px}
+.pod .rb img{max-height:250px;max-width:290px;width:auto;object-fit:contain;filter:drop-shadow(0 18px 22px rgba(0,0,0,.45));transition:transform .4s}
+.pod:hover .rb img{transform:translateY(-8px)}
+.pod .rb img.sil{filter:brightness(0) opacity(.35)}
+.plinth{width:100%;height:150px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.plinth:before{content:"";position:absolute;top:0;left:6%;right:6%;height:44px;border-radius:50%;background:radial-gradient(ellipse at center,#2b2b31,#151518);box-shadow:0 0 0 2px var(--red),0 0 40px rgba(225,6,0,.45)}
+.plinth:after{content:"";position:absolute;top:22px;left:6%;right:6%;bottom:0;background:linear-gradient(180deg,#1c1c20,#0d0d0f);border-left:2px solid #2a2a30;border-right:2px solid #2a2a30;clip-path:polygon(0 0,100% 0,96% 100%,4% 100%);z-index:-1}
+[data-theme=light] .plinth:before{background:radial-gradient(ellipse at center,#fff,#dcdce1)}
+[data-theme=light] .plinth:after{background:linear-gradient(180deg,#ececf0,#d4d4da);border-color:#cfcfd5}
+.plinth .letter{position:relative;z-index:1;font:800 italic 46px var(--hf);color:var(--red);margin-top:4px;line-height:1}
+.plinth .nm{position:relative;z-index:1;font:700 italic 15px var(--hf);letter-spacing:.08em;text-transform:uppercase;color:#eee;margin-top:30px}
+[data-theme=light] .plinth .nm{color:#222}
+.pw{width:100%;margin-top:14px;padding:14px 16px 16px;background:var(--card);border:1px solid var(--line);border-radius:14px}
+.pw-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font:700 italic 13px var(--hf);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}.pw-h small{color:var(--muted);font:600 12px var(--bf);letter-spacing:0;text-transform:none}
+.pw-r{display:grid;grid-template-columns:118px 1fr 26px;align-items:center;gap:10px;padding:4px 0;font-size:13px;line-height:1.25;font-weight:600}
+.pw-r em{font:800 italic 16px var(--hf);text-align:right}
+.pw-b{display:grid;grid-template-columns:repeat(5,1fr);gap:3px;padding:0 3px}
+.pw-b i{height:12px;transform:skewX(-14deg);background:var(--line);border-radius:2px;overflow:hidden}
+.pw-b b{display:block;height:100%;background:var(--red);transform-origin:left;animation:pwfill .25s ease-out both}
+@keyframes pwfill{from{transform:scaleX(0)}to{transform:none}}
+@media(prefers-reduced-motion:reduce){.pw-b b{animation:none}}
+.rd-info .pw{margin:0 0 20px}
+.md-txt .st{margin:22px 0 10px;font:700 16px/1.2 var(--bf);letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
+.hof-ctl{display:flex;gap:8px}
+.arrow{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--fg);font-size:20px;cursor:pointer}
+.arrow:hover{border-color:var(--red);color:var(--red)}
+/* journey */
+.jr{position:relative;max-width:980px;margin:0 auto;height:min(68vh,640px);border-radius:20px;overflow:hidden;background:#000;color:#fff;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+@media(max-width:700px){.jr{height:min(66vh,620px)}}
+.jr .bgblur{position:absolute;inset:-40px;background-size:cover;background-position:center;filter:blur(30px) brightness(.45);transition:background-image .4s}
+.jr .media{position:absolute;inset:0;display:grid;place-items:center;padding:28px 0 0}
+.jr .media>img,.jr .media>video{position:absolute;left:0;right:0;top:28px;bottom:0;width:100%;height:calc(100% - 28px);max-height:none}
+.jr .media img,.jr .media video{max-width:100%;max-height:100%;object-fit:contain}
+.jr .media img.kb{animation:kb var(--d,5s) linear forwards}
+.jr .media img.kb{animation:fin .5s ease}
+.jr .fade{animation:fin .5s ease}
+@keyframes fin{from{opacity:0}to{opacity:1}}
+.bars{position:absolute;top:12px;left:12px;right:12px;display:flex;gap:3px;z-index:3}
+.bars i{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.3);overflow:hidden}
+.bars i b{display:block;height:100%;width:0;background:#fff}
+.jr .cap{position:absolute;left:20px;bottom:18px;z-index:3;text-shadow:0 2px 10px rgba(0,0,0,.6)}
+.jr .cap .d{font:800 italic clamp(24px,4vw,40px) var(--hf);text-transform:uppercase}
+.jr .cap .s{font:600 13px var(--bf);opacity:.8;letter-spacing:.06em}
+.jr .shade{position:absolute;inset:auto 0 0 0;height:40%;background:linear-gradient(transparent,rgba(0,0,0,.7));z-index:2}
+.jr .spd{position:absolute;top:28px;right:16px;z-index:4;font:800 italic 18px var(--hf);background:var(--red);padding:4px 10px;border-radius:6px;opacity:0;transition:opacity .2s}
+.jr .spd.on{opacity:1}
+.jr .zone{position:absolute;top:0;bottom:0;width:50%;z-index:5;cursor:grab;touch-action:pan-y}.jr .zone:active{cursor:grabbing}
+.jr .zl{left:0}.jr .zr{right:0}
+.jr .pp{position:absolute;right:16px;bottom:16px;z-index:6;width:44px;height:44px;border-radius:50%;border:0;background:rgba(0,0,0,.45);color:#fff;font-size:16px;cursor:pointer}
+.jr .fs{position:absolute;right:68px;bottom:16px;z-index:6;width:44px;height:44px;border-radius:50%;border:0;background:rgba(0,0,0,.45);color:#fff;cursor:pointer;display:grid;place-items:center;padding:0}
+.jr .fs svg{width:20px;height:20px}.jr .fs .ex{display:none}.jr.isfs .fs .ex{display:block}.jr.isfs .fs .en{display:none}
+.jr:fullscreen{max-width:none;width:100%;height:100%;border-radius:0}
+.jr:-webkit-full-screen{max-width:none;width:100%;height:100%;border-radius:0}
+.jr.pfs{position:fixed;inset:0;z-index:9999;max-width:none;width:100%;height:100dvh;border-radius:0}
+.card{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:radial-gradient(circle at 50% 60%,#3a0503,#000 70%)}
+.card img{max-height:42%;max-width:64%;object-fit:contain;filter:drop-shadow(0 20px 30px rgba(225,6,0,.4));animation:cardin .9s cubic-bezier(.2,1.2,.3,1)}
+.card img.sil{filter:brightness(0) drop-shadow(0 0 2px rgba(255,255,255,.6))}
+@keyframes cardin{from{transform:translateX(60%);opacity:0}}
+.card .t{font:800 italic clamp(24px,4vw,44px) var(--hf);text-transform:uppercase;text-align:center}
+.card .t b{color:var(--red)}
+.card .k{font:700 italic 13px var(--hf);letter-spacing:.25em;color:#ff6a63;text-transform:uppercase}
+.hint{text-align:center;color:var(--muted);font-size:13px;margin-top:14px}
+/* season */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px}
+.box h3{font-size:22px;margin-bottom:6px}
+.box .ev{color:var(--muted);font-size:14px;margin-bottom:16px}
+.spics{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:0 0 14px}.spics img{width:100%;aspect-ratio:3/4;object-fit:contain;background:#000;border-radius:10px;cursor:zoom-in}
+.aw{display:flex;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line);font-weight:600}
+.aw:before{content:"";width:10px;height:10px;transform:skewX(-14deg);background:var(--red);flex:none}
+.ev-row{display:grid;grid-template-columns:120px 1fr;gap:20px;align-items:center;padding:22px 0;border-top:1px solid var(--line)}
+.ev-row:last-child{border-bottom:1px solid var(--line)}
+.ev-date{font:800 italic 34px/1 var(--hf);color:var(--red);text-transform:uppercase}
+.ev-date small{display:block;font-size:14px;color:var(--muted);letter-spacing:.1em}
+.ev-row h3{font-size:22px}
+.evh{font-size:16px;letter-spacing:.14em;color:var(--muted);margin:30px 0 4px}
+.ev-hi{background:linear-gradient(90deg,rgba(225,6,0,.14),transparent);border-left:3px solid var(--red);padding-left:14px}
+.ev-date{white-space:nowrap}
+.ev-row p{margin:4px 0 0;color:var(--muted)}
+@media(max-width:560px){.ev-row{grid-template-columns:1fr;gap:6px}}
+
+section[data-view]:not(.hero):not(#reveal){padding-top:104px}
+.team4{grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
+.cad{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden}.cad img{width:100%;aspect-ratio:4/3;object-fit:contain;background:#fff;padding:10px;box-sizing:border-box}.cad .ph0{aspect-ratio:4/3;display:grid;place-items:center;background:repeating-linear-gradient(45deg,#121215 0 14px,#16161a 14px 28px);color:#666;font:800 italic 22px var(--hf)}.cad div.c{padding:14px 18px}.cad h3{font-size:18px}.cad span{color:var(--muted);font-size:13px}
+.seg{display:inline-flex;gap:2px;padding:4px;border-radius:999px;border:1px solid var(--line);background:var(--card);margin-bottom:28px}
+.seg a{padding:8px 16px;border-radius:999px;text-decoration:none;font:700 italic 13px var(--hf);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.seg a.on{background:var(--red);color:#fff}
+.lead{font-size:clamp(16px,1.6vw,19px);color:var(--muted);max-width:68ch;margin:0 0 28px}
+.mem{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;position:relative;overflow:hidden}
+.mem .ph{width:100%;aspect-ratio:1;object-fit:cover;border-radius:14px;margin-bottom:14px;display:block}
+.mem .av2{display:grid;place-items:center;background:linear-gradient(135deg,var(--red),#5a0200);color:#fff;font:800 italic 56px var(--hf)}
+.mem .gr{font-size:13px;font-weight:600;margin-bottom:8px}
+.mem .av{width:54px;height:54px;border-radius:14px;background:var(--red);color:#fff;display:grid;place-items:center;font:800 italic 20px var(--hf);margin-bottom:14px;transform:skewX(-6deg)}
+.mem h3{font-size:24px}.mem .role{color:var(--red);font:700 italic 13px var(--hf);letter-spacing:.06em;text-transform:uppercase;margin:6px 0 10px}
+.mem p{margin:0;color:var(--muted);font-size:14px}
+.note{font-size:12px;color:var(--muted);margin-top:14px;opacity:.8}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:28px 16px;margin-top:36px}@media(max-width:900px){.steps{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.steps{grid-template-columns:1fr}}
+.steps div{border-top:3px solid var(--red);padding-top:12px}.steps b{font:800 italic 28px var(--hf);color:var(--red)}.steps h3{font-size:18px;margin:4px 0 6px}.steps p{margin:0;color:var(--muted);font-size:14px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:28px}
+.stats div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}.stats b{display:block;font:800 italic 36px/1 var(--hf);color:var(--red)}.stats span{font-size:13px;color:var(--muted)}
+.pics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:8px 0 28px}.pics img{width:100%;aspect-ratio:4/3;object-fit:contain;background:#000;border-radius:14px}.pics.bond{grid-template-columns:repeat(3,1fr)!important}.pics.bond img{aspect-ratio:3/4;display:block!important;cursor:pointer}
+@media(max-width:560px){.pics{grid-template-columns:1fr 1fr}.pics img:last-child{display:none}}
+.log{width:100%;border-collapse:collapse;font-size:14px}.log td,.log th{text-align:left;padding:12px 10px;border-top:1px solid var(--line);vertical-align:top}.log th{font:700 italic 12px var(--hf);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.tscroll{overflow-x:auto}
+.mail{display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin-top:24px}
+.mail code{font:600 18px var(--bf);user-select:all}
+.btn{background:var(--red);color:#fff;border:0;border-radius:999px;padding:10px 18px;font:700 italic 14px var(--hf);letter-spacing:.06em;text-transform:uppercase;cursor:pointer;text-decoration:none}
+
+.pod{cursor:pointer}.pod:focus-visible{outline:2px solid var(--red);outline-offset:6px;border-radius:12px}
+#rd{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.72);backdrop-filter:blur(6px);display:grid;place-items:center;padding:20px;animation:fin .25s}
+.rd-box{position:relative;width:min(960px,100%);max-height:calc(100svh - 40px);overflow:auto;background:var(--bg2);border:1px solid var(--line);border-radius:22px;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:34px}
+@media(max-width:720px){.rd-box{grid-template-columns:1fr;padding:22px}}
+.rd-box .pod{cursor:default;flex:none;width:100%}.rd-box .pod .rb img{animation:cardin .7s cubic-bezier(.2,1.2,.3,1)}
+.rd-info{align-self:center}
+.rd-box .spin{cursor:grab;perspective:900px;touch-action:pan-y}.rd-box .spin:active{cursor:grabbing}.rd-box .spin img{transform-style:preserve-3d;will-change:transform}
+.rd-box .hint3d{text-align:center;color:var(--muted);font-size:12px;margin-top:8px}
+.rd-info h3{font-size:clamp(34px,5vw,48px);margin:4px 0 18px}.rd-info h3 b{color:var(--red)}
+.rd-info dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 18px}
+.rd-info dt{font:700 italic 12px var(--hf);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.rd-info dd{margin:0;font-weight:600}
+.rd-info p{color:var(--muted);margin:18px 0 22px}
+.rd-x{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--fg);font-size:18px;cursor:pointer;z-index:2}
+.rd-nav{display:flex;gap:8px}
+
+.mem{cursor:pointer;transition:transform .25s,border-color .25s}.mem:hover{transform:translateY(-4px);border-color:var(--red)}
+.mem .more{margin-top:12px;font:700 italic 12px var(--hf);letter-spacing:.1em;text-transform:uppercase;color:var(--red)}
+#md{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);display:grid;place-items:center;padding:20px;animation:fin .25s}
+.md-txt{max-height:70svh;overflow:auto;padding-right:6px}
+.md-box{position:relative;width:min(1000px,100%);max-height:calc(100svh - 40px);overflow:auto;background:var(--bg2);border:1px solid var(--line);border-radius:22px;display:grid;grid-template-columns:1.05fr 1fr;gap:28px;padding:28px}
+@media(max-width:760px){.md-box{grid-template-columns:1fr;padding:18px}}
+.md-fs{display:inline-flex;gap:6px;margin:0 0 14px}.md-fs button{min-width:44px;height:36px;border-radius:18px;border:1px solid var(--line);background:transparent;color:var(--fg);font:700 14px inherit;cursor:pointer}.md-fs button.on{background:var(--red);border-color:var(--red);color:#fff}
+.md-txt p{font-size:var(--mdfs,16px)}
+@media(max-width:760px){#md{padding:0!important;place-items:stretch!important}.md-box{max-height:100dvh;height:100dvh;border-radius:0;border:0;padding:64px 22px calc(40px + env(safe-area-inset-bottom))}.md-media{display:none}.md-txt{max-height:none;overflow:visible;padding:0;max-width:62ch;margin:0 auto}.md-txt h3{font-size:32px}.md-box .md-txt p{color:var(--fg);line-height:1.75;margin:0 0 18px}.md-box .rd-x{position:fixed;top:calc(12px + env(safe-area-inset-top));right:14px;z-index:3}}
+.md-media{position:relative;border-radius:16px;overflow:hidden;background:#000;aspect-ratio:4/5;max-height:70svh}
+.md-media video,.md-media img{width:100%;height:100%;object-fit:contain;background:#000}
+.md-media .tag{position:absolute;left:12px;bottom:12px;background:var(--red);color:#fff;font:700 italic 12px var(--hf);letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:6px}
+.md-txt h3{font-size:38px}.md-txt .role{color:var(--red);font:700 italic 13px var(--hf);letter-spacing:.06em;text-transform:uppercase;margin:8px 0 4px}
+.md-txt .gr{font-weight:600;font-size:14px;margin-bottom:16px}.md-txt p{color:var(--muted);margin:0 0 12px}
+.gal{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;margin:8px 0 28px;scrollbar-width:thin}
+.gal img{flex:0 0 auto;height:min(52vw,240px);width:auto;object-fit:contain;border-radius:14px;scroll-snap-align:start;cursor:zoom-in}
+@media(max-width:700px){#lb{padding:8px!important}#lb img,#lb video{max-width:calc(100vw - 16px)!important;max-height:calc(100dvh - 16px)!important}}
+#lb{position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.92);display:grid;place-items:center;padding:20px;cursor:zoom-out}#lb img,#lb video{display:block;width:auto;height:auto;max-width:calc(100vw - 40px);max-height:calc(100svh - 40px);object-fit:contain;border-radius:10px}
+.sp-hero{background:linear-gradient(135deg,var(--red),#5a0200);color:#fff;border-radius:22px;padding:clamp(24px,4vw,44px);display:grid;grid-template-columns:1.3fr 1fr;gap:28px;align-items:center;margin-bottom:24px}
+@media(max-width:760px){.sp-hero{grid-template-columns:1fr}}
+.sp-hero h3{font-size:clamp(28px,4vw,46px)}.sp-hero p{margin:12px 0 0;opacity:.9}
+.sp-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}.sp-stats div{background:rgba(0,0,0,.25);border-radius:14px;padding:14px}.sp-stats b{display:block;font:800 italic 34px/1 var(--hf)}.sp-stats span{font-size:12px;opacity:.85}
+.ben{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:14px;margin-bottom:24px}
+.ben div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}.ben svg{width:28px;height:28px;color:var(--red);margin-bottom:10px}.ben h4{margin:0 0 4px;font:800 italic 17px var(--hf);text-transform:uppercase}.ben p{margin:0;color:var(--muted);font-size:14px}
+.rcpt{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 18px;margin:0 0 8px}.rcpt summary{cursor:pointer;font:800 italic 15px var(--hf);text-transform:uppercase;letter-spacing:.04em}.rcpt ol{margin:12px 0 4px;padding-left:20px;color:var(--muted)}.rcpt li{margin:6px 0}.rcpt b{color:var(--fg)}
+.funds{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:10px;margin-bottom:24px}.funds div{border-left:3px solid var(--red);padding:6px 12px}.funds b{font:800 italic 16px var(--hf);text-transform:uppercase}.funds span{display:block;color:var(--muted);font-size:13px}
+.logos{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:8px}.logos div{aspect-ratio:3/1.4;border:2px dashed var(--line);border-radius:14px;display:grid;place-items:center;color:var(--muted);font:700 italic 13px var(--hf);letter-spacing:.08em;text-transform:uppercase}
+
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:999px;padding:8px 14px;font:700 italic 13px var(--hf);letter-spacing:.05em;text-transform:uppercase;cursor:pointer}
+.chip.on{background:var(--red);border-color:var(--red);color:#fff}
+.mgroup{margin-bottom:34px}.mgroup h3{font-size:22px}.mgroup .where{color:var(--muted);font-size:14px;margin:4px 0 14px}
+.mgrid{columns:4 220px;column-gap:10px}
+.mgrid button{position:relative;display:block;width:100%;padding:0;border:0;border-radius:12px;overflow:hidden;background:#111;cursor:zoom-in;margin:0 0 10px;break-inside:avoid}
+.mgrid img{display:block;width:100%;height:auto;transition:transform .3s}@media(hover:hover){.mgrid button:hover img{transform:scale(1.03)}}
+.mgrid .pl{position:absolute;right:8px;bottom:8px;width:34px;height:34px;border-radius:50%;background:rgba(225,6,0,.92);color:#fff;display:grid;place-items:center;font-size:13px}
+
+#lb .lbx{position:fixed;top:calc(14px + env(safe-area-inset-top));right:calc(14px + env(safe-area-inset-right));z-index:2;width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(0,0,0,.6);color:#fff;font-size:22px;line-height:1;cursor:pointer;display:grid;place-items:center;padding:0}
+#lb .lbx:hover{background:var(--red)}
+
+.wq{display:flex;gap:14px;align-items:center;background:linear-gradient(90deg,rgba(225,6,0,.16),transparent);border:1px solid var(--red);border-radius:16px;padding:14px 18px;margin-bottom:14px}.wq-i{font-size:28px}.wq b{display:block;font:800 italic clamp(18px,2.4vw,24px) var(--hf);text-transform:uppercase}.wq span{color:var(--muted);font-size:14px}
+.ranks{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+@media(max-width:700px){.ranks{grid-template-columns:1fr 1fr}}
+.rk{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;position:relative;overflow:hidden}
+.rk.hi em{opacity:.75;font-size:11px;font-weight:400;margin-top:4px}
+.rk.hi{background:linear-gradient(135deg,var(--red),#5a0200);color:#fff;border:0}
+.ranks{grid-template-columns:repeat(4,1fr)!important}.rk.hi{grid-column:1/-1;padding:26px 28px}.rk.hi b{font-size:clamp(84px,14vw,140px)}.rk.hi span{font-size:18px}.rk.hi em{font-size:14px!important}
+@media(max-width:700px){.ranks{grid-template-columns:1fr 1fr!important}}
+.rk b{display:block;font:800 italic clamp(40px,6vw,64px)/1 var(--hf)}.rk b small{font-size:.45em;opacity:.8;margin-right:2px}
+.rk span{display:block;font:700 italic 13px var(--hf);letter-spacing:.1em;text-transform:uppercase;margin-top:6px;opacity:.85}
+.rk b span{display:inline;font:inherit;letter-spacing:0;text-transform:none;margin:0;opacity:1}
+.rk em{display:block;font-style:normal;font-size:12px;opacity:.7;margin-top:4px}
+
+.cform{display:grid;gap:14px;max-width:720px}
+.cform .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:600px){.cform .row{grid-template-columns:1fr}}
+.cform label{display:grid;gap:6px;font:700 italic 12px var(--hf);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.cform input,.cform select,.cform textarea{font:16px var(--bf);color:var(--fg);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;width:100%}
+.cform input:focus,.cform select:focus,.cform textarea:focus{outline:2px solid var(--red);border-color:transparent}
+.cform textarea{min-height:140px;resize:vertical}
+.cmsg{padding:14px 16px;border-radius:12px;font-weight:600}.cmsg.ok{background:rgba(30,160,80,.15);border:1px solid #1ea050}.cmsg.err{background:rgba(225,6,0,.12);border:1px solid var(--red)}
+footer{border-top:1px solid var(--line);padding-block:40px;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+/* loader */
+#loader{position:fixed;inset:0;z-index:100;background:#050505;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;transition:opacity .6s}
+#loader canvas{width:min(70vw,380px);height:auto}
+#loader .lt{font:800 italic 44px var(--hf);color:#fff;opacity:0;transition:opacity .4s}
+#loader .lt b{color:var(--red)}
+#loader.done{opacity:0;pointer-events:none}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+.prev{margin:4px 0 0;font-size:12px;opacity:.85}.prev b{color:var(--red)}
+.pt{margin:18px 0 6px;padding:14px 16px;border:1px solid var(--line);border-radius:14px}.pt h4{margin:0 0 8px;font:700 13px/1.2 inherit;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}.pt .tm{margin:10px 0 2px;font-weight:800}.pt .tm small{font-weight:500;opacity:.7;margin-left:6px}.pt ul{margin:4px 0 0;padding-left:18px}.pt li{margin:3px 0;font-size:calc(var(--mdfs,16px) - 1px)}
+.tw-box{margin:0 0 18px;padding:14px 16px;border-left:3px solid var(--red);background:color-mix(in srgb,var(--red) 6%,transparent);border-radius:0 12px 12px 0}.tw-box h4,.twsec h3{margin:0 0 8px;font:700 italic 13px var(--hf);letter-spacing:.12em;text-transform:uppercase;color:var(--red)}.twsec{margin:0 0 30px}.nbref{display:inline-block;margin-top:8px;font-size:12px;color:var(--muted)}
+.owns{display:flex;flex-wrap:wrap;gap:6px}.owns span{padding:4px 10px;border-radius:99px;background:var(--red);color:#fff;font-size:12px;font-weight:700}.lrn{margin:6px 0 0;font-size:calc(var(--mdfs,16px) - 1px)}
+.twgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}.twgrid>div{border:1px solid var(--line);border-radius:14px;padding:16px}.twgrid h4{margin:0 0 6px}.twgrid p{margin:6px 0 0;font-size:14px}.twgrid small{color:var(--muted)}
+.trend{width:100%;height:auto;max-height:220px;color:var(--fg)}.trend text{font:600 11px system-ui;fill:var(--muted)}
+/* ===== motion ===== */
+@keyframes vin{from{opacity:0;transform:translateY(26px) scale(.985);filter:blur(10px)}to{opacity:1;transform:none;filter:none}}
+[data-view].vin{animation:vin .6s cubic-bezier(.16,1,.3,1) both}
+#vbar{position:fixed;left:0;top:0;height:3px;width:100%;z-index:200;background:linear-gradient(90deg,transparent,var(--red) 30%,#ff5a4f 70%,transparent);transform:scaleX(0);transform-origin:left;pointer-events:none;opacity:0}
+#vbar.go{animation:vbar .7s cubic-bezier(.65,0,.35,1)}
+@keyframes vbar{0%{opacity:1;transform:scaleX(0)}60%{opacity:1;transform:scaleX(1);transform-origin:left}61%{transform-origin:right}100%{opacity:1;transform:scaleX(0);transform-origin:right}}
+.rv{transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1),filter .8s cubic-bezier(.16,1,.3,1),clip-path 1s cubic-bezier(.77,0,.18,1),letter-spacing .9s cubic-bezier(.16,1,.3,1);transition-delay:var(--rd,0s)}
+.rv-card{opacity:0;transform:perspective(900px) translateY(46px) rotateX(10deg) scale(.96);filter:blur(6px)}
+.rv-head{clip-path:inset(0 0 100% 0);transform:translateY(40%)}
+.rv-kick{opacity:0;letter-spacing:.5em}
+.rv-img{clip-path:inset(0 0 80% 0 round 14px);opacity:0;transform:scale(1.12)}
+.rv-text{opacity:0;transform:translateY(22px);filter:blur(4px)}
+.rv.in{opacity:1;transform:none;filter:none;clip-path:inset(0 0 0 0 round 0);letter-spacing:revert-layer}
+.rv-kick.in{letter-spacing:.14em}
+.rk.rv-card.in{transition-property:opacity,transform,filter,box-shadow}
+.rk.hi.in{animation:glow 2.4s ease-in-out 1s infinite alternate}
+@keyframes glow{from{box-shadow:0 0 0 rgba(225,6,0,0)}to{box-shadow:0 18px 50px -12px rgba(225,6,0,.55)}}
+.box,.mem,.rk{transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s}
+@media(hover:hover){.box.in:hover,.mem.in:hover,.rk.in:hover{transform:translateY(-6px);box-shadow:0 20px 40px -18px rgba(0,0,0,.35)}}
+@media(prefers-reduced-motion:reduce){[data-view].vin,#vbar.go,.rk.hi.in{animation:none}.rv{opacity:1!important;transform:none!important;filter:none!important;clip-path:none!important;transition:none}}
+</style>
+</head>
+<body>
+<div id="loader" aria-hidden="true"><canvas id="lc" width="760" height="760"></canvas><div class="lt">839<b>A</b></div></div>
+
+<header id="hdr">
+ <div class="wrap nav">
+  <a class="logo" href="#home" aria-label="839A home"><img src="assets/logo/badge.webp" alt="839A Caution Tape Robotics Club badge" width="40" height="40"><span>839<b>A</b></span></a>
+  <div class="tools">
+   <select class="tbtn" id="lang" aria-label="Language"><option value="en">EN</option><option value="fr">FR</option><option value="zh" lang="zh-Hans">简体中文</option><option value="zht" lang="zh-Hant">繁體中文</option></select>
+   <button class="tbtn" id="theme" aria-label="Toggle light/dark">☾</button>
+  </div>
+ </div>
+</header>
+
+<section class="hero" id="top" data-view="home">
+ <img class="poster" src="assets/hero.jpg" alt="Team 839A robots competing on a VEX IQ field">
+ <video id="hv" src="assets/hero.mp4" muted playsinline preload="auto" poster="assets/hero.jpg"></video>
+ <div class="hero-copy wrap"><h1>Caution Tape <b>Alpha</b></h1><p data-i="hero_sub">VEX IQ Team 839A · Markham, Ontario</p></div>
+ <div class="swallow"></div>
+ <div class="stage"><div class="big" id="big"><span data-c="8">8</span><span data-c="3">3</span><span data-c="9">9</span><span class="a" data-c="A">A</span><i class="scan"></i></div><div class="lineup" id="lineup"></div></div>
+ <button class="replay" id="replay" hidden data-i="replay">↻ Replay</button>
+</section>
+
+<section id="reveal" data-view="home">
+ <div class="wrap">
+  <div class="sec-h"><div><div class="kicker">2026–27 · Level Up</div><h2 data-i="reveal_h">Robot Reveal</h2></div></div>
+  <div class="reveal-box" id="revealBox"><div class="tape"></div><div class="tape b"></div><div class="soon"><div class="kicker" data-i="soon_k">Coming soon</div><h3 data-i="soon_h">Reveal dropping soon</h3></div></div>
+ </div>
+</section>
+
+<section id="robots" data-view="robots">
+ <div class="wrap">
+  
+  <div class="sec-h"><div><div class="kicker" data-i="hof_k">Every robot we built</div><h2 data-i="hof_h">Robot Hall of Fame</h2></div>
+   <div class="hof-ctl"><button class="arrow" id="hp" aria-label="Previous">‹</button><button class="arrow" id="hn" aria-label="Next">›</button></div></div>
+  <div class="hof" id="hof"></div>
+ </div>
+</section>
+
+<section id="design" data-view="design">
+ <div class="wrap">
+  <div class="sec-h"><div><div class="kicker">How we build</div><h2>Design Process</h2></div></div>
+  <p class="lead">We follow the engineering design process (EDP). Every subsystem on our robot goes through the same eight steps, from the first idea to the version that goes to competition. Our approach is data-driven and uses the EDP: we record all of our data and use it to make our decisions.</p>
+  <div class="steps">
+   <div><b>01</b><h3>Identify the problem</h3><p>Define the challenge, the requirements and the constraints before any design.</p></div>
+   <div><b>02</b><h3>Brainstorm solutions</h3><p>Come up with several ideas and prototypes, and compare them against the requirements.</p></div>
+   <div><b>03</b><h3>Select the best solution</h3><p>Pick the strongest idea, explain why, and plan it out in CAD.</p></div>
+   <div><b>04</b><h3>Build and program</h3><p>Build from the CAD model and program it, all in C++.</p></div>
+   <div><b>05</b><h3>Test the solution</h3><p>Set pass and fail criteria first, then test and record all the results.</p></div>
+   <div><b>06</b><h3>Repeat and improve</h3><p>Use test and scrimmage results to improve the design, then go through the process again.</p></div>
+  </div>
+  <div id="cad" style="margin-top:48px" hidden>
+  <div class="sec-h"><div><div class="kicker" data-i="cad_k">Computer-Aided Design</div><h2>CAD of Our Earlier Robots</h2></div></div>
+  <p class="lead">Before we build, we model it. Here are the CADs of our older prototypes. Our current robot stays under wraps until the reveal.</p>
+  <div class="grid" id="cadGrid"></div>
+  </div>
+ </div>
+</section>
+<section id="season" data-view="season">
+ <div class="wrap">
+  <div class="sec-h"><div><div class="kicker">2026–27 · Level Up</div><h2 data-i="season_h">This Season</h2></div></div>
+  <div id="ranks" style="margin-bottom:36px">
+  <div class="sec-h"><div><div class="kicker" data-i="rk_k">Robot Skills · 2026–27 Level Up · Middle School</div><h3 data-i="rk_h" style="font-size:26px;margin-top:4px">Our Ranking</h3></div><a class="btn" href="https://events.vex.com/robot-competitions/vex-iq-competition/standings/skills" target="_blank" rel="noopener" data-i="rk_live">Live standings ↗</a></div>
+  <div class="ranks">
+   <div class="rk hi"><b><small>#</small>1</b><span data-i="rk_ca">In Canada</span><em data-i="rk_caq">First team in Canada to qualify for Worlds 2027</em></div>
+   <div class="rk"><b><small>#</small><span id="rkCa">2</span></b><span data-i="rk_ca2">In Canada</span><em data-i="rk_sk">Robot Skills</em></div>
+   <div class="rk"><b><small>#</small><span id="rkOn">1</span></b><span data-i="rk_on">In Ontario</span><em data-i="rk_sk">Robot Skills</em></div>
+   <div class="rk"><b><small>#</small><span id="rkW">33</span></b><span data-i="rk_w">In the world</span><em data-i="rk_sk">Robot Skills</em></div>
+   <div class="rk"><b>5</b><span>Awards this season</span><em>Excellence · Teamwork Champion · Skills Champion · Design · Teamwork 3rd</em></div>
+  </div>
+  <p class="note"><span data-i="rk_upd">Updates automatically from the official VEX world skills standings.</span> <span id="rkAsof"></span></p>
+ </div>
+  <div class="grid">
+   <div class="box"><h3>Show Me Gateway</h3><div class="ev" data-i="ev_smg">Signature Event · St. Charles, MO · Nov 2026</div>
+    <div class="spics"><img src="assets/journey/63.webp" alt="839A receiving the Excellence Award at Show Me Gateway" loading="lazy"><img src="assets/journey/65.webp" alt="839A with the Excellence Award banner" loading="lazy"><img src="assets/journey/110.webp" alt="839A's Excellence Award banner and trophies under the Gateway Arch" loading="lazy"></div>
+    <div class="aw" data-i="aw_exc">Excellence Award (Middle School)</div><div class="aw" data-i="aw_tw3">Teamwork 3rd Place</div></div>
+   <div class="box"><h3 data-i="hq">Halloween Qualifier</h3><div class="ev" data-i="ev_hq">Caution Tape Robotics · Markham · Oct 2026</div>
+    <div class="spics"><img src="assets/journey/31.webp" alt="839A at the Halloween Qualifier" loading="lazy"><img src="assets/journey/30.webp" alt="839A awards from the Halloween Qualifier" loading="lazy"><img src="assets/journey/28.webp" alt="Finals rankings at the Halloween Qualifier" loading="lazy"></div>
+    <div class="aw" data-i="aw_twc">Teamwork Champion</div><div class="aw" data-i="aw_sk">Robot Skills Champion</div><div class="aw" data-i="aw_des">Design Award</div></div>
+  </div>
+ </div>
+</section>
+
+<section id="journey" data-view="season" style="padding-top:0">
+ <div class="wrap">
+  <div class="sec-h"><div><div class="kicker" data-i="jr_k">Our season so far</div><h2 data-i="jr_h">Our Journey</h2></div></div>
+  <div class="jr" id="jr" tabindex="0" aria-label="Journey player">
+   <div class="bgblur" id="jbg"></div>
+   <div class="media" id="jm"></div>
+   <div class="shade"></div>
+   <div class="bars" id="jbars"></div>
+   <div class="cap" id="jcap"><div class="d"></div><div class="s"></div></div>
+   <div class="spd" id="jspd">2×</div>
+   <div class="zone zl" id="zl"></div><div class="zone zr" id="zr"></div>
+   <button class="pp" id="jpp" aria-label="Play/Pause">❚❚</button>
+   <button class="fs" id="jfs" aria-label="Enter fullscreen" title="Fullscreen (F)"><svg class="en" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg><svg class="ex" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg></button>
+  </div>
+  <p class="hint" data-i="jr_hint">Swipe or drag to change · Tap sides to skip · Hold right / Space for 2× · Hold left or ← to rewind</p>
+ </div>
+</section>
+
+<section id="events" data-view="season" style="padding-top:0">
+ <div class="wrap">
+  <div class="sec-h"><div><div class="kicker" data-i="ev_k">Where to find us</div><h2 data-i="ev_h2">Our Events</h2></div></div>
+  <h3 class="evh" data-i="ev_up">Upcoming</h3>
+  <div class="ev-row"><div class="ev-date" data-date="2026-11-28"></div><div><h3 data-i="lg2">League Round 2</h3><p data-i="lg_p">Caution Tape Level Up League · Markham, ON</p></div></div>
+  <div class="ev-row"><div class="ev-date" data-date="2026-12-04"></div><div><h3>Bixby's FrostByte Frenzy</h3><p data-i="bix_p">Signature Event · Tulsa, OK</p></div></div>
+  <div class="ev-row"><div class="ev-date" data-date="2027-01-02"></div><div><h3 data-i="lg3">League Round 3</h3><p data-i="lg_p">Caution Tape Level Up League · Markham, ON</p></div></div>
+  <div class="ev-row"><div class="ev-date" data-date="2027-01-18"></div><div><h3>Kalahari Classic</h3><p>Middle School Signature Event · Sandusky, Ohio · Jan 18–19</p></div></div>
+  <div class="ev-row"><div class="ev-date">MAR<small>2027</small></div><div><h3>Ontario Provincial Championship</h3><p>VIQRC Middle School Provincials · Ontario · Date to be announced</p></div></div>
+  <div class="ev-row ev-hi"><div class="ev-date">APR<small>2027</small></div><div><h3 data-i="wc_h">VEX Robotics World Championship</h3><p data-i="wc_p">Las Vegas Convention Center · Las Vegas, Nevada · Qualified ✓</p></div></div>
+  <h3 class="evh" data-i="ev_done">Completed</h3>
+  <div class="ev-row"><div class="ev-date">NOV 16<small>– 18 · 2026</small></div><div><h3>Show Me Gateway</h3><p data-i="smg_r">Signature Event · St. Charles, MO · Ranked 3rd · Excellence Award, Teamwork 3rd Place</p></div></div>
+  <div class="ev-row"><div class="ev-date">OCT 31<small>2026</small></div><div><h3 data-i="hq">Halloween Qualifier</h3><p data-i="hq_r">Caution Tape Robotics · Markham, ON · Ranked 1st · Teamwork Champion, Robot Skills Champion, Design Award</p></div></div>
+  <div class="ev-row"><div class="ev-date">FALL<small>2026</small></div><div><h3 data-i="lg1">League Round 1</h3><p data-i="lg1_r">Caution Tape Level Up League · Markham, ON · Ranked 1st</p></div></div>
+ </div>
+</section>
+
+
+<section id="data" data-view="season" style="padding-top:0">
+ <div class="wrap">
+  <div class="sec-h"><div><div class="kicker">Updated automatically</div><h2>Our Ranking Trend</h2></div></div>
+  <div class="twsec"><h3>Skills ranking over time</h3><div id="trend"></div><p class="note" id="trendNote"></p></div>
+ </div>
+</section>
+<section id="team" data-view="team">
+ <div class="wrap">
+  <div class="sec-h"><div><div class="kicker">Team 839A · 2026–27</div><h2 data-i="team_h">The Team</h2></div></div>
+  <p class="lead">We are four passionate students from Caution Tape Robotics in Markham, Ontario, taking on the 2026–27 Level Up season with one goal: to win the VEX World Championship.</p>
+  <div class="grid team4" id="team4"></div>
+  <div class="sec-h" style="margin-top:44px"><div><div class="kicker">Off the field</div><h2>How we bond</h2></div></div>
+  <p class="lead">A good alliance starts with trusting each other. The night we brought the banners home, we went bouldering together: spotting each other, cheering every send and working out routes together, the same way we work through a robot problem.</p>
+  <div class="pics bond"><img src="assets/journey/127.webp" alt="Team 839A at a bouldering gym" loading="lazy"><img src="assets/journey/128.webp" alt="Team 839A climbing together" loading="lazy"><img src="assets/journey/116.jpg" alt="839A member on a climbing wall" loading="lazy"></div>
+  <a class="btn" href="#media" onclick="mf='bonding';renderMedia()">See all team bonding →</a>
+ </div>
+</section>
+<section id="community" data-view="community">
+ <div class="wrap">
+  <div class="sec-h"><div><div class="kicker">Outreach · Summer 2026</div><h2>Volunteering</h2></div></div>
+  <p class="lead">We promote STEM through outreach and share the VEX IQ game with our community. At festivals, camps and competitions, we run robot demos, help younger students learn and introduce families to robotics.</p>
+  <div class="stats"><div><b>200+</b><span>Volunteer hours (all members combined)</span></div><div><b>4</b><span>Events</span></div><div><b>15</b><span>Days volunteered</span></div><div><b>15+</b><span>Families joined a robotics program</span></div></div>
+  <div class="gal"><img src="assets/community/m1.webp" alt="Team 839A outreach at the Markham Village Music Festival, photo 1" loading="lazy"><img src="assets/community/m2.webp" alt="Team 839A outreach at the Markham Village Music Festival, photo 2" loading="lazy"><img src="assets/community/m3.webp" alt="Team 839A outreach at the Markham Village Music Festival, photo 3" loading="lazy"><img src="assets/community/m4.webp" alt="Team 839A outreach at the Markham Village Music Festival, photo 4" loading="lazy"><img src="assets/community/m5.webp" alt="Team 839A outreach at the Markham Village Music Festival, photo 5" loading="lazy"><img src="assets/community/m6.webp" alt="Team 839A outreach at the Markham Village Music Festival, photo 6" loading="lazy"><img src="assets/community/m7.webp" alt="Team 839A outreach at the Markham Village Music Festival, photo 7" loading="lazy"><img src="assets/community/m8.webp" alt="Team 839A outreach at the Markham Village Music Festival, photo 8" loading="lazy"></div>
+  <div class="tscroll"><table class="log"><tr><th>Event</th><th>Date</th><th>Hours (combined)</th><th>Who</th><th>Outcome</th></tr>
+   <tr><td>6th Annual BattleBots Competition, STEM Labs Markham</td><td>May 29–31, 2026</td><td>66</td><td>Marcus, Taylor, Curtis</td><td>Inspection, refereeing and scoring for 4 divisions over 3 days</td></tr>
+   <tr><td>Markham Village Music Festival</td><td>Jun 19, 2026</td><td>16</td><td>All members</td><td>15+ families signed up for robotics programs</td></tr>
+   <tr><td>Newmarket Multicultural &amp; Asian Harmony Festival</td><td>Jun 28, 2026</td><td>4.5</td><td>Marcus</td><td>Robot demos, flyers, several families interested</td></tr>
+   <tr><td>J. Addison School STEM Camp</td><td>Jul 20–24, 2026</td><td>14</td><td>Taylor, Stella</td><td>18 kids learned robotics and STEM; every one finished their build</td></tr>
+  </table></div>
+  <div class="twsec" id="mtBox" hidden style="margin-top:32px"><h3>Mentoring younger teams</h3><div class="twgrid" id="mtGrid"></div></div>
+  <p class="note">Combined hours add up every member's time at each event (event length × members who volunteered).</p>
+ </div>
+</section>
+<section id="sponsors" data-view="sponsors">
+ <div class="wrap">
+  <div class="sec-h"><div><div class="kicker">Support Team 839A</div><h2 data-i="spon_h">Sponsor Us</h2></div></div>
+  <div class="sp-hero"><div><h3>Help us get to Worlds.</h3><p>Four students, one robot, a full season of Signature Events. Parts, field elements and travel are what let a team compete at the top. Your support goes straight into the robot and the road.</p><div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap"><a class="btn" style="background:#fff;color:var(--red)" href="#contact" data-topic="Sponsorship">Become a sponsor</a></div></div>
+   <div class="sp-stats"><div><b>5</b><span>Worlds appearances between our members*</span></div><div><b>200+</b><span>Community volunteer hours</span></div><div><b>5</b><span>Awards this season</span></div><div><b>4</b><span>Students</span></div></div></div>
+  <h3 style="font-size:22px;margin:30px 0 14px">What you get</h3>
+  <div class="ben">
+   <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg><h4>Logo at every event</h4><p>On our robot and pit display, including Signature Events and Worlds.</p></div>
+   <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><h4>Site &amp; notebook credit</h4><p>Your logo and link here and in the engineering notebook judges read.</p></div>
+   <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-8z"/></svg><h4>Event coverage</h4><p>Shout-outs in our event and social media posts all season.</p></div>
+   <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg><h4>Season-end report</h4><p>Our results and community outreach, summed up for you.</p></div>
+  </div>
+  <h3 style="font-size:22px;margin:30px 0 14px">Where it goes</h3>
+  <div class="funds"><div><b>Parts</b><span>Motors, structure, sensors</span></div><div><b>Field</b><span>Practice field elements</span></div><div><b>Events</b><span>Registration fees</span></div><div><b>Travel</b><span>Signature Events &amp; Worlds</span></div></div>
+  <h3 style="font-size:22px;margin:30px 0 14px">Our sponsors</h3>
+  <div class="logos"><div>Your logo here</div><div>Your logo here</div><div>Your logo here</div></div>
+  <div class="mail"><div style="flex:1;min-width:220px"><div class="kicker">Get in touch</div><code id="em">ctr.839A@gmail.com</code></div><button class="btn" id="cp" data-i="ct_copy">Copy email</button><a class="btn" href="#contact" data-topic="Sponsorship">Contact us</a></div>
+  <p class="note">Tier details on request. No minimum commitment. *All Worlds appearances were with members' prior teams.</p>
+ </div>
+</section>
+<section id="donate" data-view="donate">
+ <div class="wrap">
+  <div class="sec-h"><div><div class="kicker">Support Team 839A</div><h2>Donate</h2></div></div>
+  <div class="dn-note"><b>A donation is a gift.</b> It goes straight into the robot and our travel, but it doesn't come with sponsor benefits like logo placement or shout-outs. Want those? <a href="#sponsors">Become a sponsor</a>.</div>
+  <div class="sp-hero dn"><div><h3>Every dollar goes into the robot and the road.</h3><p>We're four students from Markham heading into a season of Signature Events and the VEX World Championship. Parts, practice field elements, registration and travel add up fast. A donation of any size helps us compete at the top level.</p><div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap"><a class="btn" id="donateBtn" style="background:#fff;color:var(--red)" href="#" target="_blank" rel="noopener">Donate on GoFundMe</a></div></div></div>
+<details class="rcpt"><summary data-i="rc_h">Donated? How to get your receipt</summary>
+   <ol>
+    <li>GoFundMe emails you a confirmation receipt right after you donate.</li>
+    <li>To see it again: log in to GoFundMe, open <b>Donations you've made</b> from the top-right menu, pick the donation and choose <b>Print receipt</b>.</li>
+    <li>No GoFundMe account? Use GoFundMe's <b>Contact us</b> button to have the receipt sent again.</li>
+   </ol>
+   <p class="note" data-i="rc_n">This is a personal fundraiser, so GoFundMe receipts are not official tax receipts.</p>
+  </details>
+ </div>
+</section>
+<section id="shop" data-view="shop">
+ <div class="wrap">
+  <div class="sec-h"><div><div class="kicker" data-i="shop_k">Team 839A merch</div><h2 data-i="shop_h">Shop</h2></div></div>
+  <p class="lead" data-i="shop_p">Team 839A merch is coming soon! Every purchase will help fund parts, events and travel this season.</p>
+  <div class="logos"><div data-i="soon">Coming soon</div><div data-i="soon">Coming soon</div><div data-i="soon">Coming soon</div></div>
+ </div>
+</section>
+<section id="media" data-view="media">
+ <div class="wrap">
+  <div class="sec-h"><div><div class="kicker" data-i="med_k">Every photo &amp; video</div><h2 data-i="med_h">Media</h2></div></div>
+  <div class="chips" id="mchips"></div>
+  <div id="mgroups"></div>
+ </div>
+</section>
+<section id="timer" data-view="timer">
+ <div class="wrap">
+  <div class="sec-h"><div><div class="kicker" data-i="tim_k">VEX IQ match timer</div><h2 data-i="tim_h">Timer</h2></div><a class="btn" href="https://vexiq.app/timer" target="_blank" rel="noopener" data-i="tim_open">Open full screen ↗</a></div>
+  <div style="position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#000;height:min(70vh,640px)">
+   <iframe src="https://vexiq.app/timer" title="VEX IQ match timer" style="position:absolute;inset:0;width:100%;height:100%;border:0" allow="fullscreen; autoplay" loading="lazy"></iframe>
+  </div>
+  <p class="note" data-i="tim_note">If the timer doesn't load here, use "Open full screen".</p>
+ </div>
+</section>
+<section id="contact" data-view="contact">
+ <div class="wrap">
+  <div class="sec-h"><div><div class="kicker" data-i="ct_k">Sponsors, partners &amp; questions</div><h2 data-i="ct_h">Contact Us</h2></div></div>
+  <p class="lead" data-i="ct_p">Interested in sponsoring 839A or have a question? Send us a message and we'll get back to you.</p>
+  <form class="cform" id="cform">
+   <div class="row"><label><span data-i="ct_name">Your name</span><input name="name" required autocomplete="name"></label><label><span data-i="ct_org">Organization (optional)</span><input name="organization" autocomplete="organization"></label></div>
+   <div class="row"><label><span data-i="ct_email">Email</span><input name="email" type="email" required autocomplete="email"></label><label><span data-i="ct_topic">Topic</span><select name="topic" id="ctopic"><option value="Sponsorship" data-i="ct_t1">Sponsorship</option><option value="Partnership / event" data-i="ct_t2">Partnership / event</option><option value="General question" data-i="ct_t3">General question</option></select></label></div>
+   <label><span data-i="ct_msg">Message</span><textarea name="message" required></textarea></label>
+   <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+   <div><button class="btn" type="submit" id="csend" data-i="ct_send">Send message</button></div>
+   <div id="cstatus" hidden></div>
+  </form>
+  <div class="mail"><div style="flex:1;min-width:220px"><div class="kicker" data-i="ct_or">Or email us directly</div><code id="em2">ctr.839A@gmail.com</code></div><button class="btn" type="button" id="cp2" data-i="ct_copy">Copy email</button></div>
+ </div>
+</section>
+<nav class="tabs" id="tabs" aria-label="Sections">
+ <button type="button" class="tnav" id="tprev" aria-label="Previous page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+ <a href="#home" data-v="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span data-i="tab_home">Home</span></a>
+ <a href="#team" data-v="team"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0M16 4a3 3 0 0 1 0 6M21 20a6 6 0 0 0-4-5.6"/></svg><span data-i="nav_about">Team</span></a>
+ <a href="#robots" data-v="robots"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="10" rx="2"/><path d="M12 4v4M9 13h.01M15 13h.01M3 13h2M19 13h2"/></svg><span data-i="nav_robots">Robots</span></a>
+ <a href="#design" data-v="design"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg><span>Design</span></a>
+ <a href="#season" data-v="season"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0zM7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></svg><span data-i="nav_season">Season</span></a>
+ <a href="#media" data-v="media"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg><span data-i="tab_media">Media</span></a>
+ <a href="#community" data-v="community"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 14h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 16"/><path d="m7 20 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.8-2.8L14.4 13"/><path d="m2 15 6 6"/></svg><span>Volunteer</span></a>
+ <a href="#sponsors" data-v="sponsors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></svg><span data-i="tab_spon">Sponsor</span></a>
+ <a href="#donate" data-v="donate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg><span>Donate</span></a>
+ <a href="#timer" data-v="timer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6M12 2v3"/></svg><span data-i="tab_timer">Timer</span></a>
+ <a href="#shop" data-v="shop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg><span data-i="nav_shop">Shop</span></a>
+ <button type="button" class="tnav" id="tnext" aria-label="Next page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+</nav>
+<footer><div class="wrap"><img src="assets/logo/sticker.webp" alt="839A team sticker" loading="lazy" style="width:min(260px,70vw);height:auto;flex-basis:100%;max-width:260px"><div>© 2026 839A Caution Tape Alpha · Caution Tape Robotics</div><div data-i="foot">Built by the team.</div></div></footer>
+
+<script src="assets/i18n.js"></script>
+<script src="assets/data/team.js"></script>
+<script>
+// ===== CONFIG =====
+const REVEAL_YOUTUBE_ID='';
+const GOFUNDME_URL='https://gofund.me/49c9b1da7'; // paste YouTube video id here when the reveal is out
+const PW=['Handling','Speed','Score Reliability','Intake','Outtake Range','Weight']; // power stats out of 5, same order as pw below
+const TWD=window.TW||{};const tw=v=>typeof v==='string'?v.trim():v;const has=o=>o&&Object.values(o).some(v=>Array.isArray(v)?v.length:tw(v));
+const nb=n=>tw(n)?`<span class="nbref">Notebook: ${n}</span>`:'';
+function learnedHTML(k){const v=(TWD.versions||{})[k];if(!has(v))return'';const row=(l,x)=>tw(x)?`<dt>${l}</dt><dd>${x}</dd>`:'';
+ return `<div class="tw-box"><h4>What we learned</h4><dl>${row('Goal',v.goal)}${row('What changed',v.changed)}${row('Test data',v.data)}${row('What failed',v.failed)}${row('Next step',v.next)}</dl>${nb(v.notebook)}</div>`}
+function roleHTML(n){const r=(TWD.roles||{})[n];if(!r||(!r.owns.length&&!tw(r.decision)))return'';
+ return `<div class="pt"><h4>Role card</h4>${r.owns.length?`<div class="owns">${r.owns.map(o=>`<span>${o}</span>`).join('')}</div>`:''}${tw(r.decision)?`<p style="margin:10px 0 0"><b>A decision I'm proud of:</b> ${r.decision}</p>`:''}</div>`}
+const learnedOn=(n,t)=>tw(((TWD.journey||{})[n]||{})[t]);
+const ROBOTS=[
+ {k:'A',name:'Prototype A',img:'assets/robots/a.webp',built:'June 2026',focus:'Lift · Intake',pw:[3,2,5,5,1,5],about:'Our first robot of the season, built to score on the highest goal.'},
+ {k:'B',name:'Prototype B',img:'assets/robots/b.webp',built:'Summer 2026',focus:'Outtake · Intake',pw:[3,3,3.5,3.5,3,4],about:'A lower, faster design aimed at the L3 goal.'},
+ {k:'C',name:'Prototype C',img:'assets/robots/c.webp',built:'Summer 2026',focus:'Outtake',pw:[3,3,1.5,1.5,5,3],about:'Version 2 of Prototype B, with a tensioner added.'},
+ {k:'D',name:'Prototype D',img:'assets/robots/d.webp',built:'August 2026',focus:'Outtake · Intake',pw:[2.5,2.5,4,1.5,3,2],about:'Our first hybrid that can score on both L3 and L4, using a conveyor.'},
+ {k:'E',name:'Prototype E',img:'assets/robots/e.webp',secret:true,built:'Fall 2026',focus:'Classified',pw:[0,0,0,0,0,0],about:'Our current robot. It is not out to the public yet, so it stays under wraps until the reveal.'}];
+const J=[[0,"p",1787420125,0],[1,"v",1787420175,8],[2,"v",1787420702,8],[111,"p",1787420900,0],[112,"p",1787420960,0],[113,"p",1787421020,0],[3,"p",1787433793,0],[4,"p",1787433801,0],[13,"p",1790215240,0],[18,"v",1791573926,5],[22,"p",1792201973,0],[23,"p",1792276638,0],[24,"p",1792289166,0],[28,"p",1793571295,0],[29,"p",1793571373,0],[30,"p",1793572942,0],[31,"p",1793573367,0],[32,"p",1793573368,0],[33,"p",1793573372,0],[34,"p",1793573373,0],[35,"p",1793573374,0],[36,"p",1793573376,0],[45,"p",1794934800,0],[46,"p",1794935400,0],[48,"p",1794936600,0],[49,"p",1794937200,0],[52,"p",1794939000,0],[53,"p",1794939600,0],[54,"p",1794940200,0],[55,"p",1794940800,0],[56,"p",1794941400,0],[57,"p",1794942000,0],[59,"p",1794943200,0],[61,"p",1794944400,0],[62,"p",1794945000,0],[63,"p",1794945600,0],[64,"p",1794946200,0],[65,"p",1794946800,0],[66,"p",1794947400,0],[40,"v",1795042081,8.0],[41,"p",1795278720,0],[43,"v",1795288045,8.0],[108,"p",1795410060,0],[110,"p",1795410200,0],[114,"p",1795701600,0],[115,"p",1795701660,0],[116,"v",1795312993,17.6],[117,"v",1795313131,20],[118,"v",1795313191,9.6],[119,"v",1795313249,20],[120,"v",1795313304,20],[121,"v",1795313360,10.9],[122,"v",1795313451,13.8],[123,"v",1795313482,20],[124,"v",1795313558,20],[125,"v",1795313694,20],[126,"v",1795313763,20],[127,"p",1795313793,0],[128,"p",1795313821,0],[129,"p",1795313829,0],[130,"v",1795313907,3.2],[131,"v",1795313940,7.4]];
+// ===== i18n =====
+const T={
+en:{},
+fr:{tab_home:"Accueil",rc_h:"Vous avez donné? Obtenir votre reçu",rc_n:"Il s\u0027agit d\u0027une collecte personnelle : les reçus GoFundMe ne sont pas des reçus fiscaux officiels.",rk_ca2:"Au Canada",don:"Ou faire un don",ev_h2:"Nos événements",ev_up:"À venir",ev_done:"Terminés",wc_h:"Championnat du monde VEX Robotics",wc_p:"Las Vegas Convention Center · Las Vegas, Nevada · Qualifiés ✓",smg_r:"Événement Signature · St. Charles, MO · 3e rang · Prix d\u0027excellence, 3e place, travail d\u0027équipe",hq_r:"Caution Tape Robotics · Markham, ON · 1er rang · Champions, travail d\u0027équipe, champions, habiletés robotiques, Prix de conception",lg1:"Ligue – ronde 1",lg1_r:"Ligue Level Up Caution Tape · Markham, ON · 1er rang",ct_k:"Commanditaires, partenaires et questions",ct_h:"Nous joindre",ct_p:"Vous souhaitez commanditer 839A ou avez une question? Écrivez-nous et nous vous répondrons.",ct_name:"Votre nom",ct_org:"Organisation (facultatif)",ct_email:"Courriel",ct_topic:"Sujet",ct_t1:"Commandite",ct_t2:"Partenariat / événement",ct_t3:"Question générale",ct_msg:"Message",ct_send:"Envoyer",ct_or:"Ou écrivez-nous directement",ct_copy:"Copier le courriel",rk_caq:"1re équipe au Canada qualifiée pour les Mondiaux 2027",rk_cas:"Rang Skills au Canada",rk_sk:"Habiletés robotiques",tab_spon:"Commanditer",wq_b:"1re équipe au Canada qualifiée pour les Mondiaux",wq_s:"Qualifiée pour le Championnat du monde VEX Robotics 2027",rk_k:"Habiletés robotiques · 2026–27 Level Up · Intermédiaire",rk_h:"Notre classement",rk_live:"Classement en direct ↗",rk_ca:"Au Canada",rk_on:"En Ontario",rk_w:"Au monde",rk_s:"Score Skills",rk_sd:"Pilote 174 · Programmation 110",rk_upd:"Mis à jour automatiquement depuis le classement mondial officiel VEX.",tab_timer:"Chrono",tim_k:"Chronomètre de match VEX IQ",tim_h:"Chrono",tim_open:"Plein écran ↗",tim_note:"Si le chrono ne se charge pas ici, utilisez « Plein écran ».",tab_media:"Médias",med_k:"Toutes nos photos et vidéos",med_h:"Médias",seg_hof:"Temple",seg_cad:"CAO",cad_k:"Conception assistée par ordinateur",cad_p:"Chaque version de notre robot est modélisée en CAO avant et pendant sa construction.",team_h:"L'équipe",com_h:"Hors du terrain",spon_h:"Commanditez-nous",nav_robots:"Robots",nav_journey:"Parcours",nav_season:"Saison",nav_events:"Événements",nav_about:"Équipe",nav_community:"Communauté",nav_sponsors:"Commanditaires",hero_sub:"Équipe VEX IQ 839A · Markham, Ontario",replay:"↻ Rejouer",reveal_h:"Dévoilement du robot",soon_k:"Bientôt",soon_h:"Dévoilement à venir",hof_k:"Tous nos robots",hof_h:"Temple de la renommée",jr_k:"Notre saison jusqu'ici",jr_h:"Notre parcours",jr_hint:"Glissez pour changer · Touchez les côtés pour passer · Maintenez à droite / Espace pour 2× · Maintenez à gauche ou ← pour reculer",season_h:"Cette saison",ev_smg:"Événement Signature · St. Charles, MO · nov. 2026",aw_exc:"Prix d'excellence (intermédiaire)",aw_tw3:"3e place, travail d'équipe",hq:"Qualification d'Halloween",ev_hq:"Caution Tape Robotics · Markham · oct. 2026",aw_twc:"Champions, travail d'équipe",aw_sk:"Champions, habiletés robotiques",aw_des:"Prix de conception",ev_k:"Où nous trouver",ev_h:"Événements à venir",lg2:"Ligue – ronde 2",lg3:"Ligue – ronde 3",lg_p:"Ligue Level Up Caution Tape · Markham, ON",bix_p:"Événement Signature · Tulsa, OK",foot:"Conçu par l'équipe.",built:"Robot construit",soon:"Bientôt",nav_shop:"Boutique",shop_k:"Articles de l'équipe 839A",shop_h:"Boutique",shop_p:"Les articles de l'équipe 839A arrivent bientôt ! Chaque achat aidera à financer les pièces, les compétitions et les voyages de la saison."},
+zh:{tab_home:"首页",rc_h:"已捐款？如何获取收据",rc_n:"这是个人筹款活动，GoFundMe 收据不是官方税务收据。",rk_ca2:"加拿大",don:"或捐款",ev_h2:"我们的赛事",ev_up:"即将参加",ev_done:"已完成",wc_h:"VEX 机器人世界锦标赛",wc_p:"内华达州拉斯维加斯 · 已晋级 ✓",smg_r:"标志性赛事 · 密苏里州圣查尔斯 · 排名第3 · 卓越奖、团队合作赛第三名",hq_r:"Caution Tape Robotics · 安大略省万锦 · 排名第1 · 团队合作冠军、技能赛冠军、设计奖",lg1:"联赛第一轮",lg1_r:"Caution Tape Level Up 联赛 · 安大略省万锦 · 排名第1",ct_k:"赞助、合作与咨询",ct_h:"联系我们",ct_p:"有意赞助 839A 或有任何问题？给我们留言，我们会尽快回复。",ct_name:"您的姓名",ct_org:"机构（选填）",ct_email:"邮箱",ct_topic:"主题",ct_t1:"赞助",ct_t2:"合作 / 活动",ct_t3:"一般问题",ct_msg:"留言",ct_send:"发送",ct_or:"或直接发邮件给我们",ct_copy:"复制邮箱",rk_caq:"加拿大首支晋级 2027 世锦赛的队伍",rk_cas:"加拿大技能赛排名",rk_sk:"机器人技能赛",tab_spon:"赞助",wq_b:"加拿大首支晋级世锦赛的队伍",wq_s:"已晋级 2027 年 VEX 机器人世界锦标赛",rk_k:"机器人技能赛 · 2026–27 Level Up · 初中组",rk_h:"我们的排名",rk_live:"实时排名 ↗",rk_ca:"加拿大",rk_on:"安大略省",rk_w:"全球",rk_s:"技能总分",rk_sd:"手动 174 · 编程 110",rk_upd:"根据 VEX 官方全球技能排名自动更新。",tab_timer:"计时器",tim_k:"VEX IQ 比赛计时器",tim_h:"计时器",tim_open:"全屏打开 ↗",tim_note:"如果计时器无法在此加载，请点击“全屏打开”。",tab_media:"媒体",med_k:"所有照片和视频",med_h:"媒体",seg_hof:"名人堂",seg_cad:"CAD",cad_k:"计算机辅助设计",cad_p:"我们机器人的每个版本在搭建之前和搭建过程中都用 CAD 建模。",team_h:"团队",com_h:"赛场之外",spon_h:"赞助我们",nav_robots:"机器人",nav_journey:"旅程",nav_season:"赛季",nav_events:"赛事",nav_about:"团队",nav_community:"社区",nav_sponsors:"赞助商",hero_sub:"VEX IQ 839A 队 · 安大略省万锦市",replay:"↻ 重播",reveal_h:"机器人发布",soon_k:"即将推出",soon_h:"发布视频即将上线",hof_k:"我们造过的每一台机器人",hof_h:"机器人名人堂",jr_k:"本赛季至今",jr_h:"我们的旅程",jr_hint:"滑动或拖动切换 · 点击两侧切换 · 按住右侧或空格 2 倍速 · 按住左侧或 ← 倒退",season_h:"本赛季",ev_smg:"标志性赛事 · 密苏里州圣查尔斯 · 2026年11月",aw_exc:"卓越奖（初中组）",aw_tw3:"团队合作赛第三名",hq:"万圣节资格赛",ev_hq:"Caution Tape Robotics · 万锦 · 2026年10月",aw_twc:"团队合作赛冠军",aw_sk:"机器人技能赛冠军",aw_des:"设计奖",ev_k:"在这里找到我们",ev_h:"即将参加的赛事",lg2:"联赛第二轮",lg3:"联赛第三轮",lg_p:"Caution Tape Level Up 联赛 · 安大略省万锦",bix_p:"标志性赛事 · 俄克拉荷马州塔尔萨",foot:"由团队打造。",built:"机器人诞生",soon:"即将揭晓",nav_shop:"商店",shop_k:"839A 队周边",shop_h:"商店",shop_p:"839A 队周边即将推出！每一笔购买都将用于本赛季的零件、赛事和差旅。"},
+zht:{tab_home:"首頁",rc_h:"已捐款？如何獲取收據",rc_n:"這是個人籌款活動，GoFundMe 收據不是官方稅務收據。",rk_ca2:"加拿大",don:"或捐款",ev_h2:"我們的賽事",ev_up:"即將參加",ev_done:"已完成",wc_h:"VEX 機器人世界錦標賽",wc_p:"內華達州拉斯維加斯 · 已晉級 ✓",smg_r:"標誌性賽事 · 密蘇里州聖查爾斯 · 排名第3 · 卓越獎、團隊合作賽第三名",hq_r:"Caution Tape Robotics · 安大略省萬錦 · 排名第1 · 團隊合作冠軍、技能賽冠軍、設計獎",lg1:"聯賽第一輪",lg1_r:"Caution Tape Level Up 聯賽 · 安大略省萬錦 · 排名第1",ct_k:"贊助、合作與諮詢",ct_h:"聯絡我們",ct_p:"有意贊助 839A 或有任何問題？給我們留言，我們會盡快回覆。",ct_name:"您的姓名",ct_org:"機構（選填）",ct_email:"電郵",ct_topic:"主題",ct_t1:"贊助",ct_t2:"合作 / 活動",ct_t3:"一般問題",ct_msg:"留言",ct_send:"發送",ct_or:"或直接發電郵給我們",ct_copy:"複製電郵",rk_caq:"加拿大首支晉級 2027 世錦賽的隊伍",rk_cas:"加拿大技能賽排名",rk_sk:"機器人技能賽",tab_spon:"贊助",wq_b:"加拿大首支晉級世錦賽的隊伍",wq_s:"已晉級 2027 年 VEX 機器人世界錦標賽",rk_k:"機器人技能賽 · 2026–27 Level Up · 初中組",rk_h:"我們的排名",rk_live:"即時排名 ↗",rk_ca:"加拿大",rk_on:"安大略省",rk_w:"全球",rk_s:"技能總分",rk_sd:"手動 174 · 編程 110",rk_upd:"根據 VEX 官方全球技能排名自動更新。",tab_timer:"計時器",tim_k:"VEX IQ 比賽計時器",tim_h:"計時器",tim_open:"全螢幕打開 ↗",tim_note:"如果計時器無法在此載入，請點擊「全螢幕打開」。",tab_media:"媒體",med_k:"所有照片和影片",med_h:"媒體",seg_hof:"名人堂",seg_cad:"CAD",cad_k:"電腦輔助設計",cad_p:"我們機器人的每個版本在搭建之前和搭建過程中都用 CAD 建模。",team_h:"團隊",com_h:"賽場之外",spon_h:"贊助我們",nav_robots:"機器人",nav_journey:"旅程",nav_season:"賽季",nav_events:"賽事",nav_about:"團隊",nav_community:"社區",nav_sponsors:"贊助商",hero_sub:"VEX IQ 839A 隊 · 安大略省萬錦市",replay:"↻ 重播",reveal_h:"機器人發布",soon_k:"即將推出",soon_h:"發布影片即將上線",hof_k:"我們造過的每一台機器人",hof_h:"機器人名人堂",jr_k:"本賽季至今",jr_h:"我們的旅程",jr_hint:"滑動或拖動切換 · 點擊兩側切換 · 按住右側或空白鍵 2 倍速 · 按住左側或 ← 倒退",season_h:"本賽季",ev_smg:"標誌性賽事 · 密蘇里州聖查爾斯 · 2026年11月",aw_exc:"卓越獎（初中組）",aw_tw3:"團隊合作賽第三名",hq:"萬聖節資格賽",ev_hq:"Caution Tape Robotics · 萬錦 · 2026年10月",aw_twc:"團隊合作賽冠軍",aw_sk:"機器人技能賽冠軍",aw_des:"設計獎",ev_k:"在這裡找到我們",ev_h:"即將參加的賽事",lg2:"聯賽第二輪",lg3:"聯賽第三輪",lg_p:"Caution Tape Level Up 聯賽 · 安大略省萬錦",bix_p:"標誌性賽事 · 俄克拉荷馬州塔爾薩",foot:"由團隊打造。",built:"機器人誕生",soon:"即將揭曉",nav_shop:"商店",shop_k:"839A 隊周邊",shop_h:"商店",shop_p:"839A 隊周邊即將推出！每一筆購買都將用於本賽季的零件、賽事和差旅。"}};
+let LANG='en';
+const st={get:k=>{try{return localStorage.getItem(k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}}};
+document.querySelectorAll('[data-i]').forEach(e=>T.en[e.dataset.i]=e.textContent);
+T.en.built='Robot built';T.en.rk_cas='Skills rank in Canada';T.en.soon='Coming soon';
+const t=k=>(T[LANG]&&T[LANG][k])||T.en[k]||k;
+const tr=s=>{const r=TX[s];return r&&LANG!=='en'?r[{fr:0,zh:1,zht:2}[LANG]]:s}; // translate by English text (assets/i18n.js)
+const LR=[],onLang=f=>{LR.push(f);f()}; // re-run on language change
+const TXN=[],TXA=[];
+{const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);for(let n;n=w.nextNode();){const p=n.parentElement;if(p.closest('script,style,[data-i]'))continue;const k=n.nodeValue.trim().replace(/\s+/g,' ');if(TX[k])TXN.push([n,k,n.nodeValue.match(/^\s*/)[0],n.nodeValue.match(/\s*$/)[0]])}
+ document.querySelectorAll('[aria-label],[alt],[title]').forEach(e=>['aria-label','alt','title'].forEach(a=>{const k=e.getAttribute(a);if(k&&TX[k])TXA.push([e,a,k])}))}
+const loc=()=>({en:'en-CA',fr:'fr-CA',zh:'zh-CN',zht:'zh-HK'})[LANG];
+function applyLang(l){LANG=T[l]?l:'en';document.documentElement.lang={zh:'zh-Hans',zht:'zh-Hant'}[LANG]||LANG;document.querySelectorAll('[data-i]').forEach(e=>e.textContent=t(e.dataset.i));
+ TXN.forEach(([n,k,a,b])=>n.nodeValue=a+tr(k)+b);TXA.forEach(([e,a,k])=>e.setAttribute(a,tr(k)));
+ document.querySelectorAll('[data-date]').forEach(e=>{const d=new Date(e.dataset.date+'T12:00:00');e.innerHTML=d.toLocaleDateString(loc(),{month:'short'}).replace('.','')+' '+d.getDate()+'<small>'+d.toLocaleDateString(loc(),{weekday:'short'})+' · '+d.getFullYear()+'</small>'});
+ document.getElementById('lang').value=LANG;st.set('lang',LANG);if(window.jrReady)jrRender(!SEQ[idx].card);LR.forEach(f=>f())}
+document.getElementById('lang').onchange=e=>applyLang(e.target.value);
+const NL=navigator.language||'en';applyLang(st.get('lang')||(/^zh-(hant|tw|hk|mo)/i.test(NL)?'zht':NL.slice(0,2)));
+// ===== theme =====
+function setTheme(m){document.documentElement.dataset.theme=m;document.getElementById('theme').textContent=m==='dark'?'☀':'☾';st.set('theme',m)}
+setTheme(st.get('theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'));
+document.getElementById('theme').onclick=()=>setTheme(document.documentElement.dataset.theme==='dark'?'light':'dark');
+// header
+const hdr=document.getElementById('hdr');
+// ===== reveal =====
+if(REVEAL_YOUTUBE_ID){document.getElementById('revealBox').innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+REVEAL_YOUTUBE_ID+'" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen title="'+tr('Robot reveal')+'"></iframe>'}
+// ===== hall of fame =====
+const hof=document.getElementById('hof'),rn=r=>tr('Prototype')+' '+r.k;
+const pwHTML=r=>`<div class="pw"><div class="pw-h">${tr('Power stats')}<small>${tr('out of 5')}</small></div>${PW.map((l,i)=>{const v=r.pw[i];return `<div class="pw-r"><span>${tr(l)}</span><div class="pw-b" aria-hidden="true">${[0,1,2,3,4].map(n=>`<i><b style="width:${Math.max(0,Math.min(1,v-n))*100}%;animation-delay:${(.15+i*.07+n*.07).toFixed(2)}s"></b></i>`).join('')}</div><em>${v.toLocaleString(loc())}</em></div>`}).join('')}</div>`;
+onLang(()=>hof.innerHTML=ROBOTS.map((r,i)=>`<div class="pod" tabindex="0" role="button" data-r="${i}" aria-label="${rn(r)}, ${tr('details')}"><div class="rb"><img src="${r.img}" alt="${rn(r)}" class="${r.sil?'sil':''}" loading="lazy"></div><div class="plinth"><div class="nm">${tr('Prototype')}</div><div class="letter">${r.k}</div></div>${r.secret?'':pwHTML(r)}</div>`).join(''));
+
+// robot detail
+function podHTML(r){return `<div class="pod"><div class="rb spin">${r.model?`<model-viewer src="${r.model}" alt="${tr('3D model of')} ${rn(r)}" camera-controls auto-rotate shadow-intensity="1" style="width:100%;height:250px;background:transparent"></model-viewer>`:`<img src="${r.img}" alt="${rn(r)}" class="${r.sil?'sil':''}" draggable="false">`}</div><div class="plinth"><div class="nm">${tr('Prototype')}</div><div class="letter">${r.k}</div></div></div>`}
+function openRobot(i){i=(i+ROBOTS.length)%ROBOTS.length;const r=ROBOTS[i];let d=document.getElementById('rd');if(!d){d=document.createElement('div');d.id='rd';d.setAttribute('role','dialog');d.setAttribute('aria-modal','true');document.body.appendChild(d);d.addEventListener('click',e=>{if(e.target===d)closeRobot()})}
+ d.innerHTML=`<div class="rd-box"><button class="rd-x" aria-label="${tr('Close')}">✕</button>${podHTML(r)}<div class="rd-info"><h3>${tr('Prototype')} <b>${r.k}</b></h3><dl><dt>${tr('Version')}</dt><dd>${r.k} · ${i+1} ${tr('of')} ${ROBOTS.length}</dd><dt>${tr('Built')}</dt><dd>${tr(r.built)}</dd><dt>${tr('Focus')}</dt><dd>${tr(r.focus)}</dd></dl><p>${tr(r.about)}${r.sil?' '+tr('Photo coming soon.'):''}</p>${r.secret?'':pwHTML(r)}<div class="rd-nav"><button class="arrow" data-m="-1" aria-label="${tr('Previous robot')}">‹</button><button class="arrow" data-m="1" aria-label="${tr('Next robot')}">›</button></div></div></div>`;
+ d.querySelector('.rd-x').onclick=closeRobot;spin3d(d,r);d.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>openRobot(i+ +b.dataset.m));d.dataset.i=i;d.querySelector('.rd-x').focus()}
+
+function spin3d(d,r){const box=d.querySelector('.rd-box .spin');if(!box)return;box.insertAdjacentHTML('afterend','<div class="hint3d">'+tr('Drag to spin')+'</div>');
+ if(r.model){if(!window._mv){window._mv=1;const sc=document.createElement('script');sc.type='module';sc.src='https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js';document.head.appendChild(sc)}return}
+ const img=box.querySelector('img');let a=0,v=0.35,drag=false,x0=0,last=performance.now();
+ box.addEventListener('pointerdown',e=>{drag=true;x0=e.clientX;v=0;box.setPointerCapture(e.pointerId)});
+ box.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-x0;x0=e.clientX;a+=dx*.6;v=dx*.6});
+ box.addEventListener('pointerup',()=>drag=false);box.addEventListener('pointercancel',()=>drag=false);
+ (function f(now){if(!document.body.contains(img))return;const dt=Math.min(50,now-last);last=now;if(!drag){a+=v*dt/16;v+= (0.35-v)*0.02}
+  const ang=((a%360)+360)%360,flip=ang>90&&ang<270;img.style.transform=`rotateY(${a}deg)`+(flip?' scaleX(-1)':'');img.style.filter=`brightness(${0.7+0.3*Math.abs(Math.cos(a*Math.PI/180))}) drop-shadow(0 18px 22px rgba(0,0,0,.45))`;requestAnimationFrame(f)})(last)}
+function closeRobot(){const d=document.getElementById('rd');if(d)d.remove()}
+hof.addEventListener('click',e=>{const p=e.target.closest('.pod');if(p)openRobot(+p.dataset.r)});
+hof.addEventListener('keydown',e=>{const p=e.target.closest('.pod');if(p&&(e.key==='Enter'||e.key===' ')){e.preventDefault();openRobot(+p.dataset.r)}});
+addEventListener('keydown',e=>{const d=document.getElementById('rd');if(!d)return;if(e.key==='Escape')closeRobot();if(e.key==='ArrowRight')openRobot(+d.dataset.i+1);if(e.key==='ArrowLeft')openRobot(+d.dataset.i-1)},true);
+const step=()=>hof.querySelector('.pod').offsetWidth+28;
+document.getElementById('hp').onclick=()=>hof.scrollBy({left:-step(),behavior:'smooth'});
+document.getElementById('hn').onclick=()=>hof.scrollBy({left:step(),behavior:'smooth'});
+// ===== hero intro =====
+const hero=document.querySelector('.hero'),hv=document.getElementById('hv'),lineup=document.getElementById('lineup');
+lineup.innerHTML=ROBOTS.map(r=>`<div class="bot"><img src="${r.img}" class="${r.sil?'sil':''}" alt=""><small></small></div>`).join('');
+onLang(()=>[...lineup.children].forEach((b,i)=>{const n=rn(ROBOTS[i]);b.querySelector('img').alt=n;b.querySelector('small').textContent=n}));
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function intro(){hero.classList.add('intro');const sp=[...document.querySelectorAll('#big span')];sp.forEach((s,i)=>s.style.animationDelay=(1.3+i*.3+(i===3?.12:0))+'s');
+ const CORN=[['-70vw','-70vh','-25deg'],['70vw','-70vh','25deg'],['0','90vh','0deg'],['-70vw','70vh','25deg'],['70vw','70vh','-25deg']];
+ [...lineup.children].forEach((b,i)=>{const c=CORN[i%CORN.length];b.style.setProperty('--fx',c[0]);b.style.setProperty('--fy',c[1]);b.style.setProperty('--fr',c[2]);b.style.animationDelay=(2.9+i*.55)+'s';b.querySelector('img').style.animationDelay=(2.9+i*.55)+'s'});
+ clearTimeout(window._it);window._it=setTimeout(restart,9000)}
+function restart(){document.getElementById('replay').hidden=true;hero.classList.remove('intro');void hero.offsetWidth;hv.currentTime=0;if(!document.getElementById('top').hidden)hv.play().catch(()=>{})}
+hv.addEventListener('ended',intro);
+document.getElementById('replay').onclick=restart;
+hv.addEventListener('playing',()=>document.querySelector('.poster').hidden=true,{once:true});
+// ===== journey =====
+const CARDS={A:-1,B:-1,C:-1,D:3,E:22}; // robot cards inserted before these items (-1 = start)
+const SEQ=[];
+['A','B','C'].forEach(k=>SEQ.push({card:k}));
+const JSKIP=new Set([117,119,120,122,123,124,125,126,129]),JCAP={116:7,118:7,121:7};
+J.forEach(([n,ty,ts,d])=>{if(JSKIP.has(n))return;if(JCAP[n])d=JCAP[n];for(const k in CARDS)if(CARDS[k]===n)SEQ.push({card:k});SEQ.push({n,ty,ts,d:ty==='p'?5:d})});
+SEQ.forEach(s=>{if(s.card)s.d=3.5});
+const jm=document.getElementById('jm'),jbg=document.getElementById('jbg'),jbars=document.getElementById('jbars'),jcap=document.getElementById('jcap'),jspd=document.getElementById('jspd'),jr=document.getElementById('jr');
+jbars.innerHTML=SEQ.map(()=>'<i><b></b></i>').join('');
+const bars=[...jbars.children].map(i=>i.firstChild);
+let idx=0,pos=0,rate=1,dir=1,playing=false,vid=null,last=0,started=false;
+const pad=n=>String(n).padStart(2,'0');
+function jrRender(keep){const s=SEQ[idx];if(!keep){jm.innerHTML='';vid=null}
+ const d=jcap.querySelector('.d'),sub=jcap.querySelector('.s');
+ if(s.card){const r=ROBOTS.find(x=>x.k===s.card);if(!keep){jm.innerHTML=`<div class="card"><div class="k">${t('built')}</div><img src="${r.img}" class="${r.sil?'sil':''}" alt="${rn(r)}"><div class="t">${tr('Prototype')} <b>${r.k}</b></div></div>`;jbg.style.backgroundImage='none'}d.textContent='';sub.textContent=r.sil?t('soon'):''}
+ else{const src='assets/journey/'+pad(s.n);const dt=new Date(s.ts*1000);
+  d.textContent=dt.toLocaleDateString(loc(),{month:'long',day:'numeric',timeZone:'America/Toronto'});sub.textContent=dt.toLocaleDateString(loc(),{weekday:'long',year:'numeric',timeZone:'America/Toronto'});
+  if(!keep){if(s.ty==='p'){jm.innerHTML=`<img class="kb fade" style="--d:${s.d}s" src="${src}.webp" alt="${tr('Team 839A season photo')}, ${d.textContent}">`;jbg.style.backgroundImage=`url(${src}.webp)`}
+   else{jm.innerHTML=`<video class="fade" src="${src}.mp4" poster="${src}.jpg" muted playsinline preload="auto"></video>`;vid=jm.firstChild;jbg.style.backgroundImage=`url(${src}.jpg)`;vid.playbackRate=rate;if(playing&&dir>0)vid.play().catch(()=>{})}}}
+ bars.forEach((b,i)=>b.style.width=i<idx?'100%':i>idx?'0':'');
+ const nx=SEQ[idx+1];if(nx&&!nx.card){const im=new Image();im.src='assets/journey/'+pad(nx.n)+(nx.ty==='p'?'.webp':'.jpg')}}
+function go(i,p){idx=Math.max(0,Math.min(SEQ.length-1,i));pos=p||0;jrRender();if(vid&&pos)vid.currentTime=pos}
+function tick(now){const dt=Math.min(.1,(now-last)/1000);last=now;
+ if(playing){const s=SEQ[idx];
+  if(vid&&dir>0){vid.playbackRate=rate;if(vid.paused)vid.play().catch(()=>{});pos=vid.currentTime;if(vid.ended||pos>=s.d-.05){next()}}
+  else{if(vid&&!vid.paused)vid.pause();pos+=dt*rate*dir;if(vid)vid.currentTime=Math.max(0,pos);
+   if(pos>=s.d)next();else if(pos<0){if(idx>0){go(idx-1);pos=SEQ[idx].d;if(vid)vid.currentTime=pos}else pos=0}}
+  const img=jm.querySelector('img.kb');if(img){img.style.animationPlayState='paused';img.style.animationDelay=(-pos)+'s'}
+  bars[idx].style.width=Math.min(100,pos/s.d*100)+'%'}
+ requestAnimationFrame(tick)}
+function next(){if(idx<SEQ.length-1)go(idx+1);else go(0)}
+function setPlay(p){playing=p;document.getElementById('jpp').textContent=p?'❚❚':'▶';if(!p&&vid)vid.pause()}
+document.getElementById('jpp').onclick=e=>{e.stopPropagation();setPlay(!playing)};
+// fullscreen: native API where supported, CSS fallback (e.g. iPhone Safari)
+const jfs=document.getElementById('jfs');
+const fsEl=()=>document.fullscreenElement||document.webkitFullscreenElement;
+function fsSync(){const on=fsEl()===jr||jr.classList.contains('pfs');jr.classList.toggle('isfs',on);jfs.setAttribute('aria-label',tr(on?'Exit fullscreen':'Enter fullscreen'));jfs.title=tr(on?'Exit fullscreen (F / Esc)':'Fullscreen (F)');document.body.style.overflow=jr.classList.contains('pfs')?'hidden':''}
+function pfs(on){jr.classList.toggle('pfs',on);fsSync()}
+function toggleFs(){
+ if(fsEl())(document.exitFullscreen||document.webkitExitFullscreen).call(document);
+ else if(jr.classList.contains('pfs'))pfs(false);
+ else{const rq=jr.requestFullscreen||jr.webkitRequestFullscreen;
+  if(rq){try{const r=rq.call(jr);if(r&&r.catch)r.catch(()=>pfs(true))}catch(_){pfs(true)}}else pfs(true)}}
+jfs.onclick=e=>{e.stopPropagation();toggleFs()};
+onLang(fsSync);document.addEventListener('fullscreenchange',fsSync);document.addEventListener('webkitfullscreenchange',fsSync);
+addEventListener('keydown',e=>{if(document.getElementById('journey').hidden)return;
+ if(e.code==='Escape'&&jr.classList.contains('pfs'))pfs(false);
+ else if(e.code==='KeyF'&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)){const r=jr.getBoundingClientRect();if(r.bottom>0&&r.top<innerHeight)toggleFs()}});
+function holdZone(el,side){let tm=null,held=false,x0=0,drag=false;
+ el.addEventListener('pointerdown',e=>{e.preventDefault();try{el.setPointerCapture(e.pointerId)}catch(_){};x0=e.clientX;drag=false;held=false;tm=setTimeout(()=>{if(drag)return;held=true;if(side>0){rate=2}else{dir=-1;rate=2}jspd.textContent=side>0?'2×':'◀◀';jspd.classList.add('on');setPlay(true)},280)});
+ el.addEventListener('pointermove',e=>{if(tm===null)return;const dx=e.clientX-x0;if(!held&&Math.abs(dx)>12){drag=true;clearTimeout(tm);jm.style.transition='none';jm.style.transform=`translateX(${dx}px)`;jm.style.opacity=1-Math.min(.6,Math.abs(dx)/600)}});
+ const up=e=>{if(tm===null)return;clearTimeout(tm);tm=null;const dx=(e&&e.clientX!=null?e.clientX:x0)-x0;
+  if(drag){jm.style.transition='transform .25s,opacity .25s';jm.style.transform='';jm.style.opacity='';if(dx<-50)next();else if(dx>50)go(idx-1);return}
+  if(held){rate=1;dir=1;jspd.classList.remove('on')}else{side>0?next():(pos>1.2?go(idx):go(idx-1))}};
+ el.addEventListener('pointerup',up);el.addEventListener('pointercancel',up);el.addEventListener('contextmenu',e=>e.preventDefault())}
+holdZone(document.getElementById('zl'),-1);holdZone(document.getElementById('zr'),1);
+const keys={};
+const typing=()=>/INPUT|TEXTAREA|SELECT/.test(document.activeElement?.tagName)||document.activeElement?.isContentEditable;
+addEventListener('keydown',e=>{if(document.getElementById('journey').hidden||typing())return;const r=jr.getBoundingClientRect();if(r.bottom<=0||r.top>=innerHeight)return;
+ if(['Space','ArrowLeft','ArrowRight'].includes(e.code)){e.preventDefault();if(keys[e.code])return;keys[e.code]=performance.now();
+  if(e.code==='Space'||e.code==='ArrowRight'){rate=2;dir=1;jspd.textContent='2×'}else{rate=2;dir=-1;jspd.textContent='◀◀'}
+  jspd.classList.add('on');setPlay(true)}});
+addEventListener('keyup',e=>{if(!keys[e.code])return;const held=performance.now()-keys[e.code]>280;delete keys[e.code];rate=1;dir=1;jspd.classList.remove('on');
+ if(!held){if(e.code==='ArrowRight')next();else if(e.code==='ArrowLeft')go(idx-1);else if(e.code==='Space')setPlay(!playing)}});
+window.jrReady=1;jrRender();requestAnimationFrame(t0=>{last=t0;requestAnimationFrame(tick)});
+new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting&&!started){started=true;setPlay(true)}else if(!en.isIntersecting&&playing){setPlay(false);started=false}}),{threshold:.5}).observe(jr);
+
+
+// ===== team =====
+const MEMBERS=[
+ {id:'marcus',name:'Marcus',prev:[{t:'839B',s:'2025–2026 Mix & Match',a:[['VEX Worlds 2026','Innovate Award'],['Ontario Provincials','Teamwork Champion'],['Kalahari Classic Signature Event','Teamwork Champion'],['Kalahari Classic Signature Event','Innovate Award'],['Bixby’s FrostByte Frenzy Signature Event','Teamwork Champion'],['Show Me Gateway Signature Event','Teamwork 2nd Place'],['Caution Tape Lunar New Year Qualifier','Amaze Award']]},{t:'8391Y',s:'2024–2025 Rapid Relay',a:[['VEX Worlds 2025','Teamwork Challenge Division 3rd Place'],['Ontario Provincials','Teamwork Champion']]}],roles:'Strategist · Driver · Marketing Lead',info:'3rd season',video:'',
+  story:["My name is Marcus, and this is my third year in VEX IQ. My first year was on 8391Y, my second year was on 839B, and this season I am on 839A.", "In my first year, my team won the Provincial Championship and qualified for the VEX World Championship, where we placed third in our division. Last year, 839B had a very successful season. We won the Bixby and Kalahari Signature Events and the Provincial Championship. We were also the first team to qualify for the VEX IQ World Championship that season. At Worlds, we earned the Innovate Award for our robot design.", "Last season, I was the main loader and a backup driver. As the loader, I had to communicate with my drivers and make sure they remembered important things during matches. I also helped my teammates off the field, which taught me how important communication and teamwork are.", "This season, I am stepping up to become a driver and a team ambassador. I want to take on more responsibility and challenge myself in a new role. One thing I am still working on is handling pressure at events.", "My main goals this season are to make it to Dome and earn an Excellence Award at a Signature Event."]},
+ {id:'taylor',name:'Taylor',prev:[{t:'839B',s:'2025–2026 Mix & Match',a:[['VEX Worlds 2026','Innovate Award'],['Ontario Provincials','Teamwork Champion'],['Kalahari Classic Signature Event','Teamwork Champion'],['Kalahari Classic Signature Event','Innovate Award'],['Bixby’s FrostByte Frenzy Signature Event','Teamwork Champion'],['Show Me Gateway Signature Event','Teamwork 2nd Place'],['Caution Tape Lunar New Year Qualifier','Amaze Award']]},{t:'8391Y',s:'2024–2025 Rapid Relay',a:[['VEX Worlds 2025','Teamwork Challenge Division 3rd Place'],['Ontario Provincials','Teamwork Champion']]}],roles:'Designer · Main Builder · Driver',info:'3rd season',video:'',
+  story:["This is my third year in VEX IQ, and I am on 839A.", "My story started two years ago on 8391Y. It was my first year in VEX IQ, and we won the Provincial Championship and qualified for Worlds. We ended up placing third in our division. I can't believe that happened in my rookie season.", "Last year I moved to 839B, and we became one of the most dominant teams in North America. We won two Signature Events, Bixby and Kalahari, plus the Provincial Championship in a row, and became the first team to qualify for the VEX IQ World Championship. At the World Championship, our team earned the Innovate Award, which meant a lot because it recognized our design ideas, not just how the robot performed.", "I've also had the chance to volunteer in robotics and STEAM programs. I helped Caution Tape Robotics spread the word about VEX IQ, 3D printing, and AI so more people can discover them. I even got to be an assistant coach, teaching younger kids how to use VEX GO and 3D printing. Watching them learn was really fun, and it helped me grow and think about my own path for the future.", "Hopefully I will improve my communication skills and make it to the Dome final."]},
+ {id:'stella',name:'Stella',prev:[{t:'839U',s:'First team',a:[]}],roles:'Elastic Band Specialist · Loader · Coding Support',info:'2nd season',video:'',
+  story:["I joined VEX IQ and started robotics last year because I was interested in learning building and engineering. It was my first time being on a team, and I was on team 839U. I was the programmer, loader, and backup driver. We got to the Provincial finals, then unfortunately lost and did not advance to the World Championship.", "This season I got invited to join 839A, the best team in our robotics club. This was a huge achievement for me, and I am ready to support and contribute to our team however I can. Since I have less experience in building and text coding, this season I am the elastic band specialist, which is important to our robot, as well as a loader and coding support. At the same time I am improving my building skills, writing parts of the notebook, helping with code, and volunteering at STEM and robotics events.", "I have never been to the World Championship before, so I am hoping I get to experience that this season. My main goals are to get an Excellence Award and go to the World Championship."]},
+ {id:'curtis',name:'Curtis',prev:[{t:'839Y',s:'2025–2026 Mix & Match, Elementary',a:[['VEX Worlds 2026','Design Award'],['VEX Worlds 2026','Teamwork Challenge Division 2nd Place'],['Hyundai Score Showdown Signature Event','Excellence Award'],['Ontario Provincials','Design Award'],['Ontario Provincials','Teamwork 2nd Place'],['Caution Tape Lunar New Year Qualifier','Judges Award'],['Caution Tape Lunar New Year Qualifier','Robot Skills Champion'],['Bot Camp Qualifier','Innovate Award'],['Caution Tape Halloween Qualifier','Teamwork Challenge Champion']]},{t:'83900X',s:'2024–2025 Rapid Relay, Elementary',a:[['Caution Tape Winter Qualifier','Excellence Award'],['Brampton Blended Qualifier','Teamwork Challenge 2nd Place']]}],roles:'Main Programmer · Backup Driver/Loader · Team Manager',info:'3rd season',video:'',
+  story:["This is the story of how I challenged myself and grew as a VEX IQ competitor.", "In my last year on team 839Y, I took on many roles: main builder, strategist, main driver, designer, and team lead. I worked really hard, and our team achieved incredible results — we earned 2nd place in our division and won the Design Award at the VEX World Championship.", "Even though I am still in elementary school this year, I wanted a bigger challenge. My goal is to compete in the middle school division and make it all the way to the VEX World Championship finals. Because of my effort last season and the work I put in over the summer, I earned a spot on team 839A, which is known as the best team in our club. Joining 839A was a huge accomplishment for me. My teammates are 2–3 years older, but I'm proud that I pushed myself and proved that I can compete at a higher level.", "Even though I now have fewer roles, I get to be involved in more supportive functions, which is something I didn't get to do last year. It's helping me grow in new ways and become an even better teammate and a more well-rounded person."]}];
+const t4=document.getElementById('team4');
+onLang(()=>t4.innerHTML=MEMBERS.map((m,i)=>`<div class="mem" tabindex="0" role="button" data-m="${i}"><img class="ph" src="assets/team/${m.id}.webp" alt="${m.name}, ${tr('team 839A')}" loading="lazy"><h3>${m.name}</h3><div class="role">${tr(m.roles)}</div><div class="gr">${tr(m.info)}</div>${m.prev?`<div class="prev">${tr('Before 839A:')} <b>${m.prev.map(p=>p.t).reverse().join(" → ")}</b></div>`:""}<div class="more">${tr('Read story →')}</div></div>`).join(''));
+let mdfs=16;try{mdfs=+localStorage.getItem('mdfs')||16}catch(_){}
+function MDFS(d){const bx=d.querySelector('.md-box');bx.style.setProperty('--mdfs',mdfs+'px');d.querySelector('.md-fs').onclick=e=>{const b=e.target.closest('[data-fs]');if(!b)return;mdfs=+b.dataset.fs;try{localStorage.setItem('mdfs',mdfs)}catch(_){}bx.style.setProperty('--mdfs',mdfs+'px');d.querySelectorAll('.md-fs button').forEach(x=>x.classList.toggle('on',x===b))}}
+function openMem(i){const m=MEMBERS[i];const d=document.createElement('div');d.id='md';d.setAttribute('role','dialog');d.setAttribute('aria-modal','true');
+ d.innerHTML=`<div class="md-box"><button class="rd-x" aria-label="${tr('Close')}">✕</button><div class="md-media">${m.video?`<video src="${m.video}" autoplay muted loop playsinline></video><span class="tag">${tr('At work')}</span>`:`<img src="assets/team/${m.id}.webp" alt="${m.name}">`}</div><div class="md-txt"><div class="kicker">${tr('Team 839A')}</div><h3>${m.name}</h3><div class="role">${tr(m.roles)}</div><div class="gr">${tr(m.info)}</div><div class="md-fs" role="group" aria-label="${tr('Text size')}">${[[16,"A"],[19,"A+"],[22,"A++"]].map(([z,l])=>`<button data-fs="${z}" aria-label="${tr('Text size')} ${l}" class="${mdfs==z?"on":""}">${l}</button>`).join("")}</div>${m.prev?`<div class="pt"><h4>${tr('Previous Teams and Achievements')}</h4>${m.prev.map(p=>`<div class="tm">${p.t}<small>${tr(p.s)}</small></div>${learnedOn(m.name,p.t)?`<p class="lrn"><b>${tr('What I learned')}:</b> ${learnedOn(m.name,p.t)}</p>`:""}${p.a.length?`<ul>${p.a.map(x=>`<li>${x.map(tr).join(' – ')}</li>`).join("")}</ul>`:""}`).join("")}</div>`:""}${roleHTML(m.name)}<h4 class="st">${tr('My Story')}</h4>${((STORY_TX[m.id]||{})[LANG]||m.story).map(x=>`<p>${x}</p>`).join('')}</div></div>`;
+ document.body.appendChild(d);const close=()=>d.remove();d.querySelector('.rd-x').onclick=close;d.addEventListener('click',e=>{if(e.target===d)close()});d.querySelector('.rd-x').focus();MDFS(d)}
+t4.addEventListener('click',e=>{const c=e.target.closest('.mem');if(c)openMem(+c.dataset.m)});
+t4.addEventListener('keydown',e=>{const c=e.target.closest('.mem');if(c&&(e.key==='Enter'||e.key===' ')){e.preventDefault();openMem(+c.dataset.m)}});
+addEventListener('keydown',e=>{if(e.key==='Escape'){document.getElementById('md')?.remove();document.getElementById('lb')?.remove()}});
+document.querySelectorAll('.gal img,.spics img').forEach(im=>im.onclick=()=>{const l=document.createElement('div');l.id='lb';l.innerHTML=`<img src="${im.src}" alt="${im.alt}"><button class="lbx" aria-label="${tr('Close')}">✕</button>`;l.onclick=()=>l.remove();document.body.appendChild(l)});
+
+// ===== media =====
+const MG=[
+ {id:'festival',title:'Markham Village Music Festival',where:'Community outreach · Markham, ON · Jun 19, 2026',items:[1,2,3,4,5,6,7,8].map(k=>({t:'p',src:'assets/community/m'+k+'.webp'}))},
+ {id:'build',title:'Building the robot',where:'Club & home · Markham · Summer 2026',items:[0,1,2,3,4,111,112,113]},
+ {id:'club',title:'At the club',where:'Caution Tape Robotics club · Markham · Oct 2026',items:[13,18,22,23,24]},
+ {id:'halloween',title:'Halloween Qualifier',where:'Caution Tape Robotics · Markham · Oct 31 – Nov 1, 2026',items:[25,26,27,28,29,30,31,32,33,34,35,36]},
+ {id:'smg',title:'Show Me Gateway Signature Event',where:'St. Charles Convention Center · St. Charles, MO · Nov 16–18, 2026',items:[110,109,108,38,39,40,45,46,47,48,49,52,53,54,55,56,57,59,61,62,63,64,65,66]},
+ {id:'bonding',title:'Team bonding: rock climbing',where:'Bouldering night · Nov 21, 2026',items:[127,128,129,116,117,118,119,120,121,122,123,124,125,126,130,131]},
+ {id:'home',title:'Back home with the banners',where:'Caution Tape Robotics club · Markham · Nov 21, 2026',items:[114,115,41,42,43]}];
+MG.forEach(g=>g.items=g.items.map(x=>typeof x==='number'?(()=>{const it=J.find(j=>j[0]===x);const f='assets/journey/'+pad(x);if(!it)return null;return it[1]==='v'?{t:'v',src:f+'.mp4',th:f+'.jpg'}:{t:'p',src:f+'.webp'}})():x).filter(Boolean));
+let mf='all';
+function renderMedia(){document.getElementById('mchips').innerHTML=[['all','All']].concat(MG.map(g=>[g.id,g.title])).map(([id,l])=>`<button class="chip ${mf===id?'on':''}" data-f="${id}">${tr(l)}</button>`).join('');
+ document.getElementById('mgroups').innerHTML=MG.filter(g=>mf==='all'||g.id===mf).map(g=>`<div class="mgroup"><h3>${tr(g.title)}</h3><div class="where">${tr(g.where)} · ${g.items.length} ${tr('items')}</div><div class="mgrid">${g.items.map(it=>`<button data-t="${it.t}" data-src="${it.src}" aria-label="${tr(g.title)} ${tr(it.t==='v'?'video':'photo')}"><img src="${it.th||it.src}" alt="${tr(g.title)}, ${tr(g.where)}" loading="lazy">${it.t==='v'?'<span class="pl">▶</span>':''}</button>`).join('')}</div></div>`).join('')}
+document.getElementById('mchips').addEventListener('click',e=>{const b=e.target.closest('.chip');if(b){mf=b.dataset.f;renderMedia()}});
+document.getElementById('mgroups').addEventListener('click',e=>{const b=e.target.closest('button[data-src]');if(!b)return;const l=document.createElement('div');l.id='lb';l.setAttribute('role','dialog');l.setAttribute('aria-modal','true');l.innerHTML=(b.dataset.t==='v'?`<video src="${b.dataset.src}" controls autoplay playsinline></video>`:`<img src="${b.dataset.src}" alt="">`)+'<button class="lbx" aria-label="'+tr('Close')+'">✕</button>';l.addEventListener('click',ev=>{if(ev.target===l||ev.target.closest('.lbx'))l.remove()});document.body.appendChild(l)});
+onLang(renderMedia);
+
+// ===== live ranking =====
+fetch('assets/data/rank.json',{cache:'no-store'}).then(r=>r.json()).then(d=>{const $=id=>document.getElementById(id);$('rkW').textContent=d.world;$('rkCa').textContent=d.canada;$('rkOn').textContent=d.ontario;
+ const t=new Date(d.updated.replace('Z',':00Z'));onLang(()=>$('rkAsof').textContent='· '+t.toLocaleString(loc(),{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}))}).catch(()=>{});
+
+// ===== contact =====
+document.addEventListener('click',e=>{const a=e.target.closest('[data-topic]');if(a){const sel=document.getElementById('ctopic');if(sel)sel.value=a.dataset.topic}});
+document.getElementById('cform').addEventListener('submit',async e=>{e.preventDefault();const f=e.target,st=document.getElementById('cstatus'),b=document.getElementById('csend');
+ if(f._honey.value)return;b.disabled=true;b.textContent=tr('Sending…');const fd=Object.fromEntries(new FormData(f));delete fd._honey;fd._subject='839A website: '+fd.topic+' from '+fd.name;fd._template='table';
+ try{const ac=new AbortController();setTimeout(()=>ac.abort(),12000);const r=await fetch('https://formsubmit.co/ajax/ctr.839a@gmail.com',{signal:ac.signal,method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(fd)});const j=await r.json().catch(()=>({}));
+  if(!r.ok||j.success==='false'||j.success===false)throw 0;st.className='cmsg ok';st.textContent=tr("Thanks! Your message was sent. We'll reply by email soon.");f.reset()}
+ catch(_){const body='From: '+fd.name+(fd.organization?' ('+fd.organization+')':'')+'\nEmail: '+fd.email+'\nTopic: '+fd.topic+'\n\n'+fd.message;
+  location.href='mailto:ctr.839A@gmail.com?subject='+encodeURIComponent(fd._subject)+'&body='+encodeURIComponent(body);
+  st.className='cmsg ok';st.textContent=tr('We opened your email app with your message filled in. Just press Send. If nothing opened, email ctr.839A@gmail.com.')}
+ st.hidden=false;b.disabled=false;b.textContent=t('ct_send')});
+document.getElementById('cp2').onclick=async e=>{try{await navigator.clipboard.writeText('ctr.839A@gmail.com');e.target.textContent=tr('Copied ✓')}catch(_){getSelection().selectAllChildren(document.getElementById('em2'))}};
+
+// donate button
+{const d=document.getElementById('donateBtn');if(d){if(GOFUNDME_URL){d.href=GOFUNDME_URL}else{d.removeAttribute('target');d.href='#contact';d.dataset.topic='General question';d.title=tr('GoFundMe coming soon')}}}
+// ===== CAD =====
+const CADS=[ // add {name:'CAD of Prototype E',sub:'Full robot',img:'assets/cad/e.webp'}
+ {name:'CAD of Prototype A',sub:'Level 4 lift',img:'assets/cad/a.webp'},{name:'CAD of Prototype B',sub:'Outtake',img:'assets/cad/b.webp'},{name:'CAD of Prototype C',sub:'Outtake',img:'assets/cad/c.webp'},{name:'CAD of Prototype D'}]; // older robots only, never the current one
+onLang(()=>{const L=CADS.filter(c=>c.img);document.getElementById('cad').hidden=!L.length})||onLang(()=>document.getElementById('cadGrid')&&(document.getElementById('cadGrid').innerHTML=CADS.filter(c=>c.img).map(c=>`<div class="cad">${c.img?`<img src="${c.img}" alt="${tr(c.name)}" loading="lazy">`:`<div class="ph0">${t('soon')}</div>`}<div class="c"><h3>${tr(c.name)}</h3>${c.sub?`<span>${tr(c.sub)}</span>`:''}</div></div>`).join('')));
+// ===== tabs / views =====
+const VIEWS=['home','team','robots','design','season','media','community','sponsors','donate','timer','shop','contact'];
+function show(v){v={journey:'season',cad:'design'}[v]||v;if(!VIEWS.includes(v))v='home';document.querySelectorAll('[data-view]').forEach(e=>e.hidden=e.dataset.view!==v);document.querySelectorAll('[data-view]').forEach(e=>{e.classList.remove('vin');if(!e.hidden){void e.offsetWidth;e.classList.add('vin')}});setTimeout(revealScan,30);
+ const tv=v==='contact'?'sponsors':v;setTimeout(()=>{const a=document.querySelector('#tabs a.on');if(a)a.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'})},50);document.querySelectorAll('#tabs a[data-v]').forEach(a=>a.classList.toggle('on',a.dataset.v===tv));
+ const ti=TABS.indexOf(tv);tprev.disabled=ti<=0;tnext.disabled=ti>=TABS.length-1;
+ document.querySelectorAll('#links a[href^="#"]').forEach(a=>a.classList.toggle('cur',a.getAttribute('href')==='#'+v));
+ hdr.classList.toggle('solid',v!=='home');window.scrollTo(0,0);
+ if(v==='home'){hv.play().catch(()=>{})}else{hv.pause()}}
+addEventListener('hashchange',()=>show(location.hash.slice(1)));
+const TABS=[...document.querySelectorAll('#tabs a[data-v]')].map(a=>a.dataset.v);
+const tprev=document.getElementById('tprev'),tnext=document.getElementById('tnext');
+function stepTab(d){const cur=document.querySelector('#tabs a.on');const i=TABS.indexOf(cur?cur.dataset.v:'home')+d;if(i>=0&&i<TABS.length)location.hash=TABS[i]}
+tprev.onclick=()=>stepTab(-1);tnext.onclick=()=>stepTab(1);
+const _sc=()=>hdr.classList.toggle('solid',location.hash.slice(1)&&location.hash!=='#home'||scrollY>window.innerHeight*.6);
+removeEventListener('scroll',_sc);addEventListener('scroll',_sc,{passive:true});
+if(location.hash)history.replaceState(null,'',location.pathname+location.search);show('home');
+document.getElementById('cp').onclick=async e=>{try{await navigator.clipboard.writeText('ctr.839A@gmail.com');e.target.textContent=tr('Copied ✓')}catch(_){getSelection().selectAllChildren(document.getElementById('em'))}};
+// ===== loader: robot E assembles =====
+(function(){const L=document.getElementById('loader');let seen=false;try{seen=sessionStorage.getItem('ld')}catch(e){}
+ const finish=()=>{L.classList.add('done');setTimeout(()=>L.remove(),700);if(!document.getElementById('top').hidden)hv.play().catch(()=>{})};
+ if(seen||RM){finish();return}try{sessionStorage.setItem('ld',1)}catch(e){}
+ const c=document.getElementById('lc'),x=c.getContext('2d'),im=new Image();im.src='assets/logo/badge.webp';
+ im.onerror=finish;setTimeout(finish,6000);
+ im.onload=()=>{const W=c.width,H=c.height,s=Math.min(W*.86/im.width,H*.86/im.height),iw=im.width*s,ih=im.height*s,ox=(W-iw)/2,oy=(H-ih)/2;
+  const C=9,R=6,tw=im.width/C,th=im.height/R,o=document.createElement('canvas');o.width=im.width;o.height=im.height;const ox2=o.getContext('2d');ox2.drawImage(im,0,0);
+  const P=[];for(let r=0;r<R;r++)for(let q=0;q<C;q++){const d=ox2.getImageData(q*tw,r*th,tw,th).data;let a=0;for(let i=3;i<d.length;i+=16)a+=d[i]>30;if(a<6)continue;
+   const left=q<C/2;P.push({q,r,sx:left?-W*.3-Math.random()*W*.3:W*1.3+Math.random()*W*.3,sy:oy+r*th*s+(Math.random()-.5)*H*.8,rot:(Math.random()-.5)*2.4,del:Math.random()*.9+(Math.abs(q-C/2)/C)*.5})}
+  const D=1.1,T0=performance.now(),ease=k=>1-Math.pow(1-k,3);
+  (function fr(now){const el=(now-T0)/1000;x.clearRect(0,0,W,H);let done=true;
+   P.forEach(p=>{let k=Math.max(0,Math.min(1,(el-p.del)/D));if(k<1)done=false;const e=ease(k),tx=ox+p.q*tw*s,ty=oy+p.r*th*s;
+    x.save();x.globalAlpha=Math.min(1,k*3);x.translate(p.sx+(tx-p.sx)*e+tw*s/2,p.sy+(ty-p.sy)*e+th*s/2);x.rotate(p.rot*(1-e));x.drawImage(o,p.q*tw,p.r*th,tw,th,-tw*s/2-.5,-th*s/2-.5,tw*s+1,th*s+1);x.restore()});
+   if(!done)requestAnimationFrame(fr);else{x.clearRect(0,0,W,H);x.drawImage(im,ox,oy,iw,ih);L.querySelector('.lt').style.opacity=1;setTimeout(finish,900)}})(T0)}})();
+
+// ===== scroll reveal =====
+const RV=[['.sec-h h2,.sec-h h3','rv-head'],['.kicker','rv-kick'],['.box,.rk,.mem,.mgroup,.ev-row,.steps>div,.stats>div,.mail,.cform','rv-card'],['.pics img,.spics img,.mgrid button','rv-img'],['.lead,.note,.where','rv-text']];
+const rvo='IntersectionObserver' in window?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');e.target.querySelectorAll('.rv-head').forEach(x=>x.classList.add('in'));rvo.unobserve(e.target);const b=e.target.matches('.rk')&&e.target.querySelector('b');if(b)countUp(b)}}),{rootMargin:'0px 0px -6% 0px',threshold:0}):null;
+function countUp(b){const tn=[...b.childNodes].reverse().find(n=>n.nodeType===3&&/\d/.test(n.textContent))||[...b.querySelectorAll('span')].reverse().find(x=>/^\d+$/.test(x.textContent.trim()));if(!tn||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ const set=v=>tn.nodeType===3?tn.textContent=v:tn.textContent=v,get=()=>tn.textContent.trim(),end=+get();if(!(end>1))return;const t0=performance.now(),D=1100;
+ (function f(t){const k=Math.min(1,(t-t0)/D),e=1-Math.pow(1-k,4);set(Math.round(end*e));if(k<1)requestAnimationFrame(f);else set(end)})(t0)}
+function revealScan(){if(!rvo)return;document.querySelectorAll('[data-view]:not([hidden])').forEach(sec=>{RV.forEach(([sel,cls])=>{sec.querySelectorAll(sel).forEach(el=>{if(el.classList.contains('rv')||el.closest('.hero,#lb,#md,#rd,.jr,.hof,#hof,.tabs'))return;
+  const sib=el.parentElement?[...el.parentElement.children].indexOf(el):0;el.style.setProperty('--rd',(cls==='rv-head'?.05:Math.min(sib,7)*0.08)+'s');el.classList.add('rv',cls);rvo.observe(cls==='rv-head'?(el.closest('.sec-h')||el.parentElement):el)})})})}
+new MutationObserver(()=>{clearTimeout(window._rvt);window._rvt=setTimeout(revealScan,60)}).observe(document.body,{childList:true,subtree:true});
+setTimeout(revealScan,50);
+const vbar=document.createElement('div');vbar.id='vbar';document.body.appendChild(vbar);
+addEventListener('hashchange',()=>{vbar.classList.remove('go');void vbar.offsetWidth;vbar.classList.add('go')});
+
+// ===== team-written sections + data =====
+(function(){const T=TWD,$i=id=>document.getElementById(id);
+ const card=(h,rows,n)=>`<div><h4>${h}</h4>${rows.filter(r=>tw(r[1])).map(r=>`<p><b>${r[0]}:</b> ${r[1]}</p>`).join('')}${nb(n)}</div>`;
+ if((T.mentoring||[]).length){$i('mtBox').hidden=false;$i('mtGrid').innerHTML=T.mentoring.map(m=>card(m.who+(m.when?` <small>· ${m.when}</small>`:''),[['What we taught',m.taught],['How they improved',m.result]])).join('')}
+ fetch('assets/data/rank_history.json',{cache:'no-store'}).then(r=>r.json()).then(h=>{if(!h.length)return;
+  const W=600,H=200,P=34,xs=h.length>1?(W-2*P)/(h.length-1):0,max=Math.max(...h.map(x=>x.canada),5),y=v=>P+(v-1)/(max-1||1)*(H-2*P);
+  const pts=h.map((x,i)=>[P+i*xs,y(x.canada)]);
+  $i('trend').innerHTML=`<svg class="trend" viewBox="0 0 ${W} ${H}" role="img" aria-label="Canada skills rank over time"><line x1="${P}" y1="${y(1)}" x2="${W-P}" y2="${y(1)}" stroke="currentColor" opacity=".15"/><text x="4" y="${y(1)+4}">#1</text><text x="4" y="${y(max)+4}">#${max}</text>${pts.length>1?`<polyline fill="none" stroke="var(--red)" stroke-width="3" points="${pts.map(p=>p.join(',')).join(' ')}"/>`:''}${pts.map((p,i)=>`<circle cx="${p[0]}" cy="${p[1]}" r="5" fill="var(--red)"><title>${h[i].date}: #${h[i].canada} in Canada</title></circle>`).join('')}<text x="${P}" y="${H-6}">${h[0].date}</text>${h.length>1?`<text x="${W-P}" y="${H-6}" text-anchor="end">${h[h.length-1].date}</text>`:''}</svg>`;
+  const l=h[h.length-1];$i('trendNote').textContent=`Canada Middle School robot skills rank, updated automatically from events.vex.com. Latest: #${l.canada} in Canada, #${l.ontario} in Ontario, #${l.world} in the world.`+(h.length<2?' Tracking started '+h[0].date+'; the line grows as our ranking changes.':'')}).catch(()=>{});
+})();
+</script>
+</body>
+</html>

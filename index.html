@@ -343,7 +343,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 .pw-stamp{position:absolute;left:50%;top:56%;transform:translate(-50%,-50%) rotate(-12deg);padding:6px 18px;border:3px solid var(--red);color:var(--red);font:900 22px "Tomorrow",var(--hf);letter-spacing:.18em;background:color-mix(in srgb,var(--card) 80%,transparent);pointer-events:none}
 
 .seqimg{filter:drop-shadow(0 16px 20px rgba(0,0,0,.45))!important;user-select:none;-webkit-user-drag:none}
-.isx{position:relative;overflow:hidden}
+.isx{position:relative;overflow:hidden;background:repeating-linear-gradient(-45deg,#141416 0 18px,#1c1c1f 18px 36px)!important;border-radius:14px;min-height:160px}
+.isx>img,.isx>video{visibility:hidden!important}
+.bot.isx{min-height:0;width:16vh;height:22vh;border-radius:10px}
 .ctape{position:absolute;inset:0;pointer-events:none;z-index:3}
 .ctape .tp{position:absolute;left:-30%;width:160%;top:50%;padding:5px 0;background:var(--red);color:#fff;font:800 italic 12px/1 "Tomorrow",var(--hf);letter-spacing:.14em;white-space:nowrap;overflow:hidden;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,.45);border-top:2px solid #111;border-bottom:2px solid #111}
 .ctape .t1{transform:translateY(-50%) rotate(-14deg)}.ctape .t2{transform:translateY(-50%) rotate(11deg);top:62%;background:#b80500}
@@ -658,7 +660,7 @@ const ROBOTS=[
  {k:'A',name:'Prototype A',img:'assets/robots/a.webp',seq:'a',built:'June 2026',focus:'Lift · Intake',pw:[3,2,5,5,1,5],about:'Our first robot of the season, built to score on the highest goal.'},
  {k:'B',name:'Prototype B',img:'assets/robots/b.webp',seq:'b',built:'Summer 2026',focus:'Outtake · Intake',pw:[3,3,3.5,3.5,3,4],about:'A lower, faster design aimed at the L3 goal.'},
  {k:'C',name:'Prototype C',img:'assets/robots/c.webp',seq:'c',built:'Summer 2026',focus:'Outtake',pw:[3,3,1.5,1.5,5,3],about:'Version 2 of Prototype B, with a tensioner added.'},
- {k:'D',name:'Prototype D',img:'assets/robots/d.webp',built:'August 2026',focus:'Outtake · Intake',pw:[2.5,2.5,4,1.5,3,2],about:'Our first hybrid that can score on both L3 and L4, using a conveyor.'},
+ {k:'D',name:'Prototype D',img:'assets/robots/d.webp',seq:'d',built:'August 2026',focus:'Outtake · Intake',pw:[2.5,2.5,4,1.5,3,2],about:'Our first hybrid that can score on both L3 and L4, using a conveyor.'},
  {k:'E',name:'Prototype E',img:'assets/robots/e.webp',secret:true,built:'Fall 2026',focus:'Classified',pw:[0,0,0,0,0,0],about:'Our current robot. It is not out to the public yet, so it stays under wraps until the reveal.'}];
 const J=[[0,"p",1787420125,0],[1,"v",1787420175,8],[2,"v",1787420702,8],[111,"p",1787420900,0],[112,"p",1787420960,0],[113,"p",1787421020,0],[3,"p",1787433793,0],[4,"p",1787433801,0],[13,"p",1790215240,0],[18,"v",1791573926,5],[22,"p",1792201973,0],[23,"p",1792276638,0],[24,"p",1792289166,0],[28,"p",1793571295,0],[29,"p",1793571373,0],[30,"p",1793572942,0],[31,"p",1793573367,0],[32,"p",1793573368,0],[33,"p",1793573372,0],[34,"p",1793573373,0],[35,"p",1793573374,0],[36,"p",1793573376,0],[45,"p",1794934800,0],[46,"p",1794935400,0],[48,"p",1794936600,0],[49,"p",1794937200,0],[52,"p",1794939000,0],[53,"p",1794939600,0],[54,"p",1794940200,0],[55,"p",1794940800,0],[56,"p",1794941400,0],[57,"p",1794942000,0],[59,"p",1794943200,0],[61,"p",1794944400,0],[62,"p",1794945000,0],[63,"p",1794945600,0],[64,"p",1794946200,0],[65,"p",1794946800,0],[66,"p",1794947400,0],[40,"v",1795042081,8.0],[41,"p",1795278720,0],[43,"v",1795288045,8.0],[108,"p",1795410060,0],[110,"p",1795410200,0],[114,"p",1795701600,0],[115,"p",1795701660,0],[116,"v",1795312993,17.6],[117,"v",1795313131,20],[118,"v",1795313191,9.6],[119,"v",1795313249,20],[120,"v",1795313304,20],[121,"v",1795313360,10.9],[122,"v",1795313451,13.8],[123,"v",1795313482,20],[124,"v",1795313558,20],[125,"v",1795313694,20],[126,"v",1795313763,20],[127,"p",1795313793,0],[128,"p",1795313821,0],[129,"p",1795313829,0],[130,"v",1795313907,3.2],[131,"v",1795313940,7.4]];
 // ===== i18n =====
@@ -710,9 +712,9 @@ function spin3d(d,r){const box=d.querySelector('.rd-box .spin');if(!box)return;i
   const pre=[...Array(N)].map((_,n)=>{const x=new Image();x.src=src(n);return x});im.src=src(0);im.classList.add('seqimg');im.style.transform='none';
   let f=0,dr=false,x0=0,last=performance.now(),idle=0;box.style.touchAction='pan-y';
   box.addEventListener('pointerdown',e=>{dr=true;x0=e.clientX;box.setPointerCapture(e.pointerId)});
-  box.addEventListener('pointermove',e=>{if(!dr)return;const dx=e.clientX-x0;x0=e.clientX;f+=dx/7});
+  box.addEventListener('pointermove',e=>{if(!dr)return;const dx=e.clientX-x0;x0=e.clientX;f+=dx/9});
   const up=()=>{dr=false;idle=performance.now()};box.addEventListener('pointerup',up);box.addEventListener('pointercancel',up);
-  (function t(now){if(!document.body.contains(im))return;const dt=now-last;last=now;if(!dr&&now-idle>1200)f+=dt/170;const n=((Math.round(f)%N)+N)%N;const want=src(n);if(!im.src.endsWith(want))im.src=want;requestAnimationFrame(t)})(last);return}
+  (function t(now){if(!document.body.contains(im))return;const dt=now-last;last=now;if(!dr&&now-idle>1200)f+=dt/330;const n=((Math.round(f)%N)+N)%N;const want=src(n);if(!im.src.endsWith(want))im.src=want;requestAnimationFrame(t)})(last);return}
  const img=box.querySelector('img');let a=0,v=0.35,drag=false,x0=0,last=performance.now();
  box.addEventListener('pointerdown',e=>{drag=true;x0=e.clientX;v=0;box.setPointerCapture(e.pointerId)});
  box.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-x0;x0=e.clientX;a+=dx*.6;v=dx*.6});

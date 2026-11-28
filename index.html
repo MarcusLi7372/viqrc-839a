@@ -331,6 +331,32 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 .owns{display:flex;flex-wrap:wrap;gap:6px}.owns span{padding:4px 10px;border-radius:99px;background:var(--red);color:#fff;font-size:12px;font-weight:700}.lrn{margin:6px 0 0;font-size:calc(var(--mdfs,16px) - 1px)}
 .twgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}.twgrid>div{border:1px solid var(--line);border-radius:14px;padding:16px}.twgrid h4{margin:0 0 6px}.twgrid p{margin:6px 0 0;font-size:14px}.twgrid small{color:var(--muted)}
 .trend{width:100%;height:auto;max-height:220px;color:var(--fg)}.trend text{font:600 11px system-ui;fill:var(--muted)}
+.blur-note{margin:14px 0 0;padding:10px 14px;border-left:3px solid var(--red);background:var(--card);border-radius:0 10px 10px 0;font-size:13px;color:var(--muted)}
+.pw-x{position:relative;overflow:hidden}.pw-x .pw-h small{color:var(--red);font-weight:800}
+.pw-red{height:12px;border-radius:3px;background:repeating-linear-gradient(-45deg,#111 0 8px,#2a2a2a 8px 16px)}
+.pw-stamp{position:absolute;left:50%;top:56%;transform:translate(-50%,-50%) rotate(-12deg);padding:6px 18px;border:3px solid var(--red);color:var(--red);font:900 22px "Tomorrow",var(--hf);letter-spacing:.18em;background:color-mix(in srgb,var(--card) 80%,transparent);pointer-events:none}
+
+/* ===== mobile polish ===== */
+@media(max-width:600px){.team4{grid-template-columns:1fr 1fr!important;gap:10px!important}}
+@media(max-width:600px){
+ section{padding-block:44px}
+ .sec-h h2{font-size:clamp(28px,8.5vw,40px)}
+ .mem{padding:12px;border-radius:14px}
+ .mem .ph{border-radius:10px;margin-bottom:10px}
+ .mem h3{font-size:18px}
+ .mem .role,.mem .gr,.mem .prev{font-size:11px}
+ .mem .more{font-size:11px}
+ footer img{max-width:150px!important}
+ footer{padding-block:28px 110px}
+ .tscroll table.log thead,.tscroll table.log tr:has(th){display:none}
+ .tscroll table.log,.tscroll table.log tbody,.tscroll table.log tr,.tscroll table.log td{display:block;width:100%}
+ .tscroll table.log tr{padding:12px 0;border-bottom:1px solid var(--line)}
+ .tscroll table.log td{padding:2px 0;border:0;text-align:left}
+ .tscroll table.log td:first-child{font-weight:800;font-size:15px}
+ .tscroll table.log td:not(:first-child){font-size:13px;color:var(--muted)}
+ .pw-r{grid-template-columns:96px 1fr 22px}
+ .blur-note{font-size:12px}
+}
 /* ===== motion ===== */
 @keyframes vin{from{opacity:0;transform:translateY(26px) scale(.985);filter:blur(10px)}to{opacity:1;transform:none;filter:none}}
 [data-view].vin{animation:vin .6s cubic-bezier(.16,1,.3,1) both}
@@ -388,13 +414,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   <div class="sec-h"><div><div class="kicker" data-i="hof_k">Every robot we built</div><h2 data-i="hof_h">Robot Hall of Fame</h2></div>
    <div class="hof-ctl"><button class="arrow" id="hp" aria-label="Previous">‹</button><button class="arrow" id="hn" aria-label="Next">›</button></div></div>
   <div class="hof" id="hof"></div>
+  <p class="blur-note">🔒 Robot photos and CADs are blurred on purpose. We keep the details of our designs private during the competition season.</p>
  </div>
 </section>
 
 <section id="design" data-view="design">
  <div class="wrap">
   <div class="sec-h"><div><div class="kicker">How we build</div><h2>Design Process</h2></div></div>
-  <p class="lead">We follow the engineering design process (EDP). Every subsystem on our robot goes through the same eight steps, from the first idea to the version that goes to competition. Our approach is data-driven and uses the EDP: we record all of our data and use it to make our decisions.</p>
+  <p class="lead">We follow the engineering design process (EDP). Every subsystem on our robot goes through the same six steps of the VEX Engineering Design Process, from the first idea to the version that goes to competition. Our approach is data-driven and uses the EDP: we record all of our data and use it to make our decisions.</p>
   <div class="steps">
    <div><b>01</b><h3>Identify the problem</h3><p>Define the challenge, the requirements and the constraints before any design.</p></div>
    <div><b>02</b><h3>Brainstorm solutions</h3><p>Come up with several ideas and prototypes, and compare them against the requirements.</p></div>
@@ -406,6 +433,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   <div id="cad" style="margin-top:48px" hidden>
   <div class="sec-h"><div><div class="kicker" data-i="cad_k">Computer-Aided Design</div><h2>CAD of Our Earlier Robots</h2></div></div>
   <p class="lead">Before we build, we model it. Here are the CADs of our older prototypes. Our current robot stays under wraps until the reveal.</p>
+  <p class="blur-note">🔒 Robot photos and CADs are blurred on purpose. We keep the details of our designs private during the competition season.</p>
   <div class="grid" id="cadGrid"></div>
   </div>
  </div>
@@ -648,13 +676,13 @@ const hdr=document.getElementById('hdr');
 if(REVEAL_YOUTUBE_ID){document.getElementById('revealBox').innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+REVEAL_YOUTUBE_ID+'" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen title="'+tr('Robot reveal')+'"></iframe>'}
 // ===== hall of fame =====
 const hof=document.getElementById('hof'),rn=r=>tr('Prototype')+' '+r.k;
-const pwHTML=r=>`<div class="pw"><div class="pw-h">${tr('Power stats')}<small>${tr('out of 5')}</small></div>${PW.map((l,i)=>{const v=r.pw[i];return `<div class="pw-r"><span>${tr(l)}</span><div class="pw-b" aria-hidden="true">${[0,1,2,3,4].map(n=>`<i><b style="width:${Math.max(0,Math.min(1,v-n))*100}%;animation-delay:${(.15+i*.07+n*.07).toFixed(2)}s"></b></i>`).join('')}</div><em>${v.toLocaleString(loc())}</em></div>`}).join('')}</div>`;
-onLang(()=>hof.innerHTML=ROBOTS.map((r,i)=>`<div class="pod" tabindex="0" role="button" data-r="${i}" aria-label="${rn(r)}, ${tr('details')}"><div class="rb"><img src="${r.img}" alt="${rn(r)}" class="${r.sil?'sil':''}" loading="lazy"></div><div class="plinth"><div class="nm">${tr('Prototype')}</div><div class="letter">${r.k}</div></div>${r.secret?'':pwHTML(r)}</div>`).join(''));
+const pwHTML=r=>r.secret?`<div class="pw pw-x"><div class="pw-h">${tr('Power stats')}<small>${tr('Classified')}</small></div>${PW.map(l=>`<div class="pw-r"><span>${tr(l)}</span><div class="pw-red"></div><em>?</em></div>`).join('')}<div class="pw-stamp">CLASSIFIED</div></div>`:`<div class="pw"><div class="pw-h">${tr('Power stats')}<small>${tr('out of 5')}</small></div>${PW.map((l,i)=>{const v=r.pw[i];return `<div class="pw-r"><span>${tr(l)}</span><div class="pw-b" aria-hidden="true">${[0,1,2,3,4].map(n=>`<i><b style="width:${Math.max(0,Math.min(1,v-n))*100}%;animation-delay:${(.15+i*.07+n*.07).toFixed(2)}s"></b></i>`).join('')}</div><em>${v.toLocaleString(loc())}</em></div>`}).join('')}</div>`;
+onLang(()=>hof.innerHTML=ROBOTS.map((r,i)=>`<div class="pod" tabindex="0" role="button" data-r="${i}" aria-label="${rn(r)}, ${tr('details')}"><div class="rb"><img src="${r.img}" alt="${rn(r)}" class="${r.sil?'sil':''}" loading="lazy"></div><div class="plinth"><div class="nm">${tr('Prototype')}</div><div class="letter">${r.k}</div></div>${pwHTML(r)}</div>`).join(''));
 
 // robot detail
 function podHTML(r){return `<div class="pod"><div class="rb spin">${r.model?`<model-viewer src="${r.model}" alt="${tr('3D model of')} ${rn(r)}" camera-controls auto-rotate shadow-intensity="1" style="width:100%;height:250px;background:transparent"></model-viewer>`:`<img src="${r.img}" alt="${rn(r)}" class="${r.sil?'sil':''}" draggable="false">`}</div><div class="plinth"><div class="nm">${tr('Prototype')}</div><div class="letter">${r.k}</div></div></div>`}
 function openRobot(i){i=(i+ROBOTS.length)%ROBOTS.length;const r=ROBOTS[i];let d=document.getElementById('rd');if(!d){d=document.createElement('div');d.id='rd';d.setAttribute('role','dialog');d.setAttribute('aria-modal','true');document.body.appendChild(d);d.addEventListener('click',e=>{if(e.target===d)closeRobot()})}
- d.innerHTML=`<div class="rd-box"><button class="rd-x" aria-label="${tr('Close')}">✕</button>${podHTML(r)}<div class="rd-info"><h3>${tr('Prototype')} <b>${r.k}</b></h3><dl><dt>${tr('Version')}</dt><dd>${r.k} · ${i+1} ${tr('of')} ${ROBOTS.length}</dd><dt>${tr('Built')}</dt><dd>${tr(r.built)}</dd><dt>${tr('Focus')}</dt><dd>${tr(r.focus)}</dd></dl><p>${tr(r.about)}${r.sil?' '+tr('Photo coming soon.'):''}</p>${r.secret?'':pwHTML(r)}<div class="rd-nav"><button class="arrow" data-m="-1" aria-label="${tr('Previous robot')}">‹</button><button class="arrow" data-m="1" aria-label="${tr('Next robot')}">›</button></div></div></div>`;
+ d.innerHTML=`<div class="rd-box"><button class="rd-x" aria-label="${tr('Close')}">✕</button>${podHTML(r)}<div class="rd-info"><h3>${tr('Prototype')} <b>${r.k}</b></h3><dl><dt>${tr('Version')}</dt><dd>${r.k} · ${i+1} ${tr('of')} ${ROBOTS.length}</dd><dt>${tr('Built')}</dt><dd>${tr(r.built)}</dd><dt>${tr('Focus')}</dt><dd>${tr(r.focus)}</dd></dl><p>${tr(r.about)}${r.sil?' '+tr('Photo coming soon.'):''}</p>${pwHTML(r)}<div class="rd-nav"><button class="arrow" data-m="-1" aria-label="${tr('Previous robot')}">‹</button><button class="arrow" data-m="1" aria-label="${tr('Next robot')}">›</button></div></div></div>`;
  d.querySelector('.rd-x').onclick=closeRobot;spin3d(d,r);d.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>openRobot(i+ +b.dataset.m));d.dataset.i=i;d.querySelector('.rd-x').focus()}
 
 function spin3d(d,r){const box=d.querySelector('.rd-box .spin');if(!box)return;box.insertAdjacentHTML('afterend','<div class="hint3d">'+tr('Drag to spin')+'</div>');

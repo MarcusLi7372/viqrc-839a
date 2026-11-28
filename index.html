@@ -355,6 +355,20 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 .spfab{position:fixed;z-index:61;right:max(16px,env(safe-area-inset-right));bottom:calc(84px + env(safe-area-inset-bottom));display:inline-flex;align-items:center;gap:7px;padding:10px 16px 10px 13px;border-radius:999px;background:var(--red);color:#fff;font:800 italic 13px "Tomorrow",var(--hf);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;box-shadow:0 10px 26px -8px rgba(225,6,0,.7),0 2px 6px rgba(0,0,0,.3);transition:transform .2s}
 .spfab svg{width:16px;height:16px}.spfab:hover{transform:translateY(-2px)}
 @media(min-width:900px){.spfab{bottom:auto;top:calc(76px + env(safe-area-inset-top))}}
+
+/* hall of fame sizing */
+.pod{flex:0 0 min(70vw,270px)}
+.pod .rb{height:200px;margin-bottom:-22px}
+.pod .rb img{max-height:195px;max-width:240px}
+.plinth{height:112px}.plinth .nm{font-size:13px;margin-top:26px}.plinth .letter{font-size:38px}
+.hof .pw{padding:10px 12px 12px;margin-top:10px}.hof .pw-r{font-size:12px;padding:2px 0;grid-template-columns:100px 1fr 24px}.hof .pw-h{font-size:11px;margin-bottom:6px}
+.hof{padding-bottom:100px}
+.rd-box .pod .rb{height:330px;margin-bottom:-30px}
+.rd-box .pod .rb img{max-height:330px;max-width:100%;width:100%;object-fit:contain;object-position:center bottom}
+.rd-box .pod .rb img.seqimg{transform:none!important}
+.seqimg{filter:brightness(1.3) drop-shadow(0 14px 16px rgba(0,0,0,.5))!important}
+.seqimg.lift{filter:brightness(2.1) contrast(1.15) drop-shadow(0 0 1px rgba(255,255,255,.35)) drop-shadow(0 14px 16px rgba(0,0,0,.5))!important}
+@media(max-width:600px){.rd-box .pod .rb{height:250px}.rd-box .pod .rb img{max-height:250px}}
 /* ===== mobile polish ===== */
 @media(max-width:600px){.team4{grid-template-columns:1fr 1fr!important;gap:10px!important}}
 @media(max-width:600px){
@@ -706,10 +720,10 @@ function openRobot(i){i=(i+ROBOTS.length)%ROBOTS.length;const r=ROBOTS[i];let d=
  d.innerHTML=`<div class="rd-box"><button class="rd-x" aria-label="${tr('Close')}">✕</button>${podHTML(r)}<div class="rd-info"><h3>${tr('Prototype')} <b>${r.k}</b></h3><dl><dt>${tr('Version')}</dt><dd>${r.k} · ${i+1} ${tr('of')} ${ROBOTS.length}</dd><dt>${tr('Built')}</dt><dd>${tr(r.built)}</dd><dt>${tr('Focus')}</dt><dd>${tr(r.focus)}</dd></dl><p>${tr(r.about)}${r.sil?' '+tr('Photo coming soon.'):''}</p>${pwHTML(r)}<div class="rd-nav"><button class="arrow" data-m="-1" aria-label="${tr('Previous robot')}">‹</button><button class="arrow" data-m="1" aria-label="${tr('Next robot')}">›</button></div></div></div>`;
  d.querySelector('.rd-x').onclick=closeRobot;spin3d(d,r);d.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>openRobot(i+ +b.dataset.m));d.dataset.i=i;d.querySelector('.rd-x').focus()}
 
-function spin3d(d,r){const box=d.querySelector('.rd-box .spin');if(!box)return;if(r.secret){box.classList.add('isx');box.insertAdjacentHTML('beforeend',TAPE);return}box.insertAdjacentHTML('afterend','<div class="hint3d">'+tr('Drag to spin')+'</div>');
+function spin3d(d,r){const box=d.querySelector('.rd-box .spin');if(!box)return;if(r.secret){box.classList.add('isx');box.insertAdjacentHTML('beforeend',TAPE);return}(box.parentElement.querySelector('.plinth')||box).insertAdjacentHTML('afterend','<div class="hint3d">'+tr('Drag to spin')+'</div>');
  if(r.model){if(!window._mv){window._mv=1;const sc=document.createElement('script');sc.type='module';sc.src='https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js';document.head.appendChild(sc)}return}
  if(r.seq){const im=box.querySelector('img');const N=48,src=n=>`assets/robots/spin/${r.seq}${String(n).padStart(2,'0')}.webp`;
-  const pre=[...Array(N)].map((_,n)=>{const x=new Image();x.src=src(n);return x});im.src=src(0);im.classList.add('seqimg');im.style.transform='none';
+  const pre=[...Array(N)].map((_,n)=>{const x=new Image();x.src=src(n);return x});im.src=src(0);im.classList.add('seqimg');if(r.seq==='d')im.classList.add('lift');im.style.transform='none';
   let f=0,dr=false,x0=0,last=performance.now(),idle=0;box.style.touchAction='pan-y';
   box.addEventListener('pointerdown',e=>{dr=true;x0=e.clientX;box.setPointerCapture(e.pointerId)});
   box.addEventListener('pointermove',e=>{if(!dr)return;const dx=e.clientX-x0;x0=e.clientX;f+=dx/9});

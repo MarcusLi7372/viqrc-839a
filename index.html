@@ -350,6 +350,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 .bot.isx{overflow:visible}.bot.isx .ctape .tp{font-size:8px;padding:3px 0}
 .pw-x .ctape .tp{font-size:11px}
 .blur-note{display:flex;gap:10px;align-items:flex-start}.blur-note .lk{flex:0 0 18px;width:18px;height:18px;color:var(--red);margin-top:1px}
+.spfab{position:fixed;z-index:61;right:max(16px,env(safe-area-inset-right));bottom:calc(84px + env(safe-area-inset-bottom));display:inline-flex;align-items:center;gap:7px;padding:10px 16px 10px 13px;border-radius:999px;background:var(--red);color:#fff;font:800 italic 13px "Tomorrow",var(--hf);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;box-shadow:0 10px 26px -8px rgba(225,6,0,.7),0 2px 6px rgba(0,0,0,.3);transition:transform .2s}
+.spfab svg{width:16px;height:16px}.spfab:hover{transform:translateY(-2px)}
+@media(min-width:900px){.spfab{bottom:auto;top:calc(76px + env(safe-area-inset-top))}}
 /* ===== mobile polish ===== */
 @media(max-width:600px){.team4{grid-template-columns:1fr 1fr!important;gap:10px!important}}
 @media(max-width:600px){
@@ -619,6 +622,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   <div class="mail"><div style="flex:1;min-width:220px"><div class="kicker" data-i="ct_or">Or email us directly</div><code id="em2">ctr.839A@gmail.com</code></div><button class="btn" type="button" id="cp2" data-i="ct_copy">Copy email</button></div>
  </div>
 </section>
+<a class="spfab" id="spfab" href="#sponsors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg><span>Sponsor us</span></a>
 <nav class="tabs" id="tabs" aria-label="Sections">
  <button type="button" class="tnav" id="tprev" aria-label="Previous page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
  <a href="#home" data-v="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span data-i="tab_home">Home</span></a>
@@ -867,7 +871,7 @@ onLang(()=>{const L=CADS.filter(c=>c.img);document.getElementById('cad').hidden=
 // ===== tabs / views =====
 const VIEWS=['home','team','robots','design','season','media','community','sponsors','donate','timer','shop','contact'];
 function show(v){v={journey:'season',cad:'design'}[v]||v;if(!VIEWS.includes(v))v='home';document.querySelectorAll('[data-view]').forEach(e=>e.hidden=e.dataset.view!==v);document.querySelectorAll('[data-view]').forEach(e=>{e.classList.remove('vin');if(!e.hidden){void e.offsetWidth;e.classList.add('vin')}});setTimeout(revealScan,30);
- const tv=v==='contact'?'sponsors':v;setTimeout(()=>{const a=document.querySelector('#tabs a.on');if(a)a.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'})},50);document.querySelectorAll('#tabs a[data-v]').forEach(a=>a.classList.toggle('on',a.dataset.v===tv));
+ const tv=v==='contact'?'sponsors':v;document.getElementById('spfab').hidden=(v==='sponsors'||v==='contact');setTimeout(()=>{const a=document.querySelector('#tabs a.on');if(a)a.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'})},50);document.querySelectorAll('#tabs a[data-v]').forEach(a=>a.classList.toggle('on',a.dataset.v===tv));
  const ti=TABS.indexOf(tv);tprev.disabled=ti<=0;tnext.disabled=ti>=TABS.length-1;
  document.querySelectorAll('#links a[href^="#"]').forEach(a=>a.classList.toggle('cur',a.getAttribute('href')==='#'+v));
  hdr.classList.toggle('solid',v!=='home');window.scrollTo(0,0);

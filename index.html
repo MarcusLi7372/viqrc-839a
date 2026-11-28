@@ -5,7 +5,12 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>839A Caution Tape Alpha</title>
 <meta name="description" content="839A Caution Tape Alpha, a VEX IQ robotics team from Markham, Ontario.">
-<link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" type="image/png" href="assets/favicon-32.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="favicon.ico?v=2" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png?v=2">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png?v=2">
+<link rel="icon" type="image/png" sizes="96x96" href="assets/favicon-96.png?v=2">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png?v=2">
+<link rel="manifest" href="site.webmanifest">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SportsTeam","name":"839A Caution Tape Alpha","alternateName":"Team 839A","sport":"VEX IQ Robotics","url":"https://www.ctr839a.com/","logo":"https://www.ctr839a.com/assets/icon-512.png","location":{"@type":"Place","name":"Markham, Ontario, Canada"}}</script><link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
 <link rel="preload" href="assets/fonts/exo-2-latin-800-italic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/tomorrow-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
@@ -336,6 +341,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 .pw-red{height:12px;border-radius:3px;background:repeating-linear-gradient(-45deg,#111 0 8px,#2a2a2a 8px 16px)}
 .pw-stamp{position:absolute;left:50%;top:56%;transform:translate(-50%,-50%) rotate(-12deg);padding:6px 18px;border:3px solid var(--red);color:var(--red);font:900 22px "Tomorrow",var(--hf);letter-spacing:.18em;background:color-mix(in srgb,var(--card) 80%,transparent);pointer-events:none}
 
+.spinvid{width:100%;height:100%;max-height:100%;object-fit:contain;display:block;mix-blend-mode:multiply;border-radius:12px}
 /* ===== mobile polish ===== */
 @media(max-width:600px){.team4{grid-template-columns:1fr 1fr!important;gap:10px!important}}
 @media(max-width:600px){
@@ -638,8 +644,8 @@ function roleHTML(n){const r=(TWD.roles||{})[n];if(!r||(!r.owns.length&&!tw(r.de
 const learnedOn=(n,t)=>tw(((TWD.journey||{})[n]||{})[t]);
 const ROBOTS=[
  {k:'A',name:'Prototype A',img:'assets/robots/a.webp',built:'June 2026',focus:'Lift · Intake',pw:[3,2,5,5,1,5],about:'Our first robot of the season, built to score on the highest goal.'},
- {k:'B',name:'Prototype B',img:'assets/robots/b.webp',built:'Summer 2026',focus:'Outtake · Intake',pw:[3,3,3.5,3.5,3,4],about:'A lower, faster design aimed at the L3 goal.'},
- {k:'C',name:'Prototype C',img:'assets/robots/c.webp',built:'Summer 2026',focus:'Outtake',pw:[3,3,1.5,1.5,5,3],about:'Version 2 of Prototype B, with a tensioner added.'},
+ {k:'B',name:'Prototype B',img:'assets/robots/b.webp',spin:'assets/robots/b-spin.mp4',built:'Summer 2026',focus:'Outtake · Intake',pw:[3,3,3.5,3.5,3,4],about:'A lower, faster design aimed at the L3 goal.'},
+ {k:'C',name:'Prototype C',img:'assets/robots/c.webp',spin:'assets/robots/c-spin.mp4',built:'Summer 2026',focus:'Outtake',pw:[3,3,1.5,1.5,5,3],about:'Version 2 of Prototype B, with a tensioner added.'},
  {k:'D',name:'Prototype D',img:'assets/robots/d.webp',built:'August 2026',focus:'Outtake · Intake',pw:[2.5,2.5,4,1.5,3,2],about:'Our first hybrid that can score on both L3 and L4, using a conveyor.'},
  {k:'E',name:'Prototype E',img:'assets/robots/e.webp',secret:true,built:'Fall 2026',focus:'Classified',pw:[0,0,0,0,0,0],about:'Our current robot. It is not out to the public yet, so it stays under wraps until the reveal.'}];
 const J=[[0,"p",1787420125,0],[1,"v",1787420175,8],[2,"v",1787420702,8],[111,"p",1787420900,0],[112,"p",1787420960,0],[113,"p",1787421020,0],[3,"p",1787433793,0],[4,"p",1787433801,0],[13,"p",1790215240,0],[18,"v",1791573926,5],[22,"p",1792201973,0],[23,"p",1792276638,0],[24,"p",1792289166,0],[28,"p",1793571295,0],[29,"p",1793571373,0],[30,"p",1793572942,0],[31,"p",1793573367,0],[32,"p",1793573368,0],[33,"p",1793573372,0],[34,"p",1793573373,0],[35,"p",1793573374,0],[36,"p",1793573376,0],[45,"p",1794934800,0],[46,"p",1794935400,0],[48,"p",1794936600,0],[49,"p",1794937200,0],[52,"p",1794939000,0],[53,"p",1794939600,0],[54,"p",1794940200,0],[55,"p",1794940800,0],[56,"p",1794941400,0],[57,"p",1794942000,0],[59,"p",1794943200,0],[61,"p",1794944400,0],[62,"p",1794945000,0],[63,"p",1794945600,0],[64,"p",1794946200,0],[65,"p",1794946800,0],[66,"p",1794947400,0],[40,"v",1795042081,8.0],[41,"p",1795278720,0],[43,"v",1795288045,8.0],[108,"p",1795410060,0],[110,"p",1795410200,0],[114,"p",1795701600,0],[115,"p",1795701660,0],[116,"v",1795312993,17.6],[117,"v",1795313131,20],[118,"v",1795313191,9.6],[119,"v",1795313249,20],[120,"v",1795313304,20],[121,"v",1795313360,10.9],[122,"v",1795313451,13.8],[123,"v",1795313482,20],[124,"v",1795313558,20],[125,"v",1795313694,20],[126,"v",1795313763,20],[127,"p",1795313793,0],[128,"p",1795313821,0],[129,"p",1795313829,0],[130,"v",1795313907,3.2],[131,"v",1795313940,7.4]];
@@ -687,6 +693,11 @@ function openRobot(i){i=(i+ROBOTS.length)%ROBOTS.length;const r=ROBOTS[i];let d=
 
 function spin3d(d,r){const box=d.querySelector('.rd-box .spin');if(!box)return;box.insertAdjacentHTML('afterend','<div class="hint3d">'+tr('Drag to spin')+'</div>');
  if(r.model){if(!window._mv){window._mv=1;const sc=document.createElement('script');sc.type='module';sc.src='https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js';document.head.appendChild(sc)}return}
+ if(r.spin){const im=box.querySelector('img');const vd=document.createElement('video');Object.assign(vd,{src:r.spin,muted:true,loop:true,autoplay:true,playsInline:true,poster:r.img});vd.setAttribute('muted','');vd.setAttribute('playsinline','');vd.className='spinvid';vd.setAttribute('aria-label',rn(r)+' 360 view');im.replaceWith(vd);vd.play().catch(()=>{});
+  let dr=false,x0=0;box.style.touchAction='pan-y';
+  box.addEventListener('pointerdown',e=>{dr=true;x0=e.clientX;vd.pause();box.setPointerCapture(e.pointerId)});
+  box.addEventListener('pointermove',e=>{if(!dr||!vd.duration)return;const dx=e.clientX-x0;x0=e.clientX;vd.currentTime=((vd.currentTime+dx/box.clientWidth*vd.duration*.6)%vd.duration+vd.duration)%vd.duration});
+  const up=()=>{if(dr){dr=false;vd.play().catch(()=>{})}};box.addEventListener('pointerup',up);box.addEventListener('pointercancel',up);return}
  const img=box.querySelector('img');let a=0,v=0.35,drag=false,x0=0,last=performance.now();
  box.addEventListener('pointerdown',e=>{drag=true;x0=e.clientX;v=0;box.setPointerCapture(e.pointerId)});
  box.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-x0;x0=e.clientX;a+=dx*.6;v=dx*.6});

@@ -725,20 +725,22 @@ function openRobot(i){i=(i+ROBOTS.length)%ROBOTS.length;const r=ROBOTS[i];let d=
  d.innerHTML=`<div class="rd-box"><button class="rd-x" aria-label="${tr('Close')}">✕</button>${podHTML(r)}<div class="rd-info"><h3>${tr('Prototype')} <b>${r.k}</b></h3><dl><dt>${tr('Version')}</dt><dd>${r.k} · ${i+1} ${tr('of')} ${ROBOTS.length}</dd><dt>${tr('Built')}</dt><dd>${tr(r.built)}</dd><dt>${tr('Focus')}</dt><dd>${tr(r.focus)}</dd></dl><p>${tr(r.about)}${r.sil?' '+tr('Photo coming soon.'):''}</p>${pwHTML(r)}<div class="rd-nav"><button class="arrow" data-m="-1" aria-label="${tr('Previous robot')}">‹</button><button class="arrow" data-m="1" aria-label="${tr('Next robot')}">›</button></div></div></div>`;
  d.querySelector('.rd-x').onclick=closeRobot;spin3d(d,r);d.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>openRobot(i+ +b.dataset.m));d.dataset.i=i;d.querySelector('.rd-x').focus()}
 
+const _sp={};function spriteFor(k){if(!_sp[k]){const x=new Image();x.decoding='async';x.src=`assets/robots/spin/${k}.webp`;_sp[k]=x}return _sp[k]}
 function spin3d(d,r){const box=d.querySelector('.rd-box .spin');if(!box)return;if(r.secret){box.classList.add('isx');box.insertAdjacentHTML('beforeend',TAPE);return}(box.parentElement.querySelector('.plinth')||box).insertAdjacentHTML('afterend','<div class="hint3d">'+tr('Drag to spin')+'</div>');
  if(r.model){if(!window._mv){window._mv=1;const sc=document.createElement('script');sc.type='module';sc.src='https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js';document.head.appendChild(sc)}return}
- if(r.seq){const im=box.querySelector('img');const N=96,src=n=>`assets/robots/spin/${r.seq}${String(n).padStart(2,'0')}.webp`;
-  const pre=[...Array(N)].map((_,n)=>{const x=new Image();x.decoding='async';x.src=src(n);return x});
-  const cv=document.createElement('canvas');cv.className='seqimg'+(r.seq==='d'||r.seq==='a'?' lift':'');cv.setAttribute('role','img');cv.setAttribute('aria-label',rn(r));im.replaceWith(cv);const ctx=cv.getContext('2d');
-  let f=0,dr=false,x0=0,last=performance.now(),idle=-1e9,vel=0,dir=1;const SP={a:260,d:260,b:1100,c:1100}[r.seq]||650,DG={a:6,d:6,b:16,c:16}[r.seq]||8;box.style.touchAction='pan-y';
-  const size=()=>{const w=pre[0].naturalWidth,h=pre[0].naturalHeight;if(!w)return;cv.width=w;cv.height=h};pre[0].onload=size;size();
+ if(r.seq){const im=box.querySelector('img');const N=96,C=12,R=8,sp=spriteFor(r.seq);
+  const cv=document.createElement('canvas');cv.className='seqimg'+(r.seq==='d'||r.seq==='a'?' lift':'');cv.setAttribute('role','img');cv.setAttribute('aria-label',rn(r));
+  let ready=false,fw=0,fh=0;const ctx=cv.getContext('2d');
+  const go=()=>{fw=sp.naturalWidth/C;fh=sp.naturalHeight/R;cv.width=fw;cv.height=fh;if(!ready){ready=true;im.replaceWith(cv)}};
+  if(sp.complete&&sp.naturalWidth)go();else sp.addEventListener('load',go,{once:true});
+  let f=0,dr=false,x0=0,last=performance.now(),idle=-1e9,vel=0;box.style.touchAction='pan-y';
   box.addEventListener('pointerdown',e=>{dr=true;x0=e.clientX;vel=0;box.setPointerCapture(e.pointerId)});
-  box.addEventListener('pointermove',e=>{if(!dr)return;const dx=e.clientX-x0;x0=e.clientX;f+=dx/DG;vel=dx/DG;dir=dx<0?-1:1});
+  box.addEventListener('pointermove',e=>{if(!dr)return;const dx=e.clientX-x0;x0=e.clientX;f+=dx/6;vel=dx/6});
   const up=()=>{dr=false;idle=performance.now()};box.addEventListener('pointerup',up);box.addEventListener('pointercancel',up);
-  (function t(now){if(!document.body.contains(cv))return;const dt=Math.min(50,now-last);last=now;
-   if(!dr){vel*=0.85;f+=vel*dt/16;if(now-idle>250&&Math.abs(vel)<.2){f+=dir*dt/SP;if(f>N-1.001){f=N-1.001;dir=-1}if(f<0){f=0;dir=1}}}
-   const ff=Math.min(N-1.001,Math.max(0,f));f=ff;const i0=Math.floor(ff),i1=Math.min(N-1,i0+1),a=ff-i0,A=pre[i0],B=pre[i1];
-   if(A.complete&&A.naturalWidth){if(!cv.width)size();ctx.clearRect(0,0,cv.width,cv.height);const ok=B.complete&&B.naturalWidth&&a>0.01;ctx.globalCompositeOperation='source-over';ctx.globalAlpha=ok?1-a:1;ctx.drawImage(A,0,0,cv.width,cv.height);if(ok){ctx.globalCompositeOperation='lighter';ctx.globalAlpha=a;ctx.drawImage(B,0,0,cv.width,cv.height);ctx.globalCompositeOperation='source-over'}ctx.globalAlpha=1}
+  const tile=(n,al,op)=>{ctx.globalCompositeOperation=op;ctx.globalAlpha=al;ctx.drawImage(sp,(n%C)*fw,Math.floor(n/C)*fh,fw,fh,0,0,fw,fh)};
+  (function t(now){if(!document.body.contains(ready?cv:im))return;const dt=Math.min(50,now-last);last=now;
+   if(!dr){vel*=0.85;f+=vel*dt/16;if(now-idle>250&&Math.abs(vel)<.2)f+=dt/180}
+   if(ready){const ff=((f%N)+N)%N,i0=Math.floor(ff),i1=(i0+1)%N,a=ff-i0;ctx.clearRect(0,0,fw,fh);tile(i0,a>0.01?1-a:1,'source-over');if(a>0.01)tile(i1,a,'lighter');ctx.globalCompositeOperation='source-over';ctx.globalAlpha=1}
    requestAnimationFrame(t)})(last);return}
  const img=box.querySelector('img');let a=0,v=0.35,drag=false,x0=0,last=performance.now();
  box.addEventListener('pointerdown',e=>{drag=true;x0=e.clientX;v=0;box.setPointerCapture(e.pointerId)});
@@ -897,7 +899,7 @@ const CADS=[ // add {name:'CAD of Prototype E',sub:'Full robot',img:'assets/cad/
 onLang(()=>{const L=CADS.filter(c=>c.img);document.getElementById('cad').hidden=!L.length})||onLang(()=>document.getElementById('cadGrid')&&(document.getElementById('cadGrid').innerHTML=CADS.filter(c=>c.img).map(c=>`<div class="cad">${c.img?`<img src="${c.img}" alt="${tr(c.name)}" loading="lazy">`:`<div class="ph0">${t('soon')}</div>`}<div class="c"><h3>${tr(c.name)}</h3>${c.sub?`<span>${tr(c.sub)}</span>`:''}</div></div>`).join('')));
 // ===== tabs / views =====
 const VIEWS=['home','team','robots','design','season','media','community','sponsors','donate','timer','shop','contact'];
-function show(v){v={journey:'season',cad:'design'}[v]||v;if(!VIEWS.includes(v))v='home';document.querySelectorAll('[data-view]').forEach(e=>e.hidden=e.dataset.view!==v);document.querySelectorAll('[data-view]').forEach(e=>{e.classList.remove('vin');if(!e.hidden){void e.offsetWidth;e.classList.add('vin')}});setTimeout(revealScan,30);
+function show(v){if(v==='robots'&&!window._spPre){window._spPre=1;setTimeout(()=>ROBOTS.forEach(r=>r.seq&&spriteFor(r.seq)),300)}v={journey:'season',cad:'design'}[v]||v;if(!VIEWS.includes(v))v='home';document.querySelectorAll('[data-view]').forEach(e=>e.hidden=e.dataset.view!==v);document.querySelectorAll('[data-view]').forEach(e=>{e.classList.remove('vin');if(!e.hidden){void e.offsetWidth;e.classList.add('vin')}});setTimeout(revealScan,30);
  const tv=v==='contact'?'sponsors':v;document.getElementById('spfab').hidden=(v==='sponsors'||v==='contact');setTimeout(()=>{const a=document.querySelector('#tabs a.on');if(a)a.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'})},50);document.querySelectorAll('#tabs a[data-v]').forEach(a=>a.classList.toggle('on',a.dataset.v===tv));
  const ti=TABS.indexOf(tv);tprev.disabled=ti<=0;tnext.disabled=ti>=TABS.length-1;
  document.querySelectorAll('#links a[href^="#"]').forEach(a=>a.classList.toggle('cur',a.getAttribute('href')==='#'+v));
